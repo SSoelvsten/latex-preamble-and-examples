@@ -1,0 +1,30 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings for document (danish) %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Input common definition
+\input{preamble_base.tex}
+
+% Basics: font, codec etc.
+\usepackage[danish]{babel}						% danish basepackage for hyphenation
+\renewcommand{\danishhyphenmins}{22}			% even better danish hyphenation!
+
+% lstlisting language redefinitions
+\renewcommand{\lstlistingname}{Kode}                                            % for one block of code alone
+\renewcommand{\lstlistlistingname}{Liste af \lstlistingname r}                  % for more pieces of code in one
+
+% .bib danish redefinition - actually not sure what this is for?
+\renewcommand\Authand{ og }
+\renewcommand\Authands{, og }
+\renewcommand\Affilfont{\small}
+
+% General danish redefinitions
+\newtheorem{theorem}{Sætning}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Påstand}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Korollar}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Formodning}
+\newenvironment{proof}{\noindent{\bf Bevis:\ }}{\hfill$\Box$\medskip}

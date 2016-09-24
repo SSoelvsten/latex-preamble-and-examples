@@ -1,0 +1,346 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load Preample         %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4, danish]{article}
+\input{preamble_dk.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document starts here! %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Define title and more on frontpage
+    \title{\huge Title \\ \large Subtitle}
+    
+    \author{Steffan C. S. Jørgensen}
+    \affil{
+        \protect\href{mailto:201505832@post.au.dk}{201505832@post.au.dk}
+    }
+    
+    \date{\today}
+    
+    \lhead{\protect\href{mailto:201505832@post.au.dk}{Steffan Sølvsten, 201505832}}
+    \chead{}
+    \rhead{\@currentlabelname\ | \thepage\ of \pageref{LastPage}}
+
+    %\lfoot{}
+    %\cfoot{}
+    %\rfoot{}
+\maketitle
+
+\begin{abstract}
+\noindent Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\end{abstract}
+
+%En indholdsfortegnelse kan nemt laves med \tableofcontents funktionen
+\tableofcontents
+
+\newpage
+\section{Matematik} \label{sec:math}
+Mest basalt kan man bruge \emph{equation} til at skrive matematik på en linje eller matematik i teksten skrives med \$ x\_0 \$ = $x_0$.
+
+Skal man skrive matematik over flere linjer, så er det bedre at bruge \emph{align} eller ved mere komplicerede ting \emph{alignat}. Det følgende eksempel er \emph{alignat}, der gør det muligt at justere efter flere ting: Her både pilene til venstre og lighedstegnene.
+
+\begin{alignat}{2}
+&& cos x &= cos x * cos y \label{alignatL1}
+\\ \ArrowBetweenLines
+&& 0 &= cos x * cos y - cos x \label{alignatL2}
+\\ \ArrowBetweenLines
+&& 0 &= cos x (cos y - 1) \label{alignatL3}
+\end{alignat}
+
+Her er desuden en reference til linje \ref{alignatL2}.
+
+\subsection{Matricer}
+Med \emph{pmatrix} kan man lave matricer
+\begin{equation*}
+	\begin{pmatrix}
+		v_1 * v_1 & v_1 * v_2 & \dots & v_1 * v_n
+\\		v_2 * v_1 & \ddots & & \vdots
+\\		\vdots & & \ddots & \vdots
+\\		v_n * v_1 & \dots & \dots & v_n * v_n
+	\end{pmatrix}
+\end{equation*}
+
+
+\section{Beviser}
+Der findes mange forskellige pakker for at lave beviser, hvor efter længere søgen har jeg til sidst valgt at bruge \emph{lplfitch} pakken, da fitch-style beviser synes at være den mest anvendte metode for at danne beviser indenfor logik. For syntaksen skal man dog holde tungen meget lige i munden
+\begin{center}
+    \fitchprf{\pline[1.]{antagelse}}{
+        \pline[2.]{konklussion}
+    \\
+    	\subproof{\pline[3.]{antagelse}}{
+    		\pline[4.]{konklussion}[begrundelse]
+    	\\
+    		\pline[5.]{konklussion}
+    	}
+    	\pline[6.]{konklussion}
+    }
+\end{center}
+
+Denne pakke indeholder tilsyneladende ikke meget syntaktisk sukker i forhold til andre, hvorfor brug af dokumentation for at kende genveje muligvis er nødvendigt, dog er de alle på formen: $"l" + type + "i/e"$. Argumentation gøres også ved genveje. Hver linje er skrevet på formen
+\begin{equation*}
+    pline[hline number i]\{hformulai\}[hjustificationi]
+\end{equation*}
+
+\newpage
+Bemærk, at normalt i fitch-style bliver der ikke skrevet assumption eller premise, men det markeres i stedet med en vandret streg. Du kan dog nemt skrive det selv, hvis ønsket. Hermed vil beviset $1.2.1$ c fra TØ skrives som
+\begin{center}
+    \fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
+    	\pline[2.]{r}[\lande{1}]
+    \\
+        \pline[3.]{p \land q}[\lande{1}]
+    \\
+        \pline[4.]{p}[\lande{3}]
+    \\
+        \pline[5.]{q}[\lande{3}]
+    \\
+        \pline[6.]{q \land r}[\landi{2, 5}]
+    \\
+        \pline[7.]{p \land (q \land r)}[\landi{4, 6}]
+    }
+\end{center}
+
+\section{Figurer og grafer}
+Følgende er en figur indeholder et billede. Figurens label er \ref{FigExample}.
+
+\begin{figure}[htbp] %htbp forces the figure into the text.
+    \centering
+    \includegraphics[width=10em]{picture.png}
+    \caption{Et billede}
+    \label{FigExample}
+\end{figure}
+
+Figurer behøver dog ikke at indeholdet et billede og i stedet for \emph{includegraphics} kan alt muligt andet indsættes. Bare eksperimenter en smule.
+
+\begin{wrapfigure}[10]{r}{15em}
+	\centering
+	\begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, auto]
+	\node[state, initial] (0) {$q_0$};
+	\node[state] (h) [right=of 0] {$h_a$};
+	\path[->]
+		(0) edge [bend left] node {$\Delta / \Delta , R$} (h);
+	\end{tikzpicture}
+	\caption{Transition diagram of a small Turing machine}
+	\label{fig:TM2}
+\end{wrapfigure}
+Hvis man gerne vil have figurer ved siden af sin tekst, så kan der bruges en \emph{wrapfigure} i stedet for en normal \emph{figure}. Skriv teksten på den linje, som du ønsker at billedet starter på. Den første variabel er antallet af linjer, hvor kassen skal være høj. Den anden variable er venstre eller højre og til sidst er der bredden af figuren.
+
+\newpage
+\section{Grafer}
+Her er en graf fra vores første Calculus Opgave, Tak Rasmus. \cite{rasmus}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-3, xmax=3,
+    ymin=-1, ymax=6,
+    xlabel={$x$},ylabel={$y$},
+    axis lines=center,
+    axis on top=true,
+    ]
+    %Graf x^2
+    \addplot [name path=f, domain=-3:3,black, thick] {x^2};
+    %Øverste kant for fill
+    \path[name path=axis] (axis cs:-3,6) -- (axis cs:3,6);
+    %Indstillinger for fill
+    \addplot [
+        thick,
+        color=blue,
+        fill=blue, 
+        fill opacity=0.05
+    ]
+    %Start af fill
+    fill between[
+        of=f and axis,
+    ];
+    
+    %Tegner lodrette streger
+    \addplot+[ycomb,dotted,thick,no marks] table[x=x,y expr=6] {
+    x
+    -1
+    1
+    };
+    
+    %Tilføjer tekst
+    \node [] at (axis cs:  -1, 5) {$x=-1$};
+    \node [] at (axis cs:  1, 5) {$x=1$};
+    \node at (axis cs:  0, 1) {$y\geq x^2$};    
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\noindent Dette kan også indsættes i en figur i stedet for linjen \emph{includegrapics}, så der er caption og referencer.
+
+\section{Kode}
+Følgende er lidt sourcecode til noget ubrugelig Java. hvis man ikke vil have \emph{Kode X:}, så kan man bruge \emph{title} frem for \emph{caption}. Dette får dog \emph{label} til at gå i stykker, så hvis man generelt vil have det fjernet, så ændre i definitionen øverst. Følgende kode har label \ref{lst:Example}
+
+\begin{lstlisting} [label={lst:Example},
+	caption={Jeg er en caption}]
+//This is a comment, nordic letters are not supported
+public static String example(int n) {
+	return "You wrote: "+n;
+}
+\end{lstlisting}
+
+Skal sproget sættes til noget andet end i begyndelsen, så gøres dette også meget nemt. I følgende pseudokode bruges også escape character parrene *@ og @* for at indsætte \LaTeX\ matematik.
+
+\begin{lstlisting}[language=pseudocode,
+                firstnumber=1,
+                caption={The algorithm \emph{linear exponentiation}},
+                label={lst:algorithm}]
+*@ \textbf{Algorithm: Linear Exponentiation} @*(x,p)
+ Input     : *@ $p \geq 0$ @*
+ Output    : *@ $r = x^p$ @*
+ Method    : *@ $r \leftarrow 1$ @*
+             *@ $q \leftarrow p$ @*
+              {I} while *@ $q > 0$ @* do
+                    *@ $r \leftarrow r * x$ @*
+                    *@ $q \leftarrow q - 1$ @*
+\end{lstlisting}
+
+\newpage
+\section{Træer}
+Med qtree er det meget hurtigt at tegne træer. Bemærk dog, at du skal have et mellemrum mellem indholdet og den lukkende parantes.
+
+\begin{figure}[htbp]
+    \centering
+    \Tree [.rod [.{rod for et subtræ}
+				blad
+				blad ]
+			blad ]
+    \caption{Et træ}
+    \label{fig:tree1}
+\end{figure}
+
+Skal træerne være lidt mere komplekse eller smukke, så kan man bruge tikz, som allerede er sat op i starten til at lave rød-sorte træer.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[baseline={(current bounding box.center)},-,>=stealth',level/.style={sibling distance = 1.1cm, level distance = 0.9cm}]
+            \node [arn_r] {y}
+                child{ node [arn_b] {x} 
+                    child{ node {$\alpha$} }
+                    child{ node {$\beta$} }                            
+                }
+                child[style={edge from parent/.style={red,very thick,draw}}]
+                    { node {$\gamma$} }
+            ;
+    \end{tikzpicture}
+    \caption{Et pænere træ}
+    \label{fig:tree2}
+\end{figure}
+
+\section{Automater}
+Ved brug af en udvidelse til Tikz er dannelsen af automater meget enkelt. Det eneste besværlige er de længere streger, som transitionen fra (C) til (A) over 1, hvilket her i koden er kommenteret, idet det også er muligt at bestemme vinklen af kanterne.
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[>=stealth', semithick,                                  % More pronounced edges
+	                    shorten >= 1, node distance = 2cm, on grid, auto]       % Node placement settings
+	\node[state, initial] (A) {$A$};
+	\node[state] (B) [right=of A] {$B$};
+	\node[state, accepting] (C) [right=of B] {$C$};
+	\path[->]
+		(A) edge node {0} (B)
+			edge [loop above] node {1} ()
+		(B)	edge [loop above] node {0} ()
+			edge [bend right] node {1} (C)
+		(C)	edge [bend left=45] node {1} (A)
+			edge [bend right] node {0} (B);
+	%\draw[->] (C) .. controls ($(C)+(0,-1cm)$) and ($(A)+(0,-1cm)$).. (A)      % Custom edge
+	%				node at ($(B)+(0,-1.1cm)$) {$1$};
+	\end{tikzpicture}
+	\caption{En automat, der accepterer sproget af strenge, der ender med "01"}
+	\label{fig:FA}
+\end{figure}
+
+\newpage
+\section{E/R Diagrammer} \label{sec:ER}
+Ved brug af \emph{er} og \emph{shapes} pakken kan E/R diagrammer implementeres.
+
+\begin{figure}[htbp!]
+    \centering
+    \begin{tikzpicture}[>=stealth', semithick,                                                  % More pronounced edges
+                        shorten >= 0.5, node distance = 2cm and 3cm, on grid, auto,             % Node placement settings
+                        isa/.style = {regular polygon, regular polygon sides=3, draw=black}]    % Defining isa nodes
+        \node[entity] (ent1) {Entities};
+        \node[attribute] (attr1) [above =of ent1] {\underline{attribute}};
+        \node[relationship, double distance=0.1em] (wrel) [right =of ent1] {weak rel};
+        \node[entity, double distance=0.1em] (went) [right =of wrel] {Weak entities};
+        \node[attribute] (attr2) [above =of went] {attribute};
+        \node[isa] (isa) [below =of ent1] {isa};
+        \node[entity] (ent2) [below right =of isa] {Entities};
+        \node[relationship] (rel1) [right =of ent2] {relationship};
+        \node[entity] (ent3) [right =of rel1] {Entities};
+        %edge:many
+        \path[-]
+            (ent1) edge (attr1)
+            (went) edge (wrel)
+            (went) edge (attr2)
+            (isa) edge (ent1)
+            (isa) edge (ent2)
+            (ent3) edge node [above, pos = 0.35] {$\geq 4$} (rel1);
+        %edge:one
+        \path[->]
+            (wrel) edge (ent1);
+        %edge:exactly-one
+        \path[-)]
+            (rel1) edge (ent2);
+    \end{tikzpicture}
+    \label{fig:ER}
+\end{figure}
+
+\section{Referencer} \label{sec:ref}
+Skal man have en reference til ligninger, figurer, afsnit eller andet, så bruges \emph{ref} kommandoen. Et \emph{ref} vil altid pege på et \emph{label}. For eksempel er dette afsnit nummer \ref{sec:ref}. I afsnit \ref{sec:math} er der en ligning \ref{eq:alignatL2}
+
+Vil man dog lave en reference til litteraturlisten, så bruges \emph{cite} kommandoerne. Her er desuden en reference til litteratur \cite{bibEks}, som er skrevet i \emph{bibliography} længere nedenunder. Dette er dog redefineret til litteratur i danskdelen ovenfor. Vil man have flere referencer samtidig, så skrives bare flere referencer som argumenter til \emph{cite}, så det ser sådan ud: \cite{bibEks, steffan}
+
+\section{Citater}
+Med \emph{csquotes} pakken er det muligt at lave pæne citater, såsom Steffan's udsagn \textcquote[s. 12]{steffan}{Vi er dataloger, ikke vampyrer.}. Ved brug af \emph{blockquote} fås automatisk et fremhævet citat, sålænge det er 4+ linjer.
+
+\blockcquote[s. 1]{bibEks}{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.}
+
+Bemærk, at begge citater bruger et \emph{c} som prefix til \emph{quote}. Dette giver muligheden for at referere til litteraturlisten. Hvis dette ikke ønskes, så kan man fjerne \emph{c} og fjerne referencer samtidig.
+
+\newpage
+\section{Kolonner}
+\begin{multicols}{2}
+
+\noindent Her er tekst opdelt i to kolonner, hvilket kan bruges til mange ting. Måske have et billede til venstre eller kode? Hvis du vil bruge kode, skal du dog fjerne header og centering indstillingerne øverst.
+
+\vfill \columnbreak
+
+Her er noget tekst i den anden kolonne. Dette kunne også bruges til at have titel og abstract til venstre og indholsfortegnelse til højre?
+
+\end{multicols}
+
+\begin{thebibliography}{9}
+\bibitem{bibEks}
+ Efternavn, Fornavn: \emph{Artikel titel}, 20xx
+\bibitem{rasmus}
+ Skovdal, Rasmus: \emph{Calculus 1}, 2015
+\bibitem{steffan}
+ Jørgensen, Steffan: \emph{101 citater}, 2015
+
+\bibitem{referencer.bib}
+ Man kan enten skrive litteraturen i sit dokument, eller have en ekstra referencer.bib fil med al information:
+
+@book{FilVri97,
+Author = {Filar, Jerzy and Vrieze, Koos},
+Publisher = {Springer},
+Title = {Competitive Markov Decision Processes},
+Year = 1997
+} 
+ 
+\end{thebibliography}
+\bibliographystyle{abbrv}
+\bibliography{referencer}
+
+\newpage
+\appendix
+\section{Et Appendix}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+\end{document}
