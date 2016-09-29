@@ -83,14 +83,13 @@ Da jeg vil bruge \emph{lplfitch}, så gennemgås den kun her. Syntaksen kræver 
     }
 \end{center}
 
-Denne pakke indeholder tilsyneladende ikke meget syntaktisk sukker i forhold til andre, hvorfor brug af dokumentation for at kende genveje muligvis er nødvendigt, dog er de alle på formen: $"l" + type + "i/e"$. Argumentation gøres også ved genveje. Hver linje er skrevet på formen
+Denne pakke er en smule kringlet til at start med, hvorfor brug af dokumentation for at kende genveje muligvis er nødvendigt, som kan findes i \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{her}}, men mange nye genveje er på formen: $"l" + type + "i/e"$. Argumentation gøres også ved genveje. Hver linje er skrevet på formen
 \begin{equation*}
     pline[hline number i]\{hformulai\}[hjustificationi]
 \end{equation*}
 
-Denne pakke benytter sig af en del ny sukkersyntaks for de forskellige symboler og argumentationer, som kan findes i \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{lplfitch dokumentationen}}.
 
-Bemærk, at normalt i fitch-style bliver der ikke skrevet assumption eller premise, men det markeres i stedet med en vandret streg. Du kan dog nemt skrive det selv, hvis ønsket. Hermed vil beviset $1.2.1$ c fra TØ skrives som
+Bemærk, at normalt i fitch-style bliver der ikke skrevet assumption eller premise, men det markeres i stedet med en vandret streg. Du kan nemt skrive det selv, hvis ønsket. Hermed vil beviset $1.2.1$ c fra TØ skrives som
 \begin{center}
     \fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
     	\pline[2.]{r}[\lande{1}]
@@ -108,8 +107,7 @@ Bemærk, at normalt i fitch-style bliver der ikke skrevet assumption eller premi
 \end{center}
 
 \section{Figurer og grafer}
-Følgende er en figur indeholder et billede. Figurens label er \ref{FigExample}.
-
+Følgende er en figur som indeholder et billede. Figurens label er \ref{FigExample}. Figurer behøver dog ikke at indeholdet et billede og i stedet for \emph{includegraphics} kan alt muligt andet indsættes. Bare eksperimenter en smule.
 \begin{figure}[htbp] %htbp forces the figure into the text.
     \centering
     \includegraphics[width=10em]{picture.png}
@@ -117,9 +115,8 @@ Følgende er en figur indeholder et billede. Figurens label er \ref{FigExample}.
     \label{FigExample}
 \end{figure}
 
-Figurer behøver dog ikke at indeholdet et billede og i stedet for \emph{includegraphics} kan alt muligt andet indsættes. Bare eksperimenter en smule.
 
-\begin{wrapfigure}[10]{r}{15em}
+\begin{wrapfigure}[7]{r}{15em}
 	\centering
 	\begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, auto]
 	\node[state, initial] (0) {$q_0$};
@@ -134,7 +131,7 @@ Hvis man gerne vil have figurer ved siden af sin tekst, så kan der bruges en \e
 
 \newpage
 \section{Grafer}
-Her er en graf fra vores første Calculus Opgave, Tak Rasmus. \cite{rasmus}
+Her er en graf fra vores første Calculus Opgave, sponserete af den dejlige Rasmus. \cite{rasmus}
 
 \begin{center}
 \begin{tikzpicture}
