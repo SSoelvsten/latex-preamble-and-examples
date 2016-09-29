@@ -66,7 +66,10 @@ Med \emph{pmatrix} kan man lave matricer
 
 
 \section{Beviser}
-Der findes mange forskellige pakker for at lave beviser, hvor efter længere søgen har jeg til sidst valgt at bruge \emph{lplfitch} pakken, da fitch-style beviser synes at være den mest anvendte metode for at danne beviser indenfor logik. For syntaksen skal man dog holde tungen meget lige i munden
+Der findes mange forskellige pakker for at lave beviser, hvor efter længere søgen har jeg til sidst valgt at bruge \emph{lplfitch} pakken, da den gængse fitch-style beviser synes at være den mest anvendte metode for at danne beviser indenfor logik. Alternativt kan man bruge \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/logicproof/logicproof.pdf}{\emph{logicproof}} pakken, som kan skrives med simplere syntaks og output svarer til beviserne i \cite{berlog}.
+
+
+Da jeg vil bruge \emph{lplfitch}, så gennemgås den kun her. Syntaksen kræver at holde tungen lige i munden, især med hensyn til parenteser, men efter min mening er det pænere end boks-stilen. Bemærk, at et bevis og subbevis har to argumenter: antagelser og konklussioner.
 \begin{center}
     \fitchprf{\pline[1.]{antagelse}}{
         \pline[2.]{konklussion}
@@ -85,7 +88,8 @@ Denne pakke indeholder tilsyneladende ikke meget syntaktisk sukker i forhold til
     pline[hline number i]\{hformulai\}[hjustificationi]
 \end{equation*}
 
-\newpage
+Denne pakke benytter sig af en del ny sukkersyntaks for de forskellige symboler og argumentationer, som kan findes i \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{lplfitch dokumentationen}}.
+
 Bemærk, at normalt i fitch-style bliver der ikke skrevet assumption eller premise, men det markeres i stedet med en vandret streg. Du kan dog nemt skrive det selv, hvis ønsket. Hermed vil beviset $1.2.1$ c fra TØ skrives som
 \begin{center}
     \fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
@@ -295,12 +299,12 @@ Ved brug af \emph{er} og \emph{shapes} pakken kan E/R diagrammer implementeres.
 \section{Referencer} \label{sec:ref}
 Skal man have en reference til ligninger, figurer, afsnit eller andet, så bruges \emph{ref} kommandoen. Et \emph{ref} vil altid pege på et \emph{label}. For eksempel er dette afsnit nummer \ref{sec:ref}. I afsnit \ref{sec:math} er der en ligning \ref{eq:alignatL2}
 
-Vil man dog lave en reference til litteraturlisten, så bruges \emph{cite} kommandoerne. Her er desuden en reference til litteratur \cite{bibEks}, som er skrevet i \emph{bibliography} længere nedenunder. Dette er dog redefineret til litteratur i danskdelen ovenfor. Vil man have flere referencer samtidig, så skrives bare flere referencer som argumenter til \emph{cite}, så det ser sådan ud: \cite{bibEks, steffan}
+Vil man dog lave en reference til litteraturlisten, så bruges \emph{cite} kommandoerne. Her er desuden en reference til litteratur \cite{berlog}, som er skrevet i \emph{bibliography} længere nedenunder. Dette er dog redefineret til litteratur i danskdelen ovenfor. Vil man have flere referencer samtidig, så skrives bare flere referencer som argumenter til \emph{cite}, så det ser sådan ud: \cite{berlog, steffan}
 
 \section{Citater}
 Med \emph{csquotes} pakken er det muligt at lave pæne citater, såsom Steffan's udsagn \textcquote[s. 12]{steffan}{Vi er dataloger, ikke vampyrer.}. Ved brug af \emph{blockquote} fås automatisk et fremhævet citat, sålænge det er 4+ linjer.
 
-\blockcquote[s. 1]{bibEks}{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.}
+\blockcquote[s. 1]{berlog}{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.}
 
 Bemærk, at begge citater bruger et \emph{c} som prefix til \emph{quote}. Dette giver muligheden for at referere til litteraturlisten. Hvis dette ikke ønskes, så kan man fjerne \emph{c} og fjerne referencer samtidig.
 
@@ -317,12 +321,12 @@ Her er noget tekst i den anden kolonne. Dette kunne også bruges til at have tit
 \end{multicols}
 
 \begin{thebibliography}{9}
-\bibitem{bibEks}
- Efternavn, Fornavn: \emph{Artikel titel}, 20xx
 \bibitem{rasmus}
- Skovdal, Rasmus: \emph{Calculus 1}, 2015
+	Skovdal, Rasmus: \emph{Calculus 1}, 2015
 \bibitem{steffan}
- Jørgensen, Steffan: \emph{101 citater}, 2015
+	Jørgensen, Steffan: \emph{101 citater}, 2015
+\bibitem{berlog}
+	Huth, Michael og Ryan, Mark: \emph{Logic in Computer Science}, second edition, 2004
 
 \bibitem{referencer.bib}
  Man kan enten skrive litteraturen i sit dokument, eller have en ekstra referencer.bib fil med al information:
