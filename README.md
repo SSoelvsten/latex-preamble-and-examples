@@ -1,4 +1,4 @@
-This small repository contains a LaTeX Preamble with packages and settings for Computer Science handins together with examples of use.
+This small repository contains a LaTeX Preamble with packages loaded and settings for Computer Science handins together with examples of use.
 
 # Preamble_xx.tex
 The preamble is made in two parts, with the intent to divide the settings between the general and the localization specific stuff. This is only of value, should you write your .tex document in various languages.
