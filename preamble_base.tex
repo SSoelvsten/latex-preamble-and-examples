@@ -11,6 +11,11 @@
 \usepackage{amsmath,amssymb,bm,mathtools}		% various basic mathtools
 \usepackage{tabularx,booktabs,authblk}		    % various basic stuff for tables and more
 
+% LaTeX Programming
+\usepackage{xparse}								% Scanning arguments
+\usepackage{ifthen}								% Conditionals
+\usepackage{calc}								% Calculations
+
 % Link: \url{link} for synlige links og \href{link}{text} for links i text
 \usepackage{url, hyperref}
 
@@ -76,40 +81,40 @@
 \lstdefinelanguage{pseudocode}{
   keywords=[1]{
   	     by, by, downto, else, error, for, if, repeat, return, to, until, while, while
-  	},								    % list of keywords, first and last are not used
+  	},								    		% list of keywords, first and last are not used
   keywords=[2]{
         and, and, or, NIL, NIL
   }
-  sensitive=false,						% keywords are not case-sensitive
-  morecomment=[l]{//},					% l is for line comment
-  morecomment=[s]{/*}{*/},				% s is for start and end delimiter
-  morestring=[b]"						% strings are enclosed in double quotes
+  sensitive=false,								% keywords are not case-sensitive
+  morecomment=[l]{//},							% l is for line comment
+  morecomment=[s]{/*}{*/},						% s is for start and end delimiter
+  morestring=[b]"								% strings are enclosed in double quotes
 }
 
 % Settings for lstlistings
-\lstset{language=pseudocode,			% choose language
-  columns=flexible,						% let the box align to the width of the page
-  breaklines=true,						% automatically break lines
-  breakatwhitespace=true,				% automatically break should there only be white space.
-  numbers=left,							% numbering: none, left, right
-  numbersep=5pt,						% distance between linenumbers and code
-  numberstyle=\color{lstComment},		% change style of numbering - currently grey.
-  stepnumber=1,							% step between to line-numbers. 1 = each line is numbered
-  showspaces=false,						% show spaces everywhere - adding particular underscores
-  showstringspaces=false,				% underline spaces within strings only.  
-  showtabs=false,						% show tabs within strings adding particular underscores.
-  escapeinside={*@}{@*},                % if you want to add LaTeX within your code
-  basicstyle=\ttfamily \color{lstBase},	% set basic color
-  commentstyle=\color{lstComment},		% set color of comments
-  keywordstyle=[1]\color{lstKey},		% set color of primary keywords
-  keywordstyle=[2]\color{lstKey2},		% set color of secondary keywords
-  stringstyle=\color{lstString},		% set color of strings
+\lstset{language=pseudocode,					% choose language
+  columns=flexible,								% let the box align to the width of the page
+  breaklines=true,								% automatically break lines
+  breakatwhitespace=true,						% automatically break should there only be white space.
+  numbers=left,									% numbering: none, left, right
+  numbersep=5pt,								% distance between linenumbers and code
+  numberstyle=\color{lstComment},				% change style of numbering - currently grey.
+  stepnumber=1,									% step between to line-numbers. 1 = each line is numbered
+  showspaces=false,								% show spaces everywhere - adding particular underscores
+  showstringspaces=false,						% underline spaces within strings only.  
+  showtabs=false,								% show tabs within strings adding particular underscores.
+  escapeinside={*@}{@*},                		% if you want to add LaTeX within your code
+  basicstyle=\ttfamily \color{lstBase},			% set basic color
+  commentstyle=\color{lstComment},				% set color of comments
+  keywordstyle=[1]\color{lstKey},				% set color of primary keywords
+  keywordstyle=[2]\color{lstKey2},				% set color of secondary keywords
+  stringstyle=\color{lstString},				% set color of strings
 }
 
 % lstlisting - Put it beautifully in the middle
-\lstset{xleftmargin= .1\textwidth ,     % leftmargin being 10% of the current width
-  xrightmargin= .1\textwidth,           % right margin also 10%
-  frame=bottomline                      % Draw a line on the bottom of the surrounding box
+\lstset{xleftmargin= .1\textwidth ,     							% leftmargin being 10% of the current width
+  xrightmargin= .1\textwidth,           							% right margin also 10%
+  frame=bottomline                      							% Draw a line on the bottom of the surrounding box
 }
 
 % lstlisting header
@@ -121,21 +126,44 @@
 %\newcommand*\circled[1]{ \tikz[baseline=(C.base)]\node[draw,circle,inner sep=0.5pt](C) {#1};\!}
 
 % Quotations - Is set to danish style (british for english).
-\usepackage[danish=guillemets]{csquotes}    % two styles: "quotes" or >>guillemets<<
-%\MakeAutoQuote{»}{«}                       % decomment for easy macro
-%\MakeAutoQuote*{›}{‹}                      % decomment for even easier macros
+\usepackage[danish=guillemets]{csquotes}    						% two styles: "quotes" or >>guillemets<<
+%\MakeAutoQuote{»}{«}                       						% decomment for easy macro
+%\MakeAutoQuote*{›}{‹}                      						% decomment for even easier macros
 
 % Use of columns
 \usepackage{multicol}
 
 % Proof
-\usepackage{lplfitch}								% fitch style proofs
+\usepackage{lplfitch}												% fitch style proofs
 
 % Math shortcuts
-\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            % \dx
-\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            % \dy
-\newcommand{\e}{\mathrm{e}}                         % \e = eulers number
-\newcommand{\R}{\mathbb{R}}                         % \R = reals
-\newcommand{\N}{\mathbb{N}}                         % \N = Real numbers
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        % ceil{arg}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     % floor{arg}
+\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            				% \dx
+\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            				% \dy
+\newcommand{\e}{\mathrm{e}}                         				% \e = eulers number
+\newcommand{\R}{\mathbb{R}}                         				% \R = Real numbers
+\newcommand{\N}{\mathbb{N}}                         				% \N = Natural numbers
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        				% ceil{arg}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     				% floor{arg}
+
+\DeclareDocumentCommand \seq { g g g g } {
+	\newcounter{i}
+	\IfNoValueF {#2} { \addtocounter{i}{#2} }
+	\IfNoValueTF {#1} {x} {#1}
+	_{ \arabic{i} }, 
+	\IfNoValueTF {#4} {\addtocounter{i}{1}}  {\addtocounter{i}{#4}}
+	\IfNoValueTF {#1} {x} {#1}
+	_{ \arabic{i} },
+	\dots
+	\IfNoValueTF {#3} {} {
+		, #1_{#3}
+	}
+}
+
+\DeclareDocumentCommand \set { m g }{ 								% \sets{X}{C} = { X | C }
+	 \lbrace
+	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
+	 \rbrace
+}
+
+
+

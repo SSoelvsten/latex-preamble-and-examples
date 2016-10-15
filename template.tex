@@ -1,0 +1,58 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load Preample         %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4, english]{article}
+\input{preamble_en.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document starts here! %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Define title and more on frontpage
+    \title{\huge Title \\ \large Subtitle}
+    
+    \author{Steffan C. S. Jørgensen}
+    \affil{
+        \protect\href{mailto:201505832@post.au.dk}{201505832@post.au.dk}
+    }
+    
+    \date{\today}
+    
+    \lhead{\protect\href{mailto:201505832@post.au.dk}{Steffan Sølvsten, 201505832}}
+    \chead{}
+    \rhead{\@currentlabelname\ | \thepage\ of \pageref{LastPage}}
+
+    %\lfoot{}
+    %\cfoot{}
+    %\rfoot{}
+\maketitle
+
+\begin{abstract}
+\noindent
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+\section{Introduction} \label{sec:intro}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+
+\begin{thebibliography}{9}
+\bibitem{bibitem}
+	Last, First: \emph{Title}, publication, edition, year
+\end{thebibliography}
+\bibliographystyle{abbrv}
+\bibliography{referencer}
+
+\newpage
+\appendix
+\section{Appendix}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+\end{document}
