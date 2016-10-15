@@ -13,7 +13,7 @@ When importing the preamble you only have to import the localized .tex file, sin
 ```
 
 # Template.tex
-The template.tex is a very small and sparse file, in which already the preamble, abstract, title, bibliography and two sections are ready for use. This should get you started much faster.
+template.tex is a very small and sparse document, in which already the preamble, abstract, title, bibliography and two sections are ready for use. This should get you started much faster.
 
 # Examples.tex
-The example.tex document is a slowly growing document with explanations and examples of using the various packages in the preamble. They are all made with the intent to be reverse engineerable.
+example.tex document is a slowly growing document with explanations and examples of using the various packages in the preamble. They are all made with the intent to be reverse engineerable.
