@@ -18,6 +18,6 @@ template.tex is a very small and sparse document, in which already the preamble,
 ![Alt text](/img/template.png?raw=true "The template file")
 
 # Examples.tex
-example.tex document is a slowly growing document with explanations and examples of using the various packages in the preamble. They are all made with the intent to be reverse engineerable.
+example.tex is a slowly growing document with explanations and examples of using the various packages in the preamble. They are all made with the intent to be reverse engineerable.
 
 ![Alt text](/img/example.png?raw=true "The template file")
