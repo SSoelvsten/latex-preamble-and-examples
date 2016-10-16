@@ -16,8 +16,8 @@ When importing the preamble you have to only import the localized .tex file, sin
 ## Absolute path
 ```tex
 \documentclass[a4, english]{article}
-%\usepackage{import}
-%\import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_en.tex}
+\usepackage{import}
+\import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_en.tex}
 ```
 
 ## Relative path
