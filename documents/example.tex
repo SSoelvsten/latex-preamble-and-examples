@@ -3,7 +3,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4, english]{article}
-\input{preamble_en.tex}
+
+%Import from the same folder
+%\input{preamble_en.tex}
+
+%Import from absolute path
+%\usepackage{import}
+%\import{E:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_dk.tex}
+
+%Import from a relative path
+\usepackage{import}
+\subimport{../preamble/}{preamble_en.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Document starts here! %
@@ -31,7 +41,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+\noindent The following document is shows the use of the various packages used in the preamble. They are all created with the intent to be reverse engineerable.
 \end{abstract}
 
 %En indholdsfortegnelse kan nemt laves med \tableofcontents funktionen

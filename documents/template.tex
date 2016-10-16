@@ -3,7 +3,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4, english]{article}
-\input{preamble_en.tex}
+
+%Import from the same folder
+%\input{preamble_en.tex}
+
+%Import from absolute path
+%\usepackage{import}
+%\import{E:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_dk.tex}
+
+%Import from a relative path
+\usepackage{import}
+\subimport{../preamble/}{preamble_en.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Document starts here! %
