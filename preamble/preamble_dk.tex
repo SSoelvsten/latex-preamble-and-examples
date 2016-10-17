@@ -5,26 +5,38 @@
 % Input common definition
 \input{preamble_base.tex}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Encoding and hyphenation   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Basics: font, codec etc.
 \usepackage[danish]{babel}						% danish basepackage for hyphenation
 \renewcommand{\danishhyphenmins}{22}			% even better danish hyphenation!
+
+% .bib danish redefinition for author in title
+\renewcommand\Authand{ og }
+\renewcommand\Authands{, og }
+\renewcommand\Affilfont{\small}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         lstlisting           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % lstlisting language redefinitions
 \renewcommand{\lstlistingname}{Kode}                                            % for one block of code alone
 \renewcommand{\lstlistlistingname}{Liste af \lstlistingname r}                  % for more pieces of code in one
 
-% .bib danish redefinition - actually not sure what this is for?
-\renewcommand\Authand{ og }
-\renewcommand\Authands{, og }
-\renewcommand\Affilfont{\small}
 
-% General danish redefinitions
-\newtheorem{theorem}{Sætning}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{claim}[theorem]{Påstand}
-\newtheorem{fact}[theorem]{Fact}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Korollar}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{conjecture}[theorem]{Formodning}
-\newenvironment{proof}{\noindent{\bf Bevis:\ }}{\hfill$\Box$\medskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Logic and proofs        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem environments
+\newtheorem{theorem}{Sætning}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Korollar}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{conjecture}{Formodning}[section]
+\renewcommand*{\proofname}{Bevis}

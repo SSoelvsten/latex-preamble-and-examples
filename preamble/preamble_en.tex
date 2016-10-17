@@ -1,10 +1,28 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Settings for document (danish) %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings for document (english) %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Input common definition
 \input{preamble_base.tex}
 
-% lstlisting language redefinitions
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         lstlisting           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\lstlistingname}{Code}              % for one block of code alone
 \renewcommand{\lstlistlistingname}{List of code}  % for more pieces of code in one
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Logic and proofs        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\renewcommand*{\proofname}{Proof}

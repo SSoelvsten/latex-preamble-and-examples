@@ -71,18 +71,29 @@ With \emph{pmatrix} matrices can also be made, such as the general matrix below
 
 Things like sequences and sets we use all the time too, which is why I've made macros. For a sequence you can write $\seq{a}{1}{n}{2}$ and for sets $ \set{x \in \Sigma^*}{ |x| \geq 42 } $. Both of these shortcuts are overloaded, such that they can take fewer arguments than currently shown here.
 
-\section{Proofs}
-There exists various packages to make make proofs, but after some time looking around I've chosen to focus on the \emph{lplfitch} package, since its output seems to be the generally preferred and used style. Alternatively you can use the \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/logicproof/logicproof.pdf}{\emph{logicproof}} package, which is easier to program and resembles the Logic book used in the course dBerLog. \cite{berlog}
+\section{Logic and proofs}
+With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a \emph{proof}. These are all currently implemented in the localized preamble to associate the same command to both languages. The proof has a label, which is \ref{lem:example}.
 
+\begin{lemma}[Reference to \cite{steffan}]	\label{lem:example}
+	Here we have a lemma, which is currently set up to start with the sectionnumbering and then followed by a unique number. This can be changed in the language specific preamble file
+\end{lemma}
+\begin{proof}
+	In here we can write a proof, which is automatically going to be appended a tombstone. Here we could also add an equation a list.
+	\begin{equation*}
+		2+2 = 4
+	\end{equation*}
+	You can also place a fitch-style proof as described below, though there possibly needs to be a linebreak after it to place the tombstone correctly at the end.
+\end{proof}
+
+\subsection{lplfitch}
+There exists various packages to make make logic proofs, but after some time looking around I've chosen to focus on the \emph{lplfitch} package, since its output seems to be the generally preferred and used style.
 This package is very easy to work with, when first learned, but until then you need to keep learn quite a lot of new syntax. Most importantly notice, that a proof and subproof has two arguments, the assumption and the conclussions.
 \begin{center}
     \fitchprf{\pline[1.]{presumption}}{
         \pline[2.]{conclussion}
-    \\
-    	\subproof{\pline[3.]{assumption}}{
+    \\  \subproof{\pline[3.]{assumption}}{
     		\pline[4.]{conclussion}[argument]
-    	\\
-    		\pline[5.]{conclussion}
+    	\\  \pline[5.]{conclussion}
     	}
     	\pline[6.]{konklussion}
     }
@@ -93,39 +104,61 @@ All the commands can be found in the documentation, which can be found \href{htt
     pline[hline number i]\{hformulai\}[hjustificationi]
 \end{equation*}
 
-Notice, that in fitch-style there isn't normally written assumption or premise, but it is merely shown by the horizontal line. You can write it if you want. The proof to exercise $1.2.1$ c from TØ class is then
-\begin{center}
-    \fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
+Notice, that in fitch-style there isn't normally written assumption or premise, but it is merely shown by the horizontal line. You can write it if you want. The proof to exercise $1.2.1$ c from TØ class is in the proof to lemma \ref{lem:121}.
+\begin{lemma} \label{lem:121}
+	$(p \wedge q) \wedge r \vdash p \wedge (q \wedge r)$
+\end{lemma}
+\begin{proof}
+	\fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
     	\pline[2.]{r}[\lande{1}]
-    \\
-        \pline[3.]{p \land q}[\lande{1}]
-    \\
-        \pline[4.]{p}[\lande{3}]
-    \\
-        \pline[5.]{q}[\lande{3}]
-    \\
-        \pline[6.]{q \land r}[\landi{2, 5}]
-    \\
-        \pline[7.]{p \land (q \land r)}[\landi{4, 6}]
-    }
-\end{center}
+    \\  \pline[3.]{p \land q}[\lande{1}]
+    \\  \pline[4.]{p}[\lande{3}]
+    \\  \pline[5.]{q}[\lande{3}]
+    \\  \pline[6.]{q \land r}[\landi{2, 5}]
+    \\  \pline[7.]{p \land (q \land r)}[\landi{4, 6}]
+    } \\
+\end{proof}
 
-If you need a fresh variable, you don't create a subproof, but instead a boxed subproof.
-\begin{center}
+If you need a fresh variable, you don't create a subproof, but instead a boxed subproof. The solution to an exercise in one of the handins is then
+\begin{theorem} \label{theo:handin}
+	$\forall x (P(x) \rightarrow Q(x) \vdash (\forall x \neg Q(x)) \rightarrow (\forall x \neg P(x)))$
+\end{theorem}
+\begin{proof}
 	\fitchprf{
 		\pline[1.]{\uni x (P(x) \lif Q(x))}}{
 		\subproof{\pline[2.]{\uni x \lnot Q(x)}} {
 			\boxedsubproof[3.]{x_0}{\lnot Q(x_0)}{
 				\pline[4.]{P(x_0) \lif Q(x_0)}[\lalle{1, 3}]
-			\\
-				\pline[5.]{\lnot P(x_0)}[\textbf{Modus Tollens:} 3, 4]
+			\\  \pline[5.]{\lnot P(x_0)}[\textbf{Modus Tollens:} 3, 4]
 			}
 			\pline[6.]{\uni x \lnot P(x)}[\lalli{3--5}]
 		}
 		\pline[7.]{(\uni x \lnot Q(x)) \lif (\uni x \lnot P(x))}[\lifi{2--6}]
 		
-	}
-\end{center}
+	} \\
+\end{proof}
+
+\newpage
+\subsection{logicproof}
+Alternatively you can use the \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/logicproof/logicproof.pdf}{\emph{logicproof}} package, which uses a syntax more similar to other \LaTeX. The output also resembles the style in the Logic book used in the course dBerLog. \cite{berlog}
+You have to choose one of the two packages due to conflicts. Currently this one is turned off, but the proof from theorem \ref{theo:handin} should look something like this, but I couldn't get it to compile.
+
+\begin{lstlisting}[language = tex]
+\begin{logicproof}{2}	%Amount of subproofs
+  \forall x (P(x) \to Q(x)) 		& premise
+\\ \begin{subproof}
+    \forall x \lnot Q(x)		& assume
+      \begin{subproof}
+         \llap{x_0} \lnot Q(x_0)	& fresh
+      \\  P(x_0) \to Q(x_0)		& \forall x \, \mathrm{e} 1, 3
+      \\  \lnot P(x_0)			& Modus Tollens
+      \end{subproof}
+    \forall x \, \lnot P(x)		& \forall x \, \mathrm{i} 3--5
+    \end{subproof}
+  (\forall x \, \lnot Q(x)) \to (\forall x \, \lnot P(x))
+					& \to \mathrm{i} 2--6
+\end{logicproof}
+\end{lstlisting}
 
 \section{Figures}
 The following is a figure with an image in it, and its label is \ref{FigExample}. Figures can contain pretty much everything, so just experiment, it will most likely work.

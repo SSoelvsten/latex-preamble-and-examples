@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Packages and common settings %
+%    Papersize and encoding    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Size of margins can be changed here!
@@ -8,23 +8,119 @@
 % Basics: font, codec etc.
 \usepackage[utf8]{inputenc}						% encoding: utf-8 (nordic letters)
 \usepackage[T1]{fontenc}						% use 8-bit encoded fonts
-\usepackage{amsmath,amssymb,bm,mathtools}		% various basic mathtools
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Tables and figures      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage{tabularx,booktabs,authblk}		    % various basic stuff for tables and more
 
-% LaTeX Programming
+% Figures and captions
+\usepackage{caption}							% create captions for figures
+\usepackage{subfig}								% create subfigures of a figure
+%\usepackage{subcaption}						% create captions for subfigures
+                                                %   currently off, due to conflicts
+\usepackage{wrapfig}							% letting figures be in text
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      LaTeX Programming       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage{xparse}								% Scanning arguments
 \usepackage{ifthen}								% Conditionals
 \usepackage{calc}								% Calculations
 
-% Link: \url{link} for synlige links og \href{link}{text} for links i text
-\usepackage{url, hyperref}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         Stylization          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{url, hyperref}						% \url{link} / \href{link}{replacing text}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         Stylization          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Headers og footers
 \usepackage{lastpage}                           % \lastpage command for numbers of pages
 \usepackage{fancyhdr}                           % create cool headers and footers
 \pagestyle{fancy}                               % who doesn't want their page to be fancy?
 
-% Colours
+% Use of columns
+\usepackage{multicol}
+
+% Quotations
+% "danish" or "british"
+\usepackage[danish=guillemets]{csquotes}    	% two styles: "quotes" or >>guillemets<<
+%\MakeAutoQuote{»}{«}                       	% decomment for easy macro
+%\MakeAutoQuote*{›}{‹}                      	% decomment for even easier macros
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             Math             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath, amssymb, bm, mathtools}						% various basic mathtools
+
+% Math shortcuts
+\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            				% \dx
+\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            				% \dy
+\newcommand{\e}{\mathrm{e}}                         				% \e = eulers number
+\newcommand{\R}{\mathbb{R}}                         				% \R = Real numbers
+\newcommand{\N}{\mathbb{N}}                         				% \N = Natural numbers
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        				% ceil{arg}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     				% floor{arg}
+
+\DeclareDocumentCommand \seq { g g g g } {
+	\newcounter{i}
+	\IfNoValueF {#2} { \addtocounter{i}{#2} }
+	\IfNoValueTF {#1} {x} {#1}
+	_{ \arabic{i} }, 
+	\IfNoValueTF {#4} {\addtocounter{i}{1}}  {\addtocounter{i}{#4}}
+	\IfNoValueTF {#1} {x} {#1}
+	_{ \arabic{i} },
+	\dots
+	\IfNoValueTF {#3} {} {
+		, #1_{#3}
+	}
+}
+
+\DeclareDocumentCommand \set { m g }{ 								% \sets{X}{C} = { X | C }
+	 \lbrace
+	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
+	 \rbrace
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Logic and proofs        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Proofs
+\usepackage{amsthm}								% Theorem package
+\theoremstyle{definition}						% plain, definition, remark
+%\swapnumbers									% If you want to have the number first
+
+% Logic packages
+\usepackage{lplfitch}							% fitch style proofs
+
+%\usepackage{logicproof}							% alternative package, resembling the dBerLog book
+%\setlength\subproofhorizspace{2em}				% Indent for subproofs. Changed for fresh variables
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Color and presets       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\usepackage{xcolor}							% basic xcolor package
 \usepackage[table,xcdraw]{xcolor}				% xcolor package with support for tables
 \definecolor{lstComment}{rgb}{0.45,0.45,0.45}	% code: comments (Grey)
@@ -33,7 +129,12 @@
 \definecolor{lstString}{rgb}{0.1,0.65,0.1}		% code: strings (Green)
 \definecolor{lstBase}{rgb}{0.0,0.0,0.0}			% code: base (Black)
 
-% Tikz package for cool graphics
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Tikz              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage{tikz}								% import basepackage
 \usetikzlibrary{calc}							% Coordinate calcuations
 \usetikzlibrary{positioning}                    % Relative positioning
@@ -67,16 +168,20 @@
 \usepgfplotslibrary{fillbetween}				% add fillBetween command
 \pgfplotsset{compat=1.10}						% choose version of pgfplots
 
-% Figures and captions
-\usepackage{caption}							% create captions for figures
-\usepackage{subfig}								% create subfigures of a figure
-%\usepackage{subcaption}						% create captions for subfigures
-                                                %   currently off, due to conflicts
-\usepackage{wrapfig}							% letting figures be in text
+% Macro for circle with symbol inside.
+%\newcommand*\circled[1]{ \tikz[baseline=(C.base)]\node[draw,circle,inner sep=0.5pt](C) {#1};\!}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         lstlisting           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Import lstlistings - beautiful sourcecode!
 \usepackage{listings}
 
+
+% Custom language definitions
 % Definition of Pseudocode
 \lstdefinelanguage{pseudocode}{
   keywords=[1]{
@@ -90,6 +195,7 @@
   morecomment=[s]{/*}{*/},						% s is for start and end delimiter
   morestring=[b]"								% strings are enclosed in double quotes
 }
+
 
 % Settings for lstlistings
 \lstset{language=pseudocode,					% choose language
@@ -122,48 +228,9 @@
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\linewidth}{#1#2#3}}}    % create nice grey boxes for captions
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}        % apply settings to listing
 
-% Macro for circle with number in it.
-%\newcommand*\circled[1]{ \tikz[baseline=(C.base)]\node[draw,circle,inner sep=0.5pt](C) {#1};\!}
 
-% Quotations - Is set to danish style (british for english).
-\usepackage[danish=guillemets]{csquotes}    						% two styles: "quotes" or >>guillemets<<
-%\MakeAutoQuote{»}{«}                       						% decomment for easy macro
-%\MakeAutoQuote*{›}{‹}                      						% decomment for even easier macros
 
-% Use of columns
-\usepackage{multicol}
 
-% Proof
-\usepackage{lplfitch}												% fitch style proofs
-
-% Math shortcuts
-\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            				% \dx
-\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            				% \dy
-\newcommand{\e}{\mathrm{e}}                         				% \e = eulers number
-\newcommand{\R}{\mathbb{R}}                         				% \R = Real numbers
-\newcommand{\N}{\mathbb{N}}                         				% \N = Natural numbers
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        				% ceil{arg}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     				% floor{arg}
-
-\DeclareDocumentCommand \seq { g g g g } {
-	\newcounter{i}
-	\IfNoValueF {#2} { \addtocounter{i}{#2} }
-	\IfNoValueTF {#1} {x} {#1}
-	_{ \arabic{i} }, 
-	\IfNoValueTF {#4} {\addtocounter{i}{1}}  {\addtocounter{i}{#4}}
-	\IfNoValueTF {#1} {x} {#1}
-	_{ \arabic{i} },
-	\dots
-	\IfNoValueTF {#3} {} {
-		, #1_{#3}
-	}
-}
-
-\DeclareDocumentCommand \set { m g }{ 								% \sets{X}{C} = { X | C }
-	 \lbrace
-	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
-	 \rbrace
-}
 
 
 
