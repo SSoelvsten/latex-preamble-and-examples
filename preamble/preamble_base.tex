@@ -37,7 +37,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%         Stylization          %
+%          Hypermedia          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{url, hyperref}						% \url{link} / \href{link}{replacing text}
@@ -68,19 +68,23 @@
 %             Math             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{amsmath, amssymb, bm, mathtools}						% various basic mathtools
+% various basic mathtools
+\usepackage{amsmath, amssymb, bm, mathtools}						
+
+% Various symbol packages
+\usepackage{stmaryrd}
 
 % Math shortcuts
-\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            				% \dx
-\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            				% \dy
-\newcommand{\e}{\mathrm{e}}                         				% \e = eulers number
-\newcommand{\R}{\mathbb{R}}                         				% \R = Real numbers
-\newcommand{\N}{\mathbb{N}}                         				% \N = Natural numbers
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        				% ceil{arg}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     				% floor{arg}
+\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            % \dx
+\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            % \dy
+\newcommand{\e}{\mathrm{e}}                         % \e = eulers number
+\newcommand{\R}{\mathbb{R}}                         % \R = Real numbers
+\newcommand{\N}{\mathbb{N}}                         % \N = Natural numbers
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        %ceil{arg}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     % floor{arg}
 
-\DeclareDocumentCommand \seq { g g g g } {
-	\newcounter{i}
+\DeclareDocumentCommand \seq { g g g g } {			% \seq{x}{i}{j}{s}
+	\newcounter{i}									% x_i, x_i+s, ... x_j
 	\IfNoValueF {#2} { \addtocounter{i}{#2} }
 	\IfNoValueTF {#1} {x} {#1}
 	_{ \arabic{i} }, 
@@ -93,7 +97,7 @@
 	}
 }
 
-\DeclareDocumentCommand \set { m g }{ 								% \sets{X}{C} = { X | C }
+\DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C} = { X | C }
 	 \lbrace
 	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
 	 \rbrace
@@ -109,9 +113,6 @@
 \usepackage{amsthm}								% Theorem package
 \theoremstyle{definition}						% plain, definition, remark
 %\swapnumbers									% If you want to have the number first
-
-% Contradiction Symbols
-\newcommand{\blitza}{{\usefont{U}{ulsy}{m}{n}\symbol{'011}}}		%Lightning
 
 % Logic packages
 \usepackage{lplfitch}						% fitch style proofs
