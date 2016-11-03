@@ -83,8 +83,10 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}        %ceil{arg}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     % floor{arg}
 
+\newcounter{i}
+
 \DeclareDocumentCommand \seq { g g g g } {			% \seq{x}{i}{j}{s}
-	\newcounter{i}									% x_i, x_i+s, ... x_j
+	\setcounter{i}{0}								% x_i, x_i+s, ... x_j
 	\IfNoValueF {#2} { \addtocounter{i}{#2} }
 	\IfNoValueTF {#1} {x} {#1}
 	_{ \arabic{i} }, 
