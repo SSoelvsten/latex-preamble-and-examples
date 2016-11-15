@@ -8,7 +8,7 @@
 % Basics: font, codec etc.
 \usepackage[utf8]{inputenc}						% encoding: utf-8 (nordic letters)
 \usepackage[T1]{fontenc}						% use 8-bit encoded fonts
-
+\renewcommand{\sfdefault}{phv}					% changes the default font
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,11 +68,16 @@
 %             Math             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% various basic mathtools
-\usepackage{amsmath, amssymb, bm, mathtools}						
+% various basic stuff
+\usepackage{bm, mathtools, amsmath}					
 
 % Various symbol packages
-\usepackage{stmaryrd}
+%\usepackage{amssymb}
+\usepackage[utopia]{mathdesign}						% full overwrite of the font system
+\usepackage{stmaryrd}								% even more symbols
+
+\let\mathcal\undefined								% Let's redefine the mathcal alphabet
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
 % Math shortcuts
 \newcommand{\dx}{\mathop{}\,\mathrm{d}x}            % \dx
