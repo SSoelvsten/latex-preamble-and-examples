@@ -84,8 +84,7 @@
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
 % Math shortcuts
-\newcommand{\dx}{\mathop{}\,\mathrm{d}x}            % \dx
-\newcommand{\dy}{\mathop{}\,\mathrm{d}y}            % \dy
+\renewcommand{\d}{\, \mathrm{d}}                    % \d = differential d with a bit of spacing
 \newcommand{\e}{\mathrm{e}}                         % \e = eulers number
 \newcommand{\R}{\mathbb{R}}                         % \R = Real numbers
 \newcommand{\N}{\mathbb{N}}                         % \N = Natural numbers
@@ -113,7 +112,6 @@
 	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
 	 \rbrace
 }
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
