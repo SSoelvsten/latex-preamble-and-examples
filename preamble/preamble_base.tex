@@ -90,9 +90,10 @@
 \newcommand{\N}{\mathbb{N}}                         % \N = Natural numbers
 \newcommand{\C}{\mathbb{C}}                         % \C = Complex numbers
 \newcommand{\Q}{\mathbb{Q}}                         % \Q = Rational numbers
-\DeclarePairedDelimiter\ceil{\left\lceil}{\right\rceil}        % ceil{arg}
-\DeclarePairedDelimiter\floor{\left\lfloor}{\right\rfloor}     % floor{arg}
-\DeclarePairedDelimiter\abs{\left\lvert}{\right\rvert}         % abs{arg}
+
+\DeclarePairedDelimiter\ceil{\left\lceil}{\right\rceil}        % \ceil{arg}
+\DeclarePairedDelimiter\floor{\left\lfloor}{\right\rfloor}     % \floor{arg}
+\DeclarePairedDelimiter\abs{\left\lvert}{\right\rvert}         % \abs{arg}
 
 \newcounter{i}
 
@@ -116,6 +117,12 @@
 	 \rbrace
 }
 
+\makeatletter										% adds vertical lines to matrices
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Logic and proofs        %
