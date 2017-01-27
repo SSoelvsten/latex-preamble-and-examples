@@ -112,9 +112,9 @@
 }
 
 \DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C} = { X | C }
-	 \lbrace
+	 \left\lbrace
 	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
-	 \rbrace
+	 \right\rbrace
 }
 
 \makeatletter										% adds vertical lines to matrices
