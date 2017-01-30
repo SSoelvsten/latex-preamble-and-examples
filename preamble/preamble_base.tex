@@ -12,6 +12,8 @@
 
 %\usepackage[parfill]{parskip}      %Instead of indenting on a newline adds whitespace
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Tables and figures      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,6 +30,25 @@
 
 \usepackage{rotating}             % let any environment be rotated (figures sideways)
                                   %     \begin{sideways} or \begin{turn}{30}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           Variables              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgfkeys}			%Initialize the variable key-value parirs
+
+\newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+ \pgfkeys{
+  /variables/#1.is family,
+  /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+ }%
+}
+
+\declare{}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,3 +286,45 @@
 \DeclareCaptionFont{white}{\color{white}}                                       % fontstyle of caption
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\linewidth}{#1#2#3}}}    % create nice grey boxes for captions
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}        % apply settings to listing
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      Title and information       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setvalue{title = Keep Calm and setTitle}
+\setvalue{subtitle = }
+
+\DeclareDocumentCommand \setTitle { m g }{ 				% \setTitle{title}{subtitle}
+	 \setvalue{title = \huge #1}
+	 \IfValueT {#2} { \setvalue{subtitle = \\ \large #2} }
+}
+
+\setvalue{name = Steffan Sølvsten}
+\setvalue{email = 201505832@post.au.dk}
+\setvalue{id = au534068}
+
+\DeclareDocumentCommand \setAuth { m g g }{ 			% \setAuth{name}{email}{id}
+	 \setvalue{name = #1}
+	 \author{\getvalue{name}}
+	 \IfValueT {#2} {
+	 	\setvalue{email = #2}
+	 	\affil{\protect\href{mailto:\getvalue{email}}{\getvalue{email}}}
+	 }
+	 \IfValueT {#3} {
+	 	\setvalue{id = #3}
+	 }
+}
+
+\title{\getvalue{title} \getvalue{subtitle}}
+
+\date{\today}
+
+\setvalue{of = of}
+
+\lhead{\protect\href{\getvalue{email}}{\getvalue{name}, \getvalue{id}}}
+\chead{}
+\rhead{\@currentlabelname\ | \thepage\ \getvalue{of} \pageref{LastPage}}
+
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
