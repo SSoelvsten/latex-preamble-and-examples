@@ -99,21 +99,27 @@
 
 \DeclareDocumentCommand \seq { g g g g } {			% \seq{x}{i}{j}{s}
 	\setcounter{i}{0}								% x_i, x_i+s, ... x_j
-	\IfNoValueF {#2} { \addtocounter{i}{#2} }
-	\IfNoValueTF {#1} {x} {#1}
+	\IfValueT {#2} { \addtocounter{i}{#2} }
+	\IfValueTF {#1}
+		{#1}
+		{x}
 	_{ \arabic{i} },
-	\IfNoValueTF {#4} {\addtocounter{i}{1}}  {\addtocounter{i}{#4}}
-	\IfNoValueTF {#1} {x} {#1}
+	\IfValueTF {#4} 
+		{\addtocounter{i}{#4}}
+		{\addtocounter{i}{1}}
+	\IfValueTF {#1} 
+		{#1}
+		{x} 
 	_{ \arabic{i} },
 	\dots
-	\IfNoValueTF {#3} {} {
-		, #1_{#3}
-	}
+	\IfValueTF {#3}
+		{ , #1_{#3} }
+		{}
 }
 
 \DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C} = { X | C }
 	 \left\lbrace
-	 	#1 \IfNoValueF {#2} { \text{ | } #2 }
+	 	#1 \IfValueT {#2} { \ | \  #2 }
 	 \right\rbrace
 }
 
