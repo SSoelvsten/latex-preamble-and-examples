@@ -294,7 +294,7 @@
 \setvalue{title = Keep Calm and setTitle}
 \setvalue{subtitle = }
 
-\DeclareDocumentCommand \setTitle { m g }{ 				% \setTitle{title}{subtitle}
+\DeclareDocumentCommand \settitle { m g }{ 				% \setTitle{title}{subtitle}
 	 \setvalue{title = \huge #1}
 	 \IfValueT {#2} { \setvalue{subtitle = \\ \large #2} }
 }
@@ -303,7 +303,7 @@
 \setvalue{email = 201505832@post.au.dk}
 \setvalue{id = au534068}
 
-\DeclareDocumentCommand \setAuth { m g g }{ 			% \setAuth{name}{email}{id}
+\DeclareDocumentCommand \addauth { m g g }{ 			% \setAuth{name}{email}{id}
 	 \setvalue{name = #1}
 	 \author{\getvalue{name}}
 	 \IfValueT {#2} {
