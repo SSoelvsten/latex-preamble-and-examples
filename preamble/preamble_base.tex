@@ -291,7 +291,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Title and information       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setvalue{title = Keep Calm and setTitle}
+\setvalue{title = Keep Calm and \textbackslash settitle}
 \setvalue{subtitle = }
 
 \DeclareDocumentCommand \settitle { m g }{ 				% \setTitle{title}{subtitle}
@@ -305,10 +305,10 @@
 
 \DeclareDocumentCommand \addauth { m g g }{ 			% \setAuth{name}{email}{id}
 	 \setvalue{name = #1}
-	 \author{\getvalue{name}}
+	 \author{#1}
 	 \IfValueT {#2} {
 	 	\setvalue{email = #2}
-	 	\affil{\protect\href{mailto:\getvalue{email}}{\getvalue{email}}}
+	 	\affil{\protect\href{mailto:#2}{#2}}
 	 }
 	 \IfValueT {#3} {
 	 	\setvalue{id = #3}
