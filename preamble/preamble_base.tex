@@ -140,6 +140,16 @@
 		{}
 }
 
+\DeclareDocumentCommand \ero { m } {
+	\begin{array}{c}
+		_{#1}
+	\\
+		\sim
+	\\
+		\phantom{\sim}
+	\end{array}
+}
+
 \DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C} = { X | C }
 	 \left\lbrace
 	 	#1 \IfValueT {#2} { \ | \  #2 }
