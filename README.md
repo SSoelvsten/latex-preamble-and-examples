@@ -36,3 +36,8 @@ A very small and sparse document, in which already the preamble, abstract, title
 ## examples.tex
 A slowly growing document with explanations and examples of using the various packages in the preamble. They are all made with the intent to be reverse engineerable.
 ![Alt text](/img/example.png?raw=true "The template file")
+
+# Python Template Generator
+In the folder Python you can find a Python Template Generator, created by Kristian 'Yurippe' Gausel. prepare.py is the file that creates latexgen.py and packs the template and the preamble_en, preamble_dk and preamble_base into latexgen.py to create a standalone script to generate a template from
+
+This is especially useful for ShareLatex since you can add a --zip argument to zip the template into a sharelatex compatible format for easy upload.
