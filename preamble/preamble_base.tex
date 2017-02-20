@@ -140,13 +140,17 @@
 		{}
 }
 
-\DeclareDocumentCommand \ero { m } {
+\DeclareDocumentCommand \ero { g g } {	
 	\begin{array}{c}
-		_{#1}
+		\IfValueTF{#1}
+			{_{#1}}
+			{\phantom{\sim}}
 	\\
 		\sim
 	\\
-		\phantom{\sim}
+		\IfValueTF{#2}
+			{^{#2}}
+			{\phantom{\sim}}
 	\end{array}
 }
 
