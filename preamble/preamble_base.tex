@@ -66,9 +66,11 @@
 %          Hypermedia          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{url, hyperref}						% \url{link} / \href{link}{replacing text}
+\usepackage{url, hyperref}							% \url{link} and \href{link}{replacing text}
 
-
+%Macros taken from the preamble of the MatFysTutor LaTeX Guide.
+\newcommand*{\http}[1]{\href{http://#1}{#1}}		% macro for http links: \http{www.matfystutor.dk}
+\newcommand*{\mailto}[1]{\href{mailto:#1}{#1}}		% macro for mails: \mailto{email@email.com}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         Stylization          %
@@ -278,7 +280,7 @@
 \lstset{language=pseudocode,					% choose language
   columns=flexible,								% let the box align to the width of the page
     literate={æ}{{\ae}}1{ø}{{\o}}1{å}{{\aa}}1	% allow æ, ø and å in code
-           {Æ}{{\AE}}1{Ø}{{\O}}1{Å}{{\AA}}1,	%  
+           {Æ}{{\AE}}1{Ø}{{\O}}1{Å}{{\AA}}1,	% 	(this change was taken from the preamble of the MatFysTutor LaTeX Guide)
   breaklines=true,								% automatically break lines
   breakatwhitespace=true,						% automatically break should there only be white space.
   numbers=left,									% numbering: none, left, right
