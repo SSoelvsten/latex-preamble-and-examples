@@ -93,17 +93,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             Math             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\hmmax}{0}								% minimizes the amount of bold families
+%\newcommand{\bmmax}{1}								% this allows for more math families
 
 % various basic stuff
 \usepackage{bm, mathtools, amsmath}
 
 % Various symbol packages
-%\usepackage{amssymb}
-\usepackage[utopia]{mathdesign}						% full overwrite of the font system
-\usepackage{stmaryrd}								% even more symbols
+\usepackage{amssymb}
+%\usepackage[utopia]{mathdesign}					% full overwrite of the font system
+%\usepackage{stmaryrd}								% even more symbols
 
-\let\mathcal\undefined								% Let's redefine the mathcal alphabet
-\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+%\let\mathcal\undefined								% Let's redefine the mathcal alphabet
+%\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
 % Math shortcuts
 \renewcommand{\d}{\, \mathrm{d}}                    % \d = differential d with a bit of spacing
@@ -140,10 +142,10 @@
 		{}
 }
 
-\DeclareDocumentCommand \ero { g g } {	
-	\begin{array}{c}
-		\IfValueTF{#1}
-			{_{#1}}
+\DeclareDocumentCommand \ero { g g } {				% \ero {x, y}
+	\begin{array}{c}								%	x
+		\IfValueTF{#1}								%	~
+			{_{#1}}									%	y
 			{\phantom{\sim}}
 	\\
 		\sim
@@ -154,8 +156,8 @@
 	\end{array}
 }
 
-\DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C} = { X | C }
-	 \left\lbrace
+\DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C}
+	 \left\lbrace									% {X | C}
 	 	#1 \IfValueT {#2} { \ | \  #2 }
 	 \right\rbrace
 }
@@ -275,6 +277,8 @@
 % Settings for lstlistings
 \lstset{language=pseudocode,					% choose language
   columns=flexible,								% let the box align to the width of the page
+    literate={æ}{{\ae}}1{ø}{{\o}}1{å}{{\aa}}1	% allow æ, ø and å in code
+           {Æ}{{\AE}}1{Ø}{{\O}}1{Å}{{\AA}}1,	%  
   breaklines=true,								% automatically break lines
   breakatwhitespace=true,						% automatically break should there only be white space.
   numbers=left,									% numbering: none, left, right
