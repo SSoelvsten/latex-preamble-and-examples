@@ -53,5 +53,5 @@ Temporary Items
 *.dvi
 
 # Files created by latex
-.bbl
-.blg
+*.bbl
+*.blg
