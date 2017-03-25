@@ -51,3 +51,7 @@ Temporary Items
 *.log
 *.gz
 *.dvi
+
+# Files created by latex
+*.bbl
+*.blg
