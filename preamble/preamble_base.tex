@@ -90,7 +90,8 @@
 %\MakeAutoQuote{»}{«}                       	% decomment for easy macro
 %\MakeAutoQuote*{›}{‹}                      	% decomment for even easier macros
 
-
+% Like a paragraph, but adds also a linebreak after. (Also is not recorded on labelling)
+\newcommand{\lbparagraph}[1]{\vspace{0.3em} \noindent \textbf{#1}\\ \noindent}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             Math             %

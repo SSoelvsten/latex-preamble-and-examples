@@ -38,26 +38,36 @@
 Most basically you use \emph{equation} to write a mathematical equation on a single new and centered line or you can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to write math over more lines, it is better to use the \emph{align} or even better the \emph{alignat} commands. In the following example with \emph{alignat}, we get the ability to align on more things, such that both the arrows on the left and the equals sign are aligned nicely. Here is a reference to line \ref{alignatL2}.
 
 \begin{alignat}{2}
-&& cos x &= cos x * cos y \label{alignatL1}
-\\ \ArrowBetweenLines
-&& 0 &= cos x * cos y - cos x \label{alignatL2}
-\intertext{Her er én linje midt i \emph{alignat} environment, hvormed linjer stadig er aligned på tværs af indskydende tekst. Denne linje får dog også et linjenummer, hvilket er fjernet med \emph{nonumber}}\nonumber
-\\ \ArrowBetweenLines
-&& 0 &= cos x (cos y - 1) \label{alignatL3}
+	&& cos x &= cos x * cos y \label{alignatL1}
+	\\ \ArrowBetweenLines
+	&& 0 &= cos x * cos y - cos x \label{alignatL2}
+\intertext{
+	Here is a line in the middle of the \emph{alignat}. So you can put in text between lines, but still keep the alignment across. This also gets linenumber except due to the \emph{nonumber}
+}	\nonumber
+	\\ \ArrowBetweenLines
+	&& 0 &= cos x (cos y - 1) \label{alignatL3}
 \end{alignat}
 
-With \emph{pmatrix} matrices can also be made, such as the general matrix below
+\subsection{Matrices}
+With \emph{pmatrix} matrices can also be made, such as in the following. For the elementary row operations I have made the \emph{ero} macro to make life easier.
 \begin{equation*}
-	\begin{pmatrix}
-		v_1 \cdot v_1 & v_1 \cdot v_2 & \dots & v_1 \cdot v_n
-\\		v_2 \cdot v_1 & \ddots & & \vdots
-\\		\vdots & & \ddots & \vdots
-\\		v_n \cdot v_1 & \dots & \dots & v_n \cdot v_n
+	\begin{pmatrix}[cc|c]
+		2 & 1 & 1
+	\\
+		1 & 1 & 0
+	\end{pmatrix}
+	\ero{R_1 - R_2}{2R2}
+	\begin{pmatrix}[cc|c]
+		1 & 0 & 1
+	\\
+		2 & 2 & 0
 	\end{pmatrix}
 \end{equation*}
 
+\subsection{Other stuff}
 Things like sequences and sets we use all the time too, which is why I've made macros. For a sequence you can write $\seq{a}{1}{n}{2}$ and for sets $ \set{x \in \Sigma^*}{ |x| \geq 42 } $. Both of these shortcuts are overloaded, such that they can take fewer arguments than currently shown here.
 
+\newpage
 \section{Logic and proofs}
 With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a \emph{proof}. These are all currently implemented in the localized preamble to associate the same command to both languages. The proof has a label, which is \ref{lem:example}.
 
@@ -70,6 +80,23 @@ With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{propo
 		2+2 = 4
 	\end{equation*}
 	You can also place a fitch-style proof as described below, though there possibly needs to be a linebreak after it to place the tombstone correctly at the end.
+\end{proof}
+
+\subsection{Induction Example}
+\begin{lemma}[Martin 3.9]
+	$L$ is finite $\implies$ $L$ is regular
+\end{lemma}
+\begin{proof}
+	Proofed by induction in the size of $L$.
+	
+	\lbparagraph{Basis:}
+	For $|L| = 0$ then $L = \emptyset = L(r)$ for $r = \emptyset$
+	
+	\lbparagraph{Induction Hypothesis:}
+	$\forall L, |L| = n :$ $L$ is regular
+	
+	\lbparagraph{Induction:}
+	For $|L| = n + 1$ let $x \in L$ be one string in the language. Since $|L\backslash\set{x}| = n$ then by the induction hypothesis there exists a regular expression $r$ for $L \backslash \set{x}$. Since $(L\backslash\set{x})\cup\set{x} = L$ then its corresponding regular expression is $r + s$, meaning that $L$ is regular.
 \end{proof}
 
 \subsection{lplfitch}
