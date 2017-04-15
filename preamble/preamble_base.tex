@@ -118,9 +118,10 @@
 \newcommand{\Q}{\mathbb{Q}}                         % \Q = Rational numbers
 \newcommand{\F}{\mathbb{F}}							% \F
 
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}        % \ceil{arg}	\ceil*{arg} for automatic scaling
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}     % \floor{arg}	\floor*{arg} for automatic scaling
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}         % \abs{arg}		\abs*{arg} for automatic scaling
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}		% \abs{arg}		absolute/modulo of value
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}		% \norm{arg}	norm of a value
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}		% \ceil{arg}	ceiling of a value
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}	% \floor{arg}	floor of a value
 
 \newcounter{i}
 
@@ -313,12 +314,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Title and information       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setvalue{title = Keep Calm and \textbackslash settitle}
+\setvalue{title = }
 \setvalue{subtitle = }
 
 \DeclareDocumentCommand \settitle { m g }{ 				% \setTitle{title}{subtitle}
-	 \setvalue{title = \huge #1}
-	 \IfValueT {#2} { \setvalue{subtitle = \\ \large #2} }
+	 \setvalue{title = #1}
+	 \IfValueTF {#2} { \setvalue{subtitle = #2} \title{\huge \getvalue{title} \\ \large \getvalue{subtitle}}}
+	 				 { \title{\huge \getvalue{title}} }
 }
 
 \setvalue{name = }
@@ -337,15 +339,15 @@
 	 }
 }
 
-\title{\getvalue{title} \getvalue{subtitle}}
+\settitle{Keep Calm and \textbackslash settitle}
 
 \date{\today}
 
 \setvalue{of = of}
 
-\lhead{\protect\href{\getvalue{email}}{\getvalue{name}\getvalue{id}}}
+\lhead{\protect\href{\getvalue{email}}{\getvalue{name}\getvalue{id}} \\ \getvalue{title}}
 \chead{}
-\rhead{\nouppercase{\leftmark}\ | \thepage\ \getvalue{of} \pageref{LastPage}}
+\rhead{\thepage\ \getvalue{of} \pageref{LastPage} \\ \nouppercase{\leftmark}}
 
 %\lfoot{}
 %\cfoot{}
