@@ -83,22 +83,48 @@ With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{propo
 \end{proof}
 
 \subsection{Induction Example}
-\begin{lemma}[Martin 3.9]
-	$L$ is finite $\implies$ $L$ is regular
+\begin{lemma}[Martin 2.11]
+	$\forall x \in \Sigma^* , \forall (p,q) \in Q: \delta^* ((p,q),x) = (\delta_1^* (p,x) , \delta_2^* (q,x))$
 \end{lemma}
 \begin{proof}
-	Proofed by induction in the size of $L$.
+	\vspace{0.6em} \noindent
+	Induction over the length of $x$
+
+	\lbparagraph{Basis}
+	%lbparagraph is a paragraph made by, which immediatly makes a linebreak after wards too.
+		$\abs{x} = 0 \implies x = \Lambda$
+		\begin{align*}
+			\delta^*((p,q), \Lambda) &= (p,q)
+							&\text{def. 2.12}
+		\\
+						 &= (\delta_1^* (p,\Lambda) , \delta_2^* (q,\Lambda))
+						 	&\text{def. 2.12}
+		\end{align*}
+
+	\lbparagraph{Induktionshypotese}
+		$
+			\forall y \in \Sigma^*, \abs{y} = n
+				\implies \delta^*((p,q), y) = (\delta_1^*(p,y), \delta_2^*(q,y))
+		$
 	
-	\lbparagraph{Basis:}
-	For $|L| = 0$ then $L = \emptyset = L(r)$ for $r = \emptyset$
-	
-	\lbparagraph{Induction Hypothesis:}
-	$\forall L, |L| = n :$ $L$ is regular
-	
-	\lbparagraph{Induction:}
-	For $|L| = n + 1$ let $x \in L$ be one string in the language. Since $|L\backslash\set{x}| = n$ then by the induction hypothesis there exists a regular expression $r$ for $L \backslash \set{x}$. Since $(L\backslash\set{x})\cup\set{x} = L$ then its corresponding regular expression is $r + s$, meaning that $L$ is regular.
+	\lbparagraph{Induktionskridt}
+		$\abs{x} = n+1 \implies x = y\sigma, \sigma \in \Sigma$
+		\begin{align*}
+			\delta^*((p,q),y\sigma) &= \delta(\delta^*((p,q),y),\sigma)
+										&\text{def. 2.12}
+		\\
+							 		&= \delta((\delta_1^*(p,y), \delta_2^*(q,y)),\sigma)
+							 			&\text{I.H.}
+		\\
+							 		&= (\delta_1(\delta_1^*(p,y),\sigma), \delta_2(\delta_2^*(q,y),\sigma))
+							 			&\text{def. af } \delta
+		\\
+							 		&= (\delta_1^*(p,y\sigma), \delta_2^*(q,y\sigma))
+							 			&\text{def. 2.12}
+		\end{align*}
 \end{proof}
 
+\newpage
 \subsection{lplfitch}
 There exists various packages to make make logic proofs, but after some time looking around I've chosen to focus on the \emph{lplfitch} package, since its output seems to be the generally preferred and used style.
 This package is very easy to work with, when first learned, but until then you need to keep learn quite a lot of new syntax. Most importantly notice, that a proof and subproof has two arguments, the assumption and the conclussions.
