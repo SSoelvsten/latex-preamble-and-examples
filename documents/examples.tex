@@ -49,7 +49,7 @@ Most basically you use \emph{equation} to write a mathematical equation on a sin
 \end{alignat}
 
 \subsection{Matrices}
-With \emph{pmatrix} matrices can also be made, such as in the following. For the elementary row operations I have made the \emph{ero} macro to make life easier.
+With \emph{pmatrix} matrices can also be made, such as in the following. For the row operations I have made the \emph{ero} macro to make life easier.
 \begin{equation*}
 	\begin{pmatrix}[cc|c]
 		2 & 1 & 1
@@ -69,13 +69,13 @@ Things like sequences and sets we use all the time too, which is why I've made m
 
 \newpage
 \section{Logic and proofs}
-With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a \emph{proof}. These are all currently implemented in the localized preamble to associate the same command to both languages. The proof has a label, which is \ref{lem:example}.
+With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a \emph{proof}. These are all currently implemented in the localized preamble to associate the same command to both languages. The lemma has a label, which is \ref{lem:example}.
 
 \begin{lemma}[Reference to \cite{steffan}]	\label{lem:example}
 	Here we have a lemma, which is currently set up to start with the sectionnumbering and then followed by a unique number. This can be changed in the language specific preamble file
 \end{lemma}
 \begin{proof}
-	In here we can write a proof, which is automatically going to be appended a tombstone. Here we could also add an equation a list.
+	In here we can write a proof, which is automatically going to be appended a tombstone. Here we could also add an equation.
 	\begin{equation*}
 		2+2 = 4
 	\end{equation*}
@@ -101,13 +101,13 @@ With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{propo
 						 	&\text{def. 2.12}
 		\end{align*}
 
-	\lbparagraph{Induktionshypotese}
+	\lbparagraph{Induction Hypothesis}
 		$
 			\forall y \in \Sigma^*, \abs{y} = n
 				\implies \delta^*((p,q), y) = (\delta_1^*(p,y), \delta_2^*(q,y))
 		$
 	
-	\lbparagraph{Induktionskridt}
+	\lbparagraph{Induction Step}
 		$\abs{x} = n+1 \implies x = y\sigma, \sigma \in \Sigma$
 		\begin{align*}
 			\delta^*((p,q),y\sigma) &= \delta(\delta^*((p,q),y),\sigma)
@@ -126,8 +126,7 @@ With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{propo
 
 \newpage
 \subsection{lplfitch}
-There exists various packages to make make logic proofs, but after some time looking around I've chosen to focus on the \emph{lplfitch} package, since its output seems to be the generally preferred and used style.
-This package is very easy to work with, when first learned, but until then you need to keep learn quite a lot of new syntax. Most importantly notice, that a proof and subproof has two arguments, the assumption and the conclussions.
+There exists various packages to make logic proofs, but after some time looking around I've chosen to focus on the \emph{lplfitch} package, since its output seems to be the generally preferred and used style. This package is very easy to work with, when first learned, but until then you need to learn quite a lot of new syntax. Most importantly notice, that a proof and subproof has two arguments, the assumption and the conclussions.
 \begin{center}
     \fitchprf{\pline[1.]{presumption}}{
         \pline[2.]{conclussion}
@@ -135,13 +134,13 @@ This package is very easy to work with, when first learned, but until then you n
     		\pline[4.]{conclussion}[argument]
     	\\  \pline[5.]{conclussion}
     	}
-    	\pline[6.]{konklussion}
+    	\pline[6.]{conclussion}
     }
 \end{center}
 
-All the commands can be found in the documentation, which can be found \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{here}}, but most shortcuts are of the form: $"l" + type + "i/e"$. Argumentation is also done using these shortcuts. Every line is of the form
+All the commands can be found in the documentation \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{here}}, but most shortcuts are of the form: $"l" + type + "i/e"$. Argumentation is also done using these shortcuts, so every line is
 \begin{equation*}
-    pline[hline number i]\{hformulai\}[hjustificationi]
+    \backslash pline[\text{linenumber}]\{\text{formula}\}[\text{justification}]
 \end{equation*}
 
 Notice, that in fitch-style there isn't normally written assumption or premise, but it is merely shown by the horizontal line. You can write it if you want. The proof to exercise $1.2.1$ c from TØ class is in the proof to lemma \ref{lem:121}.
@@ -156,7 +155,7 @@ Notice, that in fitch-style there isn't normally written assumption or premise, 
     \\  \pline[5.]{q}[\lande{3}]
     \\  \pline[6.]{q \land r}[\landi{2, 5}]
     \\  \pline[7.]{p \land (q \land r)}[\landi{4, 6}]
-    } \\
+    } \\ %Linebreak for the tombstone
 \end{proof}
 
 If you need a fresh variable, you don't create a subproof, but instead a boxed subproof. The solution to an exercise in one of the handins is then
@@ -174,8 +173,7 @@ If you need a fresh variable, you don't create a subproof, but instead a boxed s
 			\pline[6.]{\uni x \lnot P(x)}[\lalli{3--5}]
 		}
 		\pline[7.]{(\uni x \lnot Q(x)) \lif (\uni x \lnot P(x))}[\lifi{2--6}]
-		
-	} \\
+	} \\ %Linebreak for the tombstone
 \end{proof}
 
 \newpage
@@ -268,22 +266,22 @@ Here is a graph from our first Calculus handin, kindly sponsored by the wonderfu
 \end{center}
 
 \section{Code}
-The following is sourcecode for some non-aweinspiring Java method. By using a caption you also give it a number, but alternatively it can be given a \emph{title} instead of a \emph{caption}. Using \emph{title} does break the ability to make and reference a \emph{label}, but that is your intent anyways, if you do this. The following code has the label \ref{lst:Example}
+The following is sourcecode for some non-aweinspiring Java method. By using a caption you also give it a number, but alternatively it can be given a \emph{title} instead of a \emph{caption}. Using \emph{title} does break the ability to make and reference a \emph{label}, but that is your intent anyways, if you use \emph{title}. The following code has the label \ref{lst:Example}
 
-\begin{lstlisting} [label={lst:Example},
-	caption={I'm a caption}]
+\begin{lstlisting} [language=java,
+					label={lst:Example},
+					caption={I'm a caption}]
 //This is a comment, nordic letters are not supported
 public static String example(int n) {
 	return "You wrote: "+n;
 }
 \end{lstlisting}
 
-If the language has to be something else than is the standard specified, then it has to be declared as an argument. In the following pseudocode there are also used escape character *@ and @* to insert \LaTeX\ math.
+If the language has to be something else than is the standard specified, then it has to be declared as an argument. In the following pseudocode there are also used escape characters *@ and @* to insert \LaTeX\ math.
 
-\begin{lstlisting}[language=pseudocode,
-                firstnumber=1,
-                caption={The algorithm \emph{linear exponentiation}},
-                label={lst:algorithm}]
+\begin{lstlisting}[firstnumber=1,
+                   caption={The algorithm \emph{linear exponentiation}},
+                   label={lst:algorithm}]
 *@ \textbf{Algorithm: Linear Exponentiation} @*(x,p)
  Input     : *@ $p \geq 0$ @*
  Output    : *@ $r = x^p$ @*
@@ -307,7 +305,7 @@ With qtree we have a quick and easy way to draw trees. Notice, that you need to 
     \label{fig:tree1}
 \end{figure}
 
-If the trees need to be a bit more complex, then you need to use tikz, where it is currently in the preamble set up to create red-black trees.
+If the trees need to be a bit more complex, then you need to use tikz, where it is already in the preamble has defined red-black trees.
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[baseline={(current bounding box.center)},-,>=stealth',level/.style={sibling distance = 1.1cm, level distance = 0.9cm}]
@@ -343,13 +341,13 @@ By using Tikz creating automota by hand is easy, and I highly encourage you do i
 	%\draw[->] (C) .. controls ($(C)+(0,-1cm)$) and ($(A)+(0,-1cm)$).. (A)      % Custom edge
 	%				node at ($(B)+(0,-1.1cm)$) {$1$};
 	\end{tikzpicture}
-	\caption{An automoata, that accepts strings ending with "01"}
+	\caption{A finite automoata, that accepts strings ending with "01"}
 	\label{fig:FA}
 \end{figure}
 
 \newpage
 \section{E/R Diagrams} \label{sec:ER}
-By using \emph{er} and \emph{shapes} packages a E/R diagrammer can be drawn. These are made in the exact same way as the automota.
+By using \emph{er} and \emph{shapes} packages a E/R diagram can be drawn. These are made in the exact same way as the automota.
 
 \begin{figure}[htbp!]
     \centering
@@ -383,10 +381,10 @@ By using \emph{er} and \emph{shapes} packages a E/R diagrammer can be drawn. The
     \label{fig:ER}
 \end{figure}
 
-\section{References} \label{sec:ref}
+\section{Referencing and Citing} \label{sec:ref}
 If you need to reference equations, figures, sections or anything with a label you want to use the \emph{ref} operation. A \emph{ref} will always point to a \emph{label} defined and saved in the earlier compilation. For example this section has the number \ref{sec:ref}.
 
-If you wan to reference the bibliography, then you want to use the \emph{cite} operation instead. Here is a reference to \cite{berlog}, which is written in the \emph{bibliography} further down. This is redefined to litteratur with the danish preamble, preamble\_dk.tex. If you want more references simultaneously the you just seperate them with commas: \cite{berlog, steffan}
+If you wan to reference the bibliography, then you want to use the \emph{cite} operation instead. Here is a reference to \cite{berlog}, which is written in the \emph{bibliography} further down. This is redefined to litteratur with the danish preamble, preamble\_dk.tex. If you want more references simultaneously you just seperate them with commas: \cite{berlog, steffan}
 
 \section{Quotes}
 With the \emph{csquotes} package it is possible to make nice quotes, such as Steffan's remark \textcquote[s. 12]{steffan}{We are computer scientists, not vampires}. By using \emph{blockquote} you get automatically a quote, which is on its own line, if it is 4+ lines long.
