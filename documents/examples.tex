@@ -48,7 +48,7 @@ Most basically you use \emph{equation} to write a mathematical equation on a sin
 	&& 0 &= cos x (cos y - 1) \label{alignatL3}
 \end{alignat}
 
-\subsection{Matrices}
+\subsection{Matrices and vectors}
 With \emph{pmatrix} matrices can also be made, such as in the following. For the row operations I have made the \emph{ero} macro to make life easier.
 \begin{equation*}
 	\begin{pmatrix}[cc|c]
@@ -63,6 +63,11 @@ With \emph{pmatrix} matrices can also be made, such as in the following. For the
 		2 & 2 & 0
 	\end{pmatrix}
 \end{equation*}
+
+\subsection{Alphabets}
+In mathmode you can also use different styles called alphabets. Bold $\mathbf{b}$ and functions can be written with $\mathit{function}$. Furthermore the real numbers $\mathbb{R}$ has a shortcut $\backslash$ R and the same goes for $\C$, $\Q$, $\F$ and more. Finally with \emph{mathcal} you can get caligraphic writing, but if it is too pompous you can use \emph{mathpzc} for something looking like $\mathpzc{F, V, W}$.
+
+Do note though, that using many different mathalphabets will at some point result in a compile error, since \LaTeX\ only can handle 16 mathalphabets and many are apparently already used up by many different packages. I have yet not tried to clean up, but hopefully you should not need that many different ways of writing the same letters.
 
 \subsection{Other stuff}
 Things like sequences and sets we use all the time too, which is why I've made macros. For a sequence you can write $\seq{a}{1}{n}{2}$ and for sets $ \set{x \in \Sigma^*}{ |x| \geq 42 } $. Both of these shortcuts are overloaded, such that they can take fewer arguments than currently shown here.
