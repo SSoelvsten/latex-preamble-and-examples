@@ -101,16 +101,15 @@
 %\newcommand{\bmmax}{1}								% this allows for more math families
 
 % various basic stuff
-\usepackage{bm, mathtools, amsmath}
+\usepackage{mathtools, amsmath}
 \allowdisplaybreaks                                 % allow pagebreaks in align* ?
 
 % Various symbol packages
 \usepackage{amssymb}
-\usepackage[utopia]{mathdesign}					% full overwrite of the font system
+\usepackage[utopia]{mathdesign}					    % full overwrite of the font system
 \usepackage{stmaryrd}								% even more symbols
 
-%\let\mathcal\undefined								% Let's redefine the mathcal alphabet
-%\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}     % \mathpzc a less pompous curly typeset
 
 % Math shortcuts
 \renewcommand{\d}{\, \mathrm{d}}                    % \d = differential d with a bit of spacing
