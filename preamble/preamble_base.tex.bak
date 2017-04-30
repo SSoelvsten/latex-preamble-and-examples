@@ -57,8 +57,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{xparse}								% Scanning arguments
-\usepackage{xifthen}							% Conditionals
-\usepackage{xstring}                            % String functions
+\usepackage{ifthen}								% Conditionals
 \usepackage{calc}								% Calculations
 
 
@@ -327,24 +326,21 @@
 	 				 { \title{\huge \getvalue{title}} }
 }
 
+\setvalue{name = }
+\setvalue{email = }
+\setvalue{id = }
+
 \DeclareDocumentCommand \addauth { m g g }{ 			% \addAuth{name}{email}{id}
-     \IfValueT {#3} {		%Set the id text as desired on the top left
-	 	\setvalue{id = #3}
-	 }
-     \pgfkeysifdefined{/variables/name}{
-         \setvalue{id = \, et al}
-     }{
-         \setvalue{name = #1}
-     }	 
+	 \setvalue{name = #1}
 	 \author{#1}
 	 \IfValueT {#2} {
-	    \pgfkeysifdefined{/variables/email}{
-	        % Do Nothing
-	    }{
-	 	    \setvalue{email = #2}
-	 	}
+	 	\setvalue{email = #2}
 	 	\affil{\protect\href{mailto:#2}{#2}}
 	 }
+	 \IfValueT {#3} {		%Set the id text as desired on the top left
+	 	\setvalue{id = #3}
+	 }
+	 \pgfkeysifdefined
 }
 
 \settitle{Keep Calm and \textbackslash settitle}
