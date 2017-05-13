@@ -182,6 +182,7 @@ If you need a fresh variable, you don't create a subproof, but instead a boxed s
 \end{proof}
 
 \newpage
+\iffalse
 \subsection{logicproof}
 Alternatively you can use the \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/logicproof/logicproof.pdf}{\emph{logicproof}} package, which uses a syntax more similar to other \LaTeX. The output also resembles the style in the Logic book used in the course dBerLog. \cite{berlog}
 You have to choose one of the two packages due to conflicts. Currently this one is turned off, but the proof from theorem \ref{theo:handin} should look something like this, but I couldn't get it to compile.
@@ -202,6 +203,7 @@ You have to choose one of the two packages due to conflicts. Currently this one 
 					& \to \mathrm{i} 2--6
 \end{logicproof}
 \end{lstlisting}
+\fi
 
 \section{Figures}
 The following is a figure with an image in it, and its label is \ref{FigExample}. Figures can contain pretty much everything, so just experiment, it will most likely work.
@@ -225,6 +227,24 @@ The following is a figure with an image in it, and its label is \ref{FigExample}
 	\label{fig:TM2}
 \end{wrapfigure}
 If you want to have your figure beside your text you need to put it into a \emph{wrapfigure} instead of a normal \emph{figure}. Place the text at the line, on which you want the figure to start. The first variable are the amount of lines the box is high, the second is left or right, while the last is the width.
+
+\section{Tables}
+Tables are also put into a float similar to figures, which makes it possible to add captions and references to it similar to before, such as the table in \ref{tab:table}. The table itself is made with \emph{tabular}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ l r | c || >{\columncolor[gray]{0.5}}c >{\columncolor[RGB]{230, 242, 255}}c}
+		\rowcolor{lstKey2} %color defined for code highlights
+		l-column           & r-column & c-column                  & gray column & light blue column
+	\\ \hline \hline % horizontal lines
+		a                  & b        & c                         & d           & e
+	\\ \hline
+		f                  & g        & \cellcolor[HTML]{FFCE93}h & i           & j
+	\\
+		$k = \frac{1}{2}$  & l        & m                         & n           & o
+	\end{tabular}
+	\caption{A table with this being the caption}
+	\label{tab:table}
+\end{table}
 
 \newpage
 \section{Graphs}

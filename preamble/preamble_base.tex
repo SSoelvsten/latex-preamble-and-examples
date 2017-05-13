@@ -119,6 +119,7 @@
 \newcommand{\C}{\mathbb{C}}                         % \C = Complex numbers
 \newcommand{\Q}{\mathbb{Q}}                         % \Q = Rational numbers
 \newcommand{\F}{\mathbb{F}}							% \F
+\newcommand{\Det}[1]{\text{Det}\left( #1 \right)}   % \Det{arg}             Det(arg)
 
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}			% \abs{arg}		absolute/modulo of value
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}			% \norm{arg}	norm of a value
@@ -198,6 +199,8 @@
 
 %\usepackage{xcolor}							% basic xcolor package
 \usepackage[table,xcdraw]{xcolor}				% xcolor package with support for tables
+\usepackage{colortbl}                           % color presets working together with xcolor
+
 \definecolor{lstComment}{rgb}{0.45,0.45,0.45}	% code: comments (Grey)
 \definecolor{lstKey}{rgb}{0.13,0.21,1}			% code: primary keywords (Blue)
 \definecolor{lstKey2}{rgb}{1,0.666667,0.13726}  % code: secondary keywords (Day[9] Orange)
@@ -269,7 +272,7 @@
 \lstdefinelanguage{pseudocode}{
   keywords=[1]{
   	     break, break, by, do, downto, else, error, for, if, repeat, return, to, until, while, while
-  	},								    		% list of keywords, first and last are not used
+  	},								    		% list of keywords, first and last are not used for some stupid reason
   keywords=[2]{
         and, and, or, NIL, NIL
   }
