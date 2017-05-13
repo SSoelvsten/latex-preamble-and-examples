@@ -57,7 +57,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{xparse}								% Scanning arguments
-\usepackage{ifthen}								% Conditionals
+\usepackage{xifthen}							% Conditionals
+\usepackage{xstring}                            % String functions
 \usepackage{calc}								% Calculations
 
 
@@ -100,16 +101,15 @@
 %\newcommand{\bmmax}{1}								% this allows for more math families
 
 % various basic stuff
-\usepackage{bm, mathtools, amsmath}
+\usepackage{mathtools, amsmath}
 \allowdisplaybreaks                                 % allow pagebreaks in align* ?
 
 % Various symbol packages
 \usepackage{amssymb}
-\usepackage[utopia]{mathdesign}					% full overwrite of the font system
+\usepackage[utopia]{mathdesign}					    % full overwrite of the font system
 \usepackage{stmaryrd}								% even more symbols
 
-%\let\mathcal\undefined								% Let's redefine the mathcal alphabet
-%\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}     % \mathpzc a less pompous curly typeset
 
 % Math shortcuts
 \renewcommand{\d}{\, \mathrm{d}}                    % \d = differential d with a bit of spacing
@@ -268,7 +268,7 @@
 % Definition of Pseudocode
 \lstdefinelanguage{pseudocode}{
   keywords=[1]{
-  	     by, by, do, downto, else, error, for, if, repeat, return, to, until, while, while
+  	     break, break, by, do, downto, else, error, for, if, repeat, return, to, until, while, while
   	},								    		% list of keywords, first and last are not used
   keywords=[2]{
         and, and, or, NIL, NIL
@@ -326,21 +326,24 @@
 	 				 { \title{\huge \getvalue{title}} }
 }
 
-\setvalue{name = }
-\setvalue{email = }
-\setvalue{id = }
-
 \DeclareDocumentCommand \addauth { m g g }{ 			% \addAuth{name}{email}{id}
-	 \setvalue{name = #1}
-	 \author{#1}
-	 \IfValueT {#2} {
-	 	\setvalue{email = #2}
-	 	\affil{\protect\href{mailto:#2}{#2}}
-	 }
-	 \IfValueT {#3} {		%Set the id text as desired on the top left
+     \IfValueT {#3} {		%Set the id text as desired on the top left
 	 	\setvalue{id = #3}
 	 }
-	 \pgfkeysifdefined
+     \pgfkeysifdefined{/variables/name}{
+         \setvalue{id = \, et al}
+     }{
+         \setvalue{name = #1}
+     }	 
+	 \author{#1}
+	 \IfValueT {#2} {
+	    \pgfkeysifdefined{/variables/email}{
+	        % Do Nothing
+	    }{
+	 	    \setvalue{email = #2}
+	 	}
+	 	\affil{\protect\href{mailto:#2}{#2}}
+	 }
 }
 
 \settitle{Keep Calm and \textbackslash settitle}
