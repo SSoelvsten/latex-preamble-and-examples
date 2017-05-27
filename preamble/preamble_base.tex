@@ -173,6 +173,34 @@
 	\end{array}
 }
 
+\DeclareDocumentCommand \coorvec { m g }{			% \coorvec{v}{V}	Coordinate vector
+	\left[
+		#1
+	\right]
+	{_{
+		\IfValueTF{#2}
+			{#2}
+			{\epsilon}
+	}}
+}
+
+\DeclareDocumentCommand \matrep { g g g } {			% \matrep{W}{L}{V}	Matrixrepresentation
+	{_{												% W[L]V
+		\IfValueTF {#1}									%No arguments for W or V results in standardbasis
+			{#1}										%No arguments for L results in coordinatetransformation
+			{\epsilon}
+	}}
+	\left[
+		\IfValueTF {#2}
+			{#2}
+			{\square}
+	\right] {_{
+		\IfValueTF {#3}
+			{#3}
+			{\epsilon}
+	}}
+}
+
 \DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C}
 	 \left\lbrace									% {X | C}
 	 	#1 \IfValueT {#2} { \ | \  #2 }
