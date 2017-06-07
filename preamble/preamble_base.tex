@@ -394,12 +394,19 @@
 
 \date{\today}
 
-\setvalue{of = of}
+%Headers:
+%  Unused pieces of code
+%     Name of writers   \protect\href{\getvalue{email}}{\getvalue{name}\getvalue{id}}
+%     "of X pages"      \getvalue{of} \pageref{LastPage}
 
-\lhead{\protect\href{\getvalue{email}}{\getvalue{name}\getvalue{id}} \\ \getvalue{title}}
-\chead{}
-\rhead{\thepage\ \getvalue{of} \pageref{LastPage} \\ \nouppercase{\leftmark}}
+%Odd pages (Main for onesided)
 
-%\lfoot{}
-%\cfoot{}
-%\rfoot{}
+\fancyhead[LO]{\thepage}
+\fancyhead[RO]{\getvalue{title}}
+
+%Even pages
+\fancyhead[LE]{\nouppercase{\leftmark}}
+\fancyhead[RE]{\thepage}
+
+%Nothing below
+\fancyfoot[LCR]{}

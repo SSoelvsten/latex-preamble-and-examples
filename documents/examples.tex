@@ -2,7 +2,7 @@
 % Load Preample         %
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4, english]{article}
+\documentclass[a4, english, twoside]{article}
 
 %Import from the same folder
 %\input{preamble_en.tex}
@@ -71,6 +71,8 @@ Do note though, that using many different mathalphabets will at some point resul
 
 \subsection{Other stuff}
 Things like sequences and sets we use all the time too, which is why I've made macros. For a sequence you can write $\seq{a}{1}{n}{2}$ and for sets $ \set{x \in \Sigma^*}{ |x| \geq 42 } $. Both of these shortcuts are overloaded, such that they can take fewer arguments than currently shown here.
+
+Also the $\Det{A}$, the coordinate vector $\coorvec{v}{\V}$, the matrixrepresentation $\matrep{\V}{L}{\W}$, the $\sgn{\sigma}$ and the $\Span{\seq{v}{1}{n}}$ can be made easily with the macros coded.
 
 \newpage
 \section{Logic and proofs}
