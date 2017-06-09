@@ -130,10 +130,10 @@
 \newcommand{\W}{\mathpzc{W}}						% \W
 \renewcommand{\S}{\mathbb{S}}						% \S = Set of permutations
 
-\newcommand{\Det}[1]{\text{Det}\left( #1 \right)}   % \Det{arg}             Det(arg)
-\newcommand{\Span}[1]{\text{Span}\left( #1 \right)} % \Span{arg}			Span(arg)
-\newcommand{\sgn}[1]{\text{sgn} \left( #1 \right)}  % \sgn{arg}				sng(arg)
-\newcommand{\adj}[1]{\text{adj} \left( #1 \right)}  % \adj{arg}             adj(arg)
+\newcommand{\Det}[1]{\text{Det}\left( #1 \right)}          % \Det{arg}             Det(arg)
+\newcommand{\Span}[1]{\text{Span}\left( #1 \right)}        % \Span{arg}            Span(arg)
+\newcommand{\sgn}[1]{\text{sgn} \left( #1 \right)}         % \sgn{arg}             sng(arg)
+\newcommand{\adj}[1]{\text{adj} \left( #1 \right)}         % \adj{arg}             adj(arg)
 
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}			% \abs{arg}		absolute/modulo of value
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}			% \norm{arg}	norm of a value
@@ -142,6 +142,12 @@
 \newcommand{\inprod}[2]{\left\langle #1 , #2 \right\rangle}	% \inprod{arg}	inner product
 
 \newcounter{i}
+
+\DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C}
+	 \left\lbrace									% {X | C}
+	 	#1 \IfValueT {#2} { \ | \  #2 }
+	 \right\rbrace
+}
 
 \DeclareDocumentCommand \seq { g g g g } {			% \seq{x}{i}{j}{s}
 	\setcounter{i}{0}								% x_i, x_i+s, ... x_j
@@ -177,9 +183,11 @@
 	\end{array}
 }
 
-\DeclareDocumentCommand \coorvec { m g }{			% \coorvec{v}{V}	Coordinate vector
+\DeclareDocumentCommand \coorvec { g g }{			% \coorvec{v}{V}	Coordinate vector
 	\left[
-		#1
+		\IfValueTF{#1}
+			{#1}
+			{v}
 	\right]
 	{_{
 		\IfValueTF{#2}
@@ -205,10 +213,28 @@
 	}}
 }
 
-\DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C}
-	 \left\lbrace									% {X | C}
-	 	#1 \IfValueT {#2} { \ | \  #2 }
-	 \right\rbrace
+\newcommand{\IndexedFunc}[3]{{#1}_{#2} \left( #3 \right)}
+
+\DeclareDocumentCommand \Geo { g g }{			% \Geo{v}{V}	Geogrebic Multiplicity
+	\IndexedFunc
+		{\text{Geo}}
+		{\IfValueTF{#1}
+				{#1}
+				{L}}
+		{\IfValueTF{#2}
+			{#2}
+			{\lambda}}
+}
+
+\DeclareDocumentCommand \Alg { g g }{			% \Alg			Algebraic Multiplicity
+	\IndexedFunc
+		{\text{Alg}}
+		{\IfValueTF{#1}
+				{#1}
+				{L}}
+		{\IfValueTF{#2}
+			{#2}
+			{\lambda}}
 }
 
 \makeatletter										% adds vertical lines to matrices
