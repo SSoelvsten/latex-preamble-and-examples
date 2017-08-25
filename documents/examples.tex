@@ -1,8 +1,11 @@
+\documentclass[a4, english, twoside]{article}
+% a4 is the paper size
+% english is for the language used in standard texts (figures, tables etc)
+% twoside for doublesided pages. Remove if that is not wanted.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Load Preample         %
 %%%%%%%%%%%%%%%%%%%%%%%%%
-
-\documentclass[a4, english, twoside]{article}
 
 %Import from the same folder
 %\input{preamble_en.tex}
@@ -38,14 +41,14 @@
 Most basically you use \emph{equation} to write a mathematical equation on a single new and centered line or you can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to write math over more lines, it is better to use the \emph{align} or even better the \emph{alignat} commands. In the following example with \emph{alignat}, we get the ability to align on more things, such that both the arrows on the left and the equals sign are aligned nicely. Here is a reference to line \ref{alignatL2}.
 
 \begin{alignat}{2}
-	&& cos x &= cos x * cos y \label{alignatL1}
+	&& \cos x &= \cos x * \cos y \label{alignatL1}
 	\\ \ArrowBetweenLines
-	&& 0 &= cos x * cos y - cos x \label{alignatL2}
+	&& 0 &= \cos x * \cos y - \cos x \label{alignatL2}
 \intertext{
 	Here is a line in the middle of the \emph{alignat}. So you can put in text between lines, but still keep the alignment across. This also gets linenumber except due to the \emph{nonumber}
 }	\nonumber
 	\\ \ArrowBetweenLines
-	&& 0 &= cos x (cos y - 1) \label{alignatL3}
+	&& 0 &= \cos x \cdot (\cos y - 1) \label{alignatL3}
 \end{alignat}
 
 \subsection{Matrices and vectors}
@@ -165,22 +168,18 @@ Notice, that in fitch-style there isn't normally written assumption or premise, 
     } \\ %Linebreak for the tombstone
 \end{proof}
 
-If you need a fresh variable, you don't create a subproof, but instead a boxed subproof. The solution to an exercise in one of the handins is then
+If you need a fresh variable, you don't create a subproof, but instead a boxed subproof. Parts of the solution to an exercise in one of the handins is then
 \begin{theorem} \label{theo:handin}
 	$\forall x (P(x) \rightarrow Q(x) \vdash (\forall x \neg Q(x)) \rightarrow (\forall x \neg P(x)))$
 \end{theorem}
 \begin{proof}
 	\fitchprf{
-		\pline[1.]{\uni x (P(x) \lif Q(x))}}{
-		\subproof{\pline[2.]{\uni x \lnot Q(x)}} {
-			\boxedsubproof[3.]{x_0}{\lnot Q(x_0)}{
-				\pline[4.]{P(x_0) \lif Q(x_0)}[\lalle{1, 3}]
-			\\  \pline[5.]{\lnot P(x_0)}[\textbf{Modus Tollens:} 3, 4]
+		\pline[1.]{...}}{
+			\boxedsubproof[2.]{x_0}{\lnot Q(x_0)}{
+				\pline[3.]{...}
 			}
-			\pline[6.]{\uni x \lnot P(x)}[\lalli{3--5}]
-		}
-		\pline[7.]{(\uni x \lnot Q(x)) \lif (\uni x \lnot P(x))}[\lifi{2--6}]
-	} \\ %Linebreak for the tombstone
+			\pline[4.]{...}
+		} \\ %Linebreak for the tombstone
 \end{proof}
 
 \newpage
