@@ -148,7 +148,7 @@
 
 \newcounter{i}
 
-\DeclareDocumentCommand \set { m g }{ 				% \sets{X}{C}
+\DeclareDocumentCommand \set { m g }{ 				% \set{X}{C}
 	 \left\lbrace									% {X | C}
 	 	#1 \IfValueT {#2} { \ | \  #2 }
 	 \right\rbrace
@@ -174,6 +174,18 @@
 		{}
 }
 
+\DeclareDocumentCommand \eqclass { g g }{		% \eqclass{v}{V}	Equivalent Class
+	\left[                                      % This can also be used for coordinate vectors
+		\IfValueTF{#1}
+			{#1}
+			{v}
+	\right]
+	\IfValueTF{#2}
+			{_{#2}}
+			{}
+	
+}
+
 \DeclareDocumentCommand \ero { g g } {				% \ero {x, y}
 	\begin{array}{c}								%	x
 		\IfValueTF{#1}								%	~
@@ -186,19 +198,6 @@
 			{^{#2}}
 			{\phantom{\sim}}
 	\end{array}
-}
-
-\DeclareDocumentCommand \coorvec { g g }{			% \coorvec{v}{V}	Coordinate vector
-	\left[
-		\IfValueTF{#1}
-			{#1}
-			{v}
-	\right]
-	{_{
-		\IfValueTF{#2}
-			{#2}
-			{\epsilon}
-	}}
 }
 
 \DeclareDocumentCommand \matrep { g g g } {			% \matrep{W}{L}{V}	Matrixrepresentation
