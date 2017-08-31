@@ -1,0 +1,32 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load Preample         %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4, english]{article}
+
+%Import from the same folder
+%\input{preamble_en.tex}
+
+%Import from absolute path
+%\usepackage{import}
+%\import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_dk.tex}
+
+%Import from a relative path
+\usepackage{import}
+\subimport{../preamble/}{preamble_en.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document starts here! %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Define title and more on frontpage
+    \settitle{Title}{Subtitle}
+    \addauth{Steffan Sølvsten}{201505832@post.au.dk}{\, au534068}
+\maketitle
+
+\section{Introduction} \label{sec:intro}
+
+
+\end{document}

@@ -37,9 +37,11 @@ On Unix
 
 # Documents
 This repository contains two documents, _template.tex_ and _example.tex._
-## template.tex
-A very small and sparse document, in which already the preamble, abstract, title, bibliography and two sections are ready for use. This should get you started much faster.
+## template_report.tex and template_blank.tex
+With *template_report.tex* you have a very small and sparse document, in which already the preamble, abstract, title, bibliography and two sections are ready for use. This should get you started much faster.
 ![Alt text](/img/template.png?raw=true "The template file")
+
+With *template_blank.tex* you simultaneously have a completely blank document with nothing more than just the title.
 
 ## examples.tex
 A slowly growing document with explanations and examples of using the various packages in the preamble. They are all made with the intent to be reverse engineerable.

@@ -5,7 +5,7 @@ import argparse
 def filepath(relative):
     return os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, relative))
 
-with open(filepath("documents/template.tex"), "r") as template_file:
+with open(filepath("documents/template_blank.tex"), "r") as template_file:
     template_content = template_file.read()
 
 with open(filepath("preamble/preamble_base.tex"), "r") as preamble_base_file:
