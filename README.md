@@ -38,6 +38,8 @@ A slowly growing document with explanations and examples of using the various pa
 ![Alt text](/img/example.png?raw=true "The template file")
 
 # Python Template Generator
-In the folder Python you can find a Python Template Generator, created by Kristian 'Yurippe' Gausel. prepare.py is the file that creates latexgen.py and packs the template and the preamble_en, preamble_dk and preamble_base into latexgen.py to create a standalone script to generate a template from
+In the folder Python you can find a Python Template Generator, created by Kristian 'Yurippe' Gausel. *prepare.py* is the file that creates *latexgen.py* and packs the template and the *preamble_en*, *preamble_dk* and *preamble_base* into *latexgen.py* to create a standalone script to generate a template from
 
-This is especially useful for ShareLatex since you can add a --zip argument to zip the template into a sharelatex compatible format for easy upload.
+This is especially useful for ShareLatTeX since you can add a --zip argument to zip the template into a ShareLaTeX compatible format for easy upload.
+
+The *latexgen.py* file can be found under [Releases](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/releases)
