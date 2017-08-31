@@ -56,3 +56,5 @@ Temporary Items
 *.bbl
 *.blg
 *.bak
+
+python/latexgen\.py
