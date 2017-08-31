@@ -417,7 +417,12 @@
         }{
              \setvalue{email = #2}
          }
-         \affil{\protect\href{mailto:#2}{#2}}
+         \IfValueTF {#3} {
+         	\affil{#3, \protect\href{mailto:#2}{#2}}
+         }
+         {
+         	\affil{\protect\href{mailto:#2}{#2}}
+         }
      }
 }
 
