@@ -42,4 +42,4 @@ In the folder Python you can find a Python Template Generator, created by Kristi
 
 This is especially useful for ShareLatTeX since you can add a --zip argument to zip the template into a ShareLaTeX compatible format for easy upload.
 
-The *latexgen.py* file can be found under *releases*
+The *latexgen.py* file can be found under [Releases](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/releases)
