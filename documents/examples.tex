@@ -41,30 +41,30 @@
 Most basically you use \emph{equation} to write a mathematical equation on a single new and centered line or you can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to write math over more lines, it is better to use the \emph{align} or even better the \emph{alignat} commands. In the following example with \emph{alignat}, we get the ability to align on more things, such that both the arrows on the left and the equals sign are aligned nicely. Here is a reference to line \ref{alignatL2}.
 
 \begin{alignat}{2}
-	&& \cos x &= \cos x * \cos y \label{alignatL1}
-	\\ \ArrowBetweenLines
-	&& 0 &= \cos x * \cos y - \cos x \label{alignatL2}
+    && \cos x &= \cos x * \cos y \label{alignatL1}
+    \\ \ArrowBetweenLines
+    && 0 &= \cos x * \cos y - \cos x \label{alignatL2}
 \intertext{
-	Here is a line in the middle of the \emph{alignat}. So you can put in text between lines, but still keep the alignment across. This also gets linenumber except due to the \emph{nonumber}
-}	\nonumber
-	\\ \ArrowBetweenLines
-	&& 0 &= \cos x \cdot (\cos y - 1) \label{alignatL3}
+    Here is a line in the middle of the \emph{alignat}. So you can put in text between lines, but still keep the alignment across. This also gets linenumber except due to the \emph{nonumber}
+}    \nonumber
+    \\ \ArrowBetweenLines
+    && 0 &= \cos x \cdot (\cos y - 1) \label{alignatL3}
 \end{alignat}
 
 \subsection{Matrices and vectors}
 With \emph{pmatrix} matrices can also be made, such as in the following. For the row operations I have made the \emph{ero} macro to make life easier.
 \begin{equation*}
-	\begin{pmatrix}[cc|c]
-		2 & 1 & 1
-	\\
-		1 & 1 & 0
-	\end{pmatrix}
-	\ero{R_1 - R_2}{2R2}
-	\begin{pmatrix}[cc|c]
-		1 & 0 & 1
-	\\
-		2 & 2 & 0
-	\end{pmatrix}
+    \begin{pmatrix}[cc|c]
+        2 & 1 & 1
+    \\
+        1 & 1 & 0
+    \end{pmatrix}
+    \ero{R_1 - R_2}{2R2}
+    \begin{pmatrix}[cc|c]
+        1 & 0 & 1
+    \\
+        2 & 2 & 0
+    \end{pmatrix}
 \end{equation*}
 
 \subsection{Alphabets}
@@ -81,57 +81,57 @@ Also the $\Det{A}$, the coordinate vector $\coorvec{v}{\V}$, the matrixrepresent
 \section{Logic and proofs}
 With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a \emph{proof}. These are all currently implemented in the localized preamble to associate the same command to both languages. The lemma has a label, which is \ref{lem:example}.
 
-\begin{lemma}[Reference to \cite{steffan}]	\label{lem:example}
-	Here we have a lemma, which is currently set up to start with the sectionnumbering and then followed by a unique number. This can be changed in the language specific preamble file
+\begin{lemma}[Reference to \cite{steffan}]    \label{lem:example}
+    Here we have a lemma, which is currently set up to start with the sectionnumbering and then followed by a unique number. This can be changed in the language specific preamble file
 \end{lemma}
 \begin{proof}
-	In here we can write a proof, which is automatically going to be appended a tombstone. Here we could also add an equation.
-	\begin{equation*}
-		2+2 = 4
-	\end{equation*}
-	You can also place a fitch-style proof as described below, though there possibly needs to be a linebreak after it to place the tombstone correctly at the end.
+    In here we can write a proof, which is automatically going to be appended a tombstone. Here we could also add an equation.
+    \begin{equation*}
+        2+2 = 4
+    \end{equation*}
+    You can also place a fitch-style proof as described below, though there possibly needs to be a linebreak after it to place the tombstone correctly at the end.
 \end{proof}
 
 \subsection{Induction Example}
 \begin{lemma}[Martin 2.11]
-	$\forall x \in \Sigma^* , \forall (p,q) \in Q: \delta^* ((p,q),x) = (\delta_1^* (p,x) , \delta_2^* (q,x))$
+    $\forall x \in \Sigma^* , \forall (p,q) \in Q: \delta^* ((p,q),x) = (\delta_1^* (p,x) , \delta_2^* (q,x))$
 \end{lemma}
 \begin{proof}
-	\vspace{0.6em} \noindent
-	Induction over the length of $x$
+    \vspace{0.6em} \noindent
+    Induction over the length of $x$
 
-	\lbparagraph{Basis}
-	%lbparagraph is a paragraph made by, which immediatly makes a linebreak after wards too.
-		$\abs{x} = 0 \implies x = \Lambda$
-		\begin{align*}
-			\delta^*((p,q), \Lambda) &= (p,q)
-							&\text{def. 2.12}
-		\\
-						 &= (\delta_1^* (p,\Lambda) , \delta_2^* (q,\Lambda))
-						 	&\text{def. 2.12}
-		\end{align*}
+    \lbparagraph{Basis}
+    %lbparagraph is a paragraph made by, which immediatly makes a linebreak after wards too.
+        $\abs{x} = 0 \implies x = \Lambda$
+        \begin{align*}
+            \delta^*((p,q), \Lambda) &= (p,q)
+                            &\text{def. 2.12}
+        \\
+                         &= (\delta_1^* (p,\Lambda) , \delta_2^* (q,\Lambda))
+                             &\text{def. 2.12}
+        \end{align*}
 
-	\lbparagraph{Induction Hypothesis}
-		$
-			\forall y \in \Sigma^*, \abs{y} = n
-				\implies \delta^*((p,q), y) = (\delta_1^*(p,y), \delta_2^*(q,y))
-		$
-	
-	\lbparagraph{Induction Step}
-		$\abs{x} = n+1 \implies x = y\sigma, \sigma \in \Sigma$
-		\begin{align*}
-			\delta^*((p,q),y\sigma) &= \delta(\delta^*((p,q),y),\sigma)
-										&\text{def. 2.12}
-		\\
-							 		&= \delta((\delta_1^*(p,y), \delta_2^*(q,y)),\sigma)
-							 			&\text{I.H.}
-		\\
-							 		&= (\delta_1(\delta_1^*(p,y),\sigma), \delta_2(\delta_2^*(q,y),\sigma))
-							 			&\text{def. af } \delta
-		\\
-							 		&= (\delta_1^*(p,y\sigma), \delta_2^*(q,y\sigma))
-							 			&\text{def. 2.12}
-		\end{align*}
+    \lbparagraph{Induction Hypothesis}
+        $
+            \forall y \in \Sigma^*, \abs{y} = n
+                \implies \delta^*((p,q), y) = (\delta_1^*(p,y), \delta_2^*(q,y))
+        $
+    
+    \lbparagraph{Induction Step}
+        $\abs{x} = n+1 \implies x = y\sigma, \sigma \in \Sigma$
+        \begin{align*}
+            \delta^*((p,q),y\sigma) &= \delta(\delta^*((p,q),y),\sigma)
+                                        &\text{def. 2.12}
+        \\
+                                     &= \delta((\delta_1^*(p,y), \delta_2^*(q,y)),\sigma)
+                                         &\text{I.H.}
+        \\
+                                     &= (\delta_1(\delta_1^*(p,y),\sigma), \delta_2(\delta_2^*(q,y),\sigma))
+                                         &\text{def. af } \delta
+        \\
+                                     &= (\delta_1^*(p,y\sigma), \delta_2^*(q,y\sigma))
+                                         &\text{def. 2.12}
+        \end{align*}
 \end{proof}
 
 \newpage
@@ -141,10 +141,10 @@ There exists various packages to make logic proofs, but after some time looking 
     \fitchprf{\pline[1.]{presumption}}{
         \pline[2.]{conclussion}
     \\  \subproof{\pline[3.]{assumption}}{
-    		\pline[4.]{conclussion}[argument]
-    	\\  \pline[5.]{conclussion}
-    	}
-    	\pline[6.]{conclussion}
+            \pline[4.]{conclussion}[argument]
+        \\  \pline[5.]{conclussion}
+        }
+        \pline[6.]{conclussion}
     }
 \end{center}
 
@@ -155,11 +155,11 @@ All the commands can be found in the documentation \href{http://mirrors.dotsrc.o
 
 Notice, that in fitch-style there isn't normally written assumption or premise, but it is merely shown by the horizontal line. You can write it if you want. The proof to exercise $1.2.1$ c from TØ class is in the proof to lemma \ref{lem:121}.
 \begin{lemma} \label{lem:121}
-	$(p \wedge q) \wedge r \vdash p \wedge (q \wedge r)$
+    $(p \wedge q) \wedge r \vdash p \wedge (q \wedge r)$
 \end{lemma}
 \begin{proof}
-	\fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
-    	\pline[2.]{r}[\lande{1}]
+    \fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
+        \pline[2.]{r}[\lande{1}]
     \\  \pline[3.]{p \land q}[\lande{1}]
     \\  \pline[4.]{p}[\lande{3}]
     \\  \pline[5.]{q}[\lande{3}]
@@ -170,16 +170,16 @@ Notice, that in fitch-style there isn't normally written assumption or premise, 
 
 If you need a fresh variable, you don't create a subproof, but instead a boxed subproof. Parts of the solution to an exercise in one of the handins is then
 \begin{theorem} \label{theo:handin}
-	$\forall x (P(x) \rightarrow Q(x) \vdash (\forall x \neg Q(x)) \rightarrow (\forall x \neg P(x)))$
+    $\forall x (P(x) \rightarrow Q(x) \vdash (\forall x \neg Q(x)) \rightarrow (\forall x \neg P(x)))$
 \end{theorem}
 \begin{proof}
-	\fitchprf{
-		\pline[1.]{...}}{
-			\boxedsubproof[2.]{x_0}{\lnot Q(x_0)}{
-				\pline[3.]{...}
-			}
-			\pline[4.]{...}
-		} \\ %Linebreak for the tombstone
+    \fitchprf{
+        \pline[1.]{...}}{
+            \boxedsubproof[2.]{x_0}{\lnot Q(x_0)}{
+                \pline[3.]{...}
+            }
+            \pline[4.]{...}
+        } \\ %Linebreak for the tombstone
 \end{proof}
 
 \newpage
@@ -189,19 +189,19 @@ Alternatively you can use the \href{http://mirrors.dotsrc.org/ctan/macros/latex/
 You have to choose one of the two packages due to conflicts. Currently this one is turned off, but the proof from theorem \ref{theo:handin} should look something like this, but I couldn't get it to compile.
 
 \begin{lstlisting}[language = tex]
-\begin{logicproof}{2}	%Amount of subproofs
-  \forall x (P(x) \to Q(x)) 		& premise
+\begin{logicproof}{2}    %Amount of subproofs
+  \forall x (P(x) \to Q(x))         & premise
 \\ \begin{subproof}
-    \forall x \lnot Q(x)		& assume
+    \forall x \lnot Q(x)        & assume
       \begin{subproof}
-         \llap{x_0} \lnot Q(x_0)	& fresh
-      \\  P(x_0) \to Q(x_0)		& \forall x \, \mathrm{e} 1, 3
-      \\  \lnot P(x_0)			& Modus Tollens
+         \llap{x_0} \lnot Q(x_0)    & fresh
+      \\  P(x_0) \to Q(x_0)        & \forall x \, \mathrm{e} 1, 3
+      \\  \lnot P(x_0)            & Modus Tollens
       \end{subproof}
-    \forall x \, \lnot P(x)		& \forall x \, \mathrm{i} 3--5
+    \forall x \, \lnot P(x)        & \forall x \, \mathrm{i} 3--5
     \end{subproof}
   (\forall x \, \lnot Q(x)) \to (\forall x \, \lnot P(x))
-					& \to \mathrm{i} 2--6
+                    & \to \mathrm{i} 2--6
 \end{logicproof}
 \end{lstlisting}
 \fi
@@ -217,34 +217,34 @@ The following is a figure with an image in it, and its label is \ref{FigExample}
 
 
 \begin{wrapfigure}[6]{r}{15em}
-	\centering
-	\begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, auto]
-	\node[state, initial] (0) {$q_0$};
-	\node[state] (h) [right=of 0] {$h_a$};
-	\path[->]
-		(0) edge [bend left] node {$\Delta / \Delta , R$} (h);
-	\end{tikzpicture}
-	\caption{Transition diagram of a small Turing machine}
-	\label{fig:TM2}
+    \centering
+    \begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, auto]
+    \node[state, initial] (0) {$q_0$};
+    \node[state] (h) [right=of 0] {$h_a$};
+    \path[->]
+        (0) edge [bend left] node {$\Delta / \Delta , R$} (h);
+    \end{tikzpicture}
+    \caption{Transition diagram of a small Turing machine}
+    \label{fig:TM2}
 \end{wrapfigure}
 If you want to have your figure beside your text you need to put it into a \emph{wrapfigure} instead of a normal \emph{figure}. Place the text at the line, on which you want the figure to start. The first variable are the amount of lines the box is high, the second is left or right, while the last is the width.
 
 \section{Tables}
 Tables are also put into a float similar to figures, which makes it possible to add captions and references to it similar to before, such as the table in \ref{tab:table}. The table itself is made with \emph{tabular}.
 \begin{table}[h!]
-	\centering
-	\begin{tabular}{ l r | c || >{\columncolor[gray]{0.5}}c >{\columncolor[RGB]{230, 242, 255}}c}
-		\rowcolor{lstKey2} %color defined for code highlights
-		l-column           & r-column & c-column                  & gray column & light blue column
-	\\ \hline \hline % horizontal lines
-		a                  & b        & c                         & d           & e
-	\\ \hline
-		f                  & g        & \cellcolor[HTML]{FFCE93}h & i           & j
-	\\
-		$k = \frac{1}{2}$  & l        & m                         & n           & o
-	\end{tabular}
-	\caption{A table with this being the caption}
-	\label{tab:table}
+    \centering
+    \begin{tabular}{ l r | c || >{\columncolor[gray]{0.5}}c >{\columncolor[RGB]{230, 242, 255}}c}
+        \rowcolor{lstKey2} %color defined for code highlights
+        l-column           & r-column & c-column                  & gray column & light blue column
+    \\ \hline \hline % horizontal lines
+        a                  & b        & c                         & d           & e
+    \\ \hline
+        f                  & g        & \cellcolor[HTML]{FFCE93}h & i           & j
+    \\
+        $k = \frac{1}{2}$  & l        & m                         & n           & o
+    \end{tabular}
+    \caption{A table with this being the caption}
+    \label{tab:table}
 \end{table}
 
 \newpage
@@ -295,11 +295,11 @@ Here is a graph from our first Calculus handin, kindly sponsored by the wonderfu
 The following is sourcecode for some non-aweinspiring Java method. By using a caption you also give it a number, but alternatively it can be given a \emph{title} instead of a \emph{caption}. Using \emph{title} does break the ability to make and reference a \emph{label}, but that is your intent anyways, if you use \emph{title}. The following code has the label \ref{lst:Example}
 
 \begin{lstlisting} [language=java,
-					label={lst:Example},
-					caption={I'm a caption}]
+                    label={lst:Example},
+                    caption={I'm a caption}]
 //This is a comment, nordic letters are not supported
 public static String example(int n) {
-	return "You wrote: "+n;
+    return "You wrote: "+n;
 }
 \end{lstlisting}
 
@@ -324,9 +324,9 @@ With qtree we have a quick and easy way to draw trees. Notice, that you need to 
 \begin{figure}[htbp]
     \centering
     \Tree [.rod [.{rod for et subtræ}
-				blad
-				blad ]
-			blad ]
+                blad
+                blad ]
+            blad ]
     \caption{A tree}
     \label{fig:tree1}
 \end{figure}
@@ -351,24 +351,24 @@ If the trees need to be a bit more complex, then you need to use tikz, where it 
 \section{Automata}
 By using Tikz creating automota by hand is easy, and I highly encourage you do it manually, to make modifications later much easier and your document much nicer in general. In the following the only complication has been the longer edge from (C) to (A) over 1, where in the code commented out it is explicitly defined by guiding points, but it could also be done by changing the angle, which is by default 30 degrees.
 \begin{figure}[htbp]
-	\centering
-	\begin{tikzpicture}[>=stealth', semithick,                                  % More pronounced edges
-	                    shorten >= 1, node distance = 2cm, on grid, auto]       % Node placement settings
-	\node[state, initial] (A) {$A$};
-	\node[state] (B) [right=of A] {$B$};
-	\node[state, accepting] (C) [right=of B] {$C$};
-	\path[->]
-		(A) edge node {0} (B)
-			edge [loop above] node {1} ()
-		(B)	edge [loop above] node {0} ()
-			edge [bend right] node {1} (C)
-		(C)	edge [bend left=45] node {1} (A)
-			edge [bend right] node {0} (B);
-	%\draw[->] (C) .. controls ($(C)+(0,-1cm)$) and ($(A)+(0,-1cm)$).. (A)      % Custom edge
-	%				node at ($(B)+(0,-1.1cm)$) {$1$};
-	\end{tikzpicture}
-	\caption{A finite automoata, that accepts strings ending with "01"}
-	\label{fig:FA}
+    \centering
+    \begin{tikzpicture}[>=stealth', semithick,                                  % More pronounced edges
+                        shorten >= 1, node distance = 2cm, on grid, auto]       % Node placement settings
+    \node[state, initial] (A) {$A$};
+    \node[state] (B) [right=of A] {$B$};
+    \node[state, accepting] (C) [right=of B] {$C$};
+    \path[->]
+        (A) edge node {0} (B)
+            edge [loop above] node {1} ()
+        (B)    edge [loop above] node {0} ()
+            edge [bend right] node {1} (C)
+        (C)    edge [bend left=45] node {1} (A)
+            edge [bend right] node {0} (B);
+    %\draw[->] (C) .. controls ($(C)+(0,-1cm)$) and ($(A)+(0,-1cm)$).. (A)      % Custom edge
+    %                node at ($(B)+(0,-1.1cm)$) {$1$};
+    \end{tikzpicture}
+    \caption{A finite automoata, that accepts strings ending with "01"}
+    \label{fig:FA}
 \end{figure}
 
 \newpage
@@ -432,11 +432,11 @@ Here is some more text in the other column. Over here we could have the index, w
 
 \begin{thebibliography}{9}
 \bibitem{rasmus}
-	Skovdal, Rasmus: \emph{Calculus 1}, 2015
+    Skovdal, Rasmus: \emph{Calculus 1}, 2015
 \bibitem{steffan}
-	Jørgensen, Steffan: \emph{101 quotes}, 2015
+    Jørgensen, Steffan: \emph{101 quotes}, 2015
 \bibitem{berlog}
-	Huth, Michael og Ryan, Mark: \emph{Logic in Computer Science}, second edition, 2004
+    Huth, Michael og Ryan, Mark: \emph{Logic in Computer Science}, second edition, 2004
 
 \bibitem{referencer.bib}
  You can either write the bibliography in this document or have an extra references.bib file with all the information in the following form:
