@@ -356,7 +356,8 @@
 
 
 % Settings for lstlistings
-\lstset{language=pseudocode,                       % choose language
+\lstset{
+  language=pseudocode,                             % choose language
   columns=flexible,                                % let the box align to the width of the page
     literate={æ}{{\ae}}1{ø}{{\o}}1{å}{{\aa}}1      % allow æ, ø and å in code
            {Æ}{{\AE}}1{Ø}{{\O}}1{Å}{{\AA}}1,       %     (this change was taken from the preamble of the MatFysTutor LaTeX Guide)
@@ -378,15 +379,22 @@
 }
 
 % lstlisting - Put it beautifully in the middle
-\lstset{xleftmargin= .1\textwidth ,                                 % leftmargin being 10% of the current width
+\lstset{
+  xleftmargin= .1\textwidth ,                                       % leftmargin being 10% of the current width
   xrightmargin= .1\textwidth,                                       % right margin also 10%
   frame=bottomline                                                  % Draw a line on the bottom of the surrounding box
 }
 
-% lstlisting header
-\DeclareCaptionFont{white}{\color{white}}                                       % fontstyle of caption
-\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\linewidth}{#1#2#3}}}    % create nice grey boxes for captions
-\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}        % apply settings to listing
+% lstlisting caption setup - minimalistic
+\lstset{
+  frame=top,frame=bottom,
+  captionpos=b
+}
+
+% lstlisting header/caption by Rasmus Skovdal
+%\DeclareCaptionFont{white}{\color{white}}                                       % fontstyle of caption
+%\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\linewidth}{#1#2#3}}}    % create nice grey boxes for captions
+%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}        % apply settings to listing
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
