@@ -38,16 +38,27 @@
 
 \newpage
 \section{Math} \label{sec:math}
-Most basically you use \emph{equation} to write a mathematical equation on a single new and centered line or you can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to write math over more lines, it is better to use the \emph{align} or even better the \emph{alignat} commands. In the following example with \emph{alignat}, we get the ability to align on more things, such that both the arrows on the left and the equals sign are aligned nicely. Here is a reference to line \ref{alignatL2}.
-
+Most basically you use \emph{equation} to write a mathematical equation on a single new and centered line, such as the following
+\begin{equation}
+	x = y
+\end{equation}
+You can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to write math over more lines, it is better to use the \emph{align} or even better the \emph{alignat} commands. You can also use the * in the $\backslash$\code{begin}$\{$\code{align}$\}$ to not include linenumbers
+\begin{align*}
+	(R' \circ R)^{-1}
+		&= (\set{(a,b) \in S \times U}{\exists t \in T: (a,t) \in R \wedge (t,b) \in R'})^{-1}
+\\
+		&= \set{(p,q) \in U \times S}{(q,p) \in R \circ R'}
+\\
+		&= \set{(p,q) \in U \times S}{\exists t \in T : (p,t) \in R'^{-1} \wedge (t,q) \in R^{-1}}
+\\
+		&= R'^{-1} \circ R^{-1}
+\end{align*}
+In the following example with \emph{alignat}, we get the ability to align on more things, such that both the arrows on the left and the equals sign are aligned nicely. Here is a reference to line \ref{alignatL2}.
 \begin{alignat}{2}
     && \cos x &= \cos x * \cos y \label{alignatL1}
-    \\ \ArrowBetweenLines
+\\ \ArrowBetweenLines
     && 0 &= \cos x * \cos y - \cos x \label{alignatL2}
-\intertext{
-    Here is a line in the middle of the \emph{alignat}. So you can put in text between lines, but still keep the alignment across. This also gets linenumber except due to the \emph{nonumber}
-}    \nonumber
-    \\ \ArrowBetweenLines
+\\ \ArrowBetweenLines
     && 0 &= \cos x \cdot (\cos y - 1) \label{alignatL3}
 \end{alignat}
 
