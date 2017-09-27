@@ -145,7 +145,8 @@
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}             % \norm{arg}            norm of a value
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}             % \ceil{arg}            ceiling of a value
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}          % \floor{arg}           floor of a value
-\newcommand{\inprod}[2]{\left\langle #1 , #2 \right\rangle}    % \inprod{arg}          inner product
+\newcommand{\inprod}[2]{\left\langle #1 , #2 \right\rangle}    % \inprod{v}{w}         inner product
+\newcommand{\powgroup}[1]{\left\langle #1 \right\rangle}       % \powgroup{arg}        image of f={g^n | n in Z}
 
 \newcounter{i}
 
@@ -240,6 +241,8 @@
             {#2}
             {\lambda}}
 }
+
+\renewcommand{\div}[1]{\text{div}\left( #1 \right)}
 
 \makeatletter                                      % adds vertical lines to matrices
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
