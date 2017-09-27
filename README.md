@@ -36,7 +36,7 @@ On Unix
 ```
 
 # Documents
-This repository contains two documents, _template.tex_ and _example.tex._
+This repository contains three documents, _template_report.tex_, _template_blank.tex_ and _example.tex._
 ## template_report.tex and template_blank.tex
 With *template_report.tex* you have a very small and sparse document, in which already the preamble, abstract, title, bibliography and two sections are ready for use. This should get you started much faster.
 ![Alt text](/img/template.png?raw=true "The template file")
