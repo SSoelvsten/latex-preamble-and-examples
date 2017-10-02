@@ -150,9 +150,9 @@
 
 \newcounter{i}
 
-\DeclareDocumentCommand \set { m g }{                 % \set{X}{C}
+\DeclareDocumentCommand \set { m g g }{               % \set{X}{C}{|}
      \left\lbrace                                     % {X | C}
-         #1 \IfValueT {#2} { \ : \  #2 }
+         #1 \IfValueT {#2} { \ \IfValueTF{#3}{#3}{|}\  #2 }
      \right\rbrace
 }
 
