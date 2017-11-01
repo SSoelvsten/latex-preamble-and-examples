@@ -134,8 +134,6 @@
 \newcommand{\W}{\mathpzc{W}}                                   % \W
 \renewcommand{\S}{\mathbb{S}}                                  % \S = Set of permutations
 
-\renewcommand{\|}{\scalebox{1.3}{|}}                           % Larger vertical bar for divisors
-
 \newcommand{\Id}{\text{Id}}                                    % \Id = Identity function
 
 \newcommand{\Det}[1]{\text{Det}\left( #1 \right)}              % \Det{arg}             Det(arg)
@@ -245,7 +243,30 @@
             {\lambda}}
 }
 
-\renewcommand{\div}[1]{\text{div}\left( #1 \right)}
+\DeclareDocumentCommand \infseq { g g g g }{      % \infseq{a}{b}{c}{d}		\{ a_b \} _{b = c} ^d
+    \set{\IfValueTF{#1}							  %    An infinite series with elements a, indexed by b
+			{#1}								  %    starting from c ending at d
+			{a}
+		 _{\IfValueTF{#2}
+		 	{#2}
+		 	{n}}    	
+    	}
+    	_{\IfValueTF{#2}
+    		{#2}
+    		{n}
+    	 =
+    	 \IfValueTF{#3}
+    		{#3}
+    		{1}
+    	}
+    	^{\IfValueTF{#4}
+    		{#4}
+    		{\infty}
+    	}
+}
+
+\renewcommand{\|}{\scalebox{1.3}{|}}                           % Larger vertical bar for divisors
+\renewcommand{\div}[1]{\text{div}\left( #1 \right)}            % div(arg)
 
 \makeatletter                                      % adds vertical lines to matrices
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
