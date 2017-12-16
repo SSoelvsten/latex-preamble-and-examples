@@ -265,7 +265,28 @@
     	}
 }
 
-\renewcommand{\|}{\scalebox{1.3}{|}}                           % Larger vertical bar for divisors
+\DeclareDocumentCommand \pseries { g g g g }{     % \pseries{a}{b}{c}{d}		\{ x^k \} _{k = c} ^d
+    \set{\IfValueTF{#1}							  %    An infinite series of points x, indexed by k
+			{#1}								  %    starting from c ending at d
+			{x}
+		 ^{\IfValueTF{#2}
+		 	{#2}
+		 	{k}}    	
+    	}
+    	_{\IfValueTF{#2}
+    		{#2}
+    		{k}
+    	 =
+    	 \IfValueTF{#3}
+    		{#3}
+    		{1}
+    	}
+    	^{\IfValueTF{#4}
+    		{#4}
+    		{\infty}
+    	}
+}
+\renewcommand{\|}{\scalebox{1.3}{|}\ }                           % Larger vertical bar for divisors
 \renewcommand{\div}[1]{\text{div}\left( #1 \right)}            % div(arg)
 
 \makeatletter                                      % adds vertical lines to matrices
