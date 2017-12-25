@@ -286,6 +286,31 @@
     		{\infty}
     	}
 }
+
+\DeclareDocumentCommand \infseq { g g g g }{      % \infseq{a}{b}{c}{d}		\sum_{ b = c }^d a_b
+	\sum											%    An infinite sequence with elements a, indexed by b
+		_{											%    starting from c ending at d
+	    	\IfValueTF{#2}
+	    		{#2}
+    			{n}
+    		 =
+    		 \IfValueTF{#3}
+    			{#3}
+    			{1}
+		}
+    	^{\IfValueTF{#4}
+    		{#4}
+    		{\infty}
+    	}
+    \IfValueTF{#1}
+			{#1}
+			{a}
+	 _{\IfValueTF{#2}
+		 	{#2}
+		 	{n}
+	}    	
+}
+
 \renewcommand{\|}{\scalebox{1.3}{|}\ }                           % Larger vertical bar for divisors
 \renewcommand{\div}[1]{\text{div}\left( #1 \right)}            % div(arg)
 
