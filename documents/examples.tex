@@ -302,6 +302,104 @@ Here is a graph from our first Calculus handin, kindly sponsored by the wonderfu
 \end{tikzpicture}
 \end{center}
 
+In figure \ref{fig:sub4} you can find timing of a Simplex Algorithm
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{.48\linewidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[width=\linewidth,height=1\linewidth, ylabel=t (s), xlabel=m
+            , scaled ticks=false, tick label style={/pgf/number format/fixed,/pgf/number format/precision=3}]
+                \addplot[color=blue,mark=square] coordinates{
+                    ( 1 ,  0.00020015239715576172 )
+                    ( 10 ,  0.0020503997802734375 )
+                    ( 20 ,  0.004653143882751465 )
+                    ( 30 ,  0.008209705352783203 )
+                    ( 40 ,  0.008258891105651856 )
+                    ( 50 ,  0.011513733863830566 )
+                    ( 60 ,  0.012608504295349121 )
+                };
+                \addplot[color=red,mark=square] coordinates{
+                    ( 1 ,  0.00015006065368652343 )
+                    ( 10 ,  0.0017030954360961914 )
+                    ( 20 ,  0.0030036211013793946 )
+                    ( 30 ,  0.0035523414611816407 )
+                    ( 40 ,  0.004254531860351562 )
+                    ( 50 ,  0.006453275680541992 )
+                    ( 60 ,  0.007454490661621094 )
+                };
+                \addplot[color=green,mark=square] coordinates{
+                    ( 1 ,  0.00024864673614501955 )
+                    ( 10 ,  0.0014016151428222657 )
+                    ( 20 ,  0.0024504899978637696 )
+                    ( 30 ,  0.0030023336410522463 )
+                    ( 40 ,  0.003405189514160156 )
+                    ( 50 ,  0.005102849006652832 )
+                    ( 60 ,  0.005604338645935058 )
+                };
+                \addplot[color=cyan,mark=square] coordinates{
+                    ( 1 ,  0.0004002571105957031 )
+                    ( 10 ,  0.004252958297729492 )
+                    ( 20 ,  0.004402613639831543 )
+                    ( 30 ,  0.0039030075073242187 )
+                    ( 40 ,  0.00355381965637207 )
+                    ( 50 ,  0.004754805564880371 )
+                    ( 60 ,  0.004402732849121094 )
+                };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$n = 10$}
+    \end{subfigure}
+    \begin{subfigure}{.48\linewidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[width=\linewidth,height=1\linewidth, ylabel=t (s), xlabel=m
+            , scaled ticks=false, tick label style={/pgf/number format/fixed,/pgf/number format/precision=3}]
+                \addplot[color=blue,mark=square] coordinates{
+                    ( 1 ,  0.00010006427764892578 )
+                    ( 10 ,  0.007461071014404297 )
+                    ( 20 ,  0.03707499504089355 )
+                    ( 30 ,  0.10027358531951905 )
+                    ( 40 ,  0.1522063970565796 )
+                    ( 50 ,  0.20556776523590087 )
+                    ( 60 ,  0.23017339706420897 )
+                };
+                \addplot[color=red,mark=square] coordinates{
+                    ( 1 ,  0.00025036334991455076 )
+                    ( 10 ,  0.00425267219543457 )
+                    ( 20 ,  0.02081460952758789 )
+                    ( 30 ,  0.04728093147277832 )
+                    ( 40 ,  0.06434342861175538 )
+                    ( 50 ,  0.08035707473754883 )
+                    ( 60 ,  0.07525081634521484 )
+                };
+                \addplot[color=green,mark=square] coordinates{
+                    ( 1 ,  0.00019922256469726563 )
+                    ( 10 ,  0.005406856536865234 )
+                    ( 20 ,  0.023966169357299803 )
+                    ( 30 ,  0.04928388595581055 )
+                    ( 40 ,  0.07215075492858887 )
+                    ( 50 ,  0.07655987739562989 )
+                    ( 60 ,  0.08101780414581299 )
+                };
+                \addplot[color=cyan,mark=square] coordinates{
+                    ( 1 ,  0.0006515026092529297 )
+                    ( 10 ,  0.00490415096282959 )
+                    ( 20 ,  0.012258577346801757 )
+                    ( 30 ,  0.01906561851501465 )
+                    ( 40 ,  0.019263958930969237 )
+                    ( 50 ,  0.02036278247833252 )
+                    ( 60 ,  0.01591067314147949 )
+                };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$n = 30$}
+    \end{subfigure}
+    
+    \caption{Performance with Bland's rule (blue), largest coefficient rule (red), largest increase rule (green), and SciPy (cyan).}
+    \label{fig:sub4}
+\end{figure}
+
 \section{Code}
 The following is sourcecode for some non-aweinspiring Java method. By using a caption you also give it a number, but alternatively it can be given a \emph{title} instead of a \emph{caption}. Using \emph{title} does break the ability to make and reference a \emph{label}, but that is your intent anyways, if you use \emph{title}. The following code has the label \ref{lst:Example}
 
@@ -329,7 +427,6 @@ If the language has to be something else than is the standard specified, then it
                     *@ $q \leftarrow q - 1$ @*
 \end{lstlisting}
 
-\newpage
 \section{Trees}
 With qtree we have a quick and easy way to draw trees. Notice, that you need to have a space between an element and a closing bracket.
 \begin{figure}[htbp]
@@ -382,7 +479,6 @@ By using Tikz creating automota by hand is easy, and I highly encourage you do i
     \label{fig:FA}
 \end{figure}
 
-\newpage
 \section{E/R Diagrams} \label{sec:ER}
 By using \emph{er} and \emph{shapes} packages a E/R diagram can be drawn. These are made in the exact same way as the automota.
 
