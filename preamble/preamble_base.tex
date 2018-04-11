@@ -33,7 +33,6 @@
                                                            %     \begin{sideways} or \begin{turn}{30}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           Variables              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -442,8 +441,8 @@
   showspaces=false,                                % show spaces everywhere - adding particular underscores
   showstringspaces=false,                          % underline spaces within strings only.
   showtabs=false,                                  % show tabs within strings adding particular underscores.
-  breaklines=true,                                 % automatically break lines
-  breakatwhitespace=true,                          % automatically break should there only be white space.
+  % breaklines=true,                                 % automatically break lines
+  % breakatwhitespace=true,                          % automatically break should there only be white space.
   tabsize=4                                        % tab width
 }
 
@@ -453,8 +452,8 @@
   numbers=left,                                       % numbering: none, left, right
   numbersep=5pt,                                      % distance between linenumbers and code
   numberstyle=\color{lstComment},                     % change style of numbering - currently grey.
-  columns=fixed,                                      % makes it monospaced
-  basicstyle=\ttfamily\footnotesize \color{lstBase},  % set basic color
+  columns=[c]fixed,                                   % makes it monospaced
+  basicstyle=\ttfamily \color{lstBase},  % set basic color
   commentstyle=\color{lstComment},                    % set color of comments
   keywordstyle=[1]\color{lstKey},                     % set color of primary keywords
   keywordstyle=[2]\color{lstKey2},                    % set color of secondary keywords
@@ -462,18 +461,20 @@
 }
 
 % lstlisting - Put it beautifully in the middle
-\lstset{
-  xleftmargin= .1\textwidth ,                      % leftmargin being 10% of the current width
-  xrightmargin= .1\textwidth,                      % right margin also 10%
-  frame=bottomline                                 % Draw a line on the bottom of the surrounding box
-}
+% Currently off, since captions are misbehaving
+% \lstset{
+%   xleftmargin= .1\textwidth,                       % leftmargin being 10% of the current width
+%   xrightmargin= .1\textwidth,                      % right margin also 10%
+% }
 
-% lstlisting - Minimalistic Captions
+% lstlisting - Minimalistic borders and captions
 \lstset{
   frame=top,                                       % bar on top
   frame=bottom,                                    % bar on bottom
   captionpos=b                                     % caption at the bottom
 }
+\DeclareCaptionFormat{listing}{\makebox[0.5in][l]{#1#2}\parbox[t]{\dimexpr \captionwidth-0.5in}{#3}\hline}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=off, labelsep=colon}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Title and information       %
