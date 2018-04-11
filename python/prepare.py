@@ -20,10 +20,10 @@ with open(filepath("preamble/preamble_en.tex"), "r") as preamble_en_file:
 with open("latexgen.py", "w") as output_script:
     output_script.write("#!/usr/bin/env python\n\n")
     output_script.write("import os\nimport base64\nimport argparse\n")
-    output_script.write("template = \"\"\"%s\"\"\"\n" % ( base64.encodestring(template_content) ))
-    output_script.write("preamble_base = \"\"\"%s\"\"\"\n" % ( base64.encodestring(preamble_base_content) ))
-    output_script.write("preamble_en = \"\"\"%s\"\"\"\n" % ( base64.encodestring(preamble_en_content) ))
-    output_script.write("preamble_dk = \"\"\"%s\"\"\"\n" % ( base64.encodestring(preamble_dk_content) ))
+    output_script.write("template = %s\n" % ( base64.encodestring(template_content.encode('utf-8')) ))
+    output_script.write("preamble_base = %s\n" % ( base64.encodestring(preamble_base_content.encode('utf-8')) ))
+    output_script.write("preamble_en = %s\n" % ( base64.encodestring(preamble_en_content.encode('utf-8')) ))
+    output_script.write("preamble_dk = %s\n" % ( base64.encodestring(preamble_dk_content.encode('utf-8')) ))
     output_script.write("""
     
 parser = argparse.ArgumentParser(description='Make a LaTeX project from Steffan\\'s awesome template')
@@ -35,17 +35,14 @@ args = parser.parse_args()
 
 preamble_locale = 'preamble_dk' if args.l[0] == 'dk' else 'preamble_en'
 preamble_l_content = preamble_dk if args.l[0] == 'dk' else preamble_en
-preamble_l_content = base64.decodestring( preamble_l_content )
-preamble_base_content = base64.decodestring( preamble_base )
-template_content = base64.decodestring( template )
+preamble_l_content = base64.standard_b64decode(preamble_l_content).decode()
+preamble_base_content = base64.standard_b64decode(preamble_base).decode()
+template_content = base64.standard_b64decode(template).decode()
 
 #TODO: make this specifiable in the prepare.py
-######## MODIFICATIONS ########
-
 template_content = template_content.replace( '\\subimport{../preamble/}{preamble_en.tex}',
 '\\subimport{preamble/}{' + preamble_locale + '.tex}')
 
-###############################
 
 PATH = " ".join(args.path)
 if not os.path.exists(PATH):
