@@ -58,3 +58,7 @@ Temporary Items
 *.bak
 
 python/latexgen\.py
+
+*.el
+
+*.tex~
