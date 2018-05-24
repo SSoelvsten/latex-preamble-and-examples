@@ -142,12 +142,14 @@
 \newcommand{\adj}[1]{\text{adj} \left( #1 \right)}             % \adj{arg}             adj(arg)
 \newcommand{\ord}[1]{\text{ord} \left( #1 \right)}             % \ord{arg}             ord(arg)
 
+\newcommand{\tuple}[1]{\left\langle #1 \right\rangle}          % \tuple{arg}           <arg>
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}              % \abs{arg}             absolute/modulo of value
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}             % \norm{arg}            norm of a value
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}             % \ceil{arg}            ceiling of a value
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}          % \floor{arg}           floor of a value
-\newcommand{\inprod}[2]{\left\langle #1 , #2 \right\rangle}    % \inprod{v}{w}         inner product
-\newcommand{\powgroup}[1]{\left\langle #1 \right\rangle}       % \powgroup{arg}        image of f={g^n | n in Z}
+\newcommand{\inprod}[2]{\tuple{#1, #2}}                        % \inprod{v}{w}         inner product
+\newcommand{\powgroup}[1]{\tuple{#1}}                          % \powgroup{arg}        image of f={g^n | n in Z}
+
 
 \newcounter{i}
 
