@@ -1,14 +1,11 @@
-\documentclass[a4, english, twoside]{article}
+\documentclass[a4, english]{article}
 % a4 is the paper size
 % english is for the language used in standard texts (figures, tables etc)
 % twoside for doublesided pages. Remove if that is not wanted.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-% Load Preample         %
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Import from the same folder
-%\input{preamble_en.tex}
+% ---------------------------------------------------------------------------- %
+% Load base preamble
+% ---------------------------------------------------------------------------- %
 
 %Import from absolute path
 %\usepackage{import}
@@ -18,42 +15,91 @@
 \usepackage{import}
 \subimport{../preamble/}{preamble_en.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-% Document starts here! %
-%%%%%%%%%%%%%%%%%%%%%%%%%
+% ---------------------------------------------------------------------------- %
+% Local macros
+% ---------------------------------------------------------------------------- %
+
+% It is quite common that you are going to write the same thing multiple times.
+% As part of the preamble I have predefined some macros for what I keep on
+% having to use, and while I endorse you send a pull request with more, here you
+% can add the ones you only need for this one document.
+
+\newcommand{\Gmul}{\ensuremath{\calG_{\mathrm{mul}}}}
+
+\newcommand{\SAT}{\textsc{SAT}}
+
+
+% ---------------------------------------------------------------------------- %
+% Page layout
+% ---------------------------------------------------------------------------- %
+\usepackage[a4paper]{geometry}
+
+% ---------------------------------------------------------------------------- %
+% Bibliography
+% ---------------------------------------------------------------------------- %
+\usepackage[
+backend=biber,
+style=alphabetic,
+sortlocale=en_US,
+useprefix=false,
+url=false,
+doi=true,
+eprint=false,
+maxbibnames=99,
+]{biblatex}
+\addbibresource{references.bib}
+
+% ---------------------------------------------------------------------------- %
+% Title
+% ---------------------------------------------------------------------------- %
+\newcommand{\coursename}{Course name}
+\newcommand{\handinname}{Handin name}
+
+% Font sizes of relevance: \normalsize, \large, \Large, \LARGE, \huge, \Huge
+\title{{\LARGE Reverse engineerable \LaTeX examples}}
+
+\author{Steffan Sølvsten}
+\affil{Aarhus University \\ \mailto{soelvsten@cs.au.dk}}
 
 \begin{document}
 
 % Define title and more on frontpage
-    \settitle{Examples Document}{Reverse engineerable \LaTeX}
-    \addauth{Steffan Sølvsten}{201505832@post.au.dk}{\, au534068}
 \maketitle
 
 \begin{abstract}
-\noindent The following document is meant to show the use of the various packages used in the preamble. They are all created with the intent to be reverse engineerable.
+  This document is created with the intention to make the learning curve of
+  switching to \LaTeX\ simpler. It does this by giving an example or two of all
+  types of writing usually done as part of a handin, such as math, code, proofs
+  and much more. The code for all examples is made as easy to read as possible.
 \end{abstract}
 
-%En indholdsfortegnelse kan nemt laves med \tableofcontents funktionen
 \tableofcontents
 
 \newpage
 \section{Math} \label{sec:math}
-Most basically you use \emph{equation} to write a mathematical equation on a single new and centered line, such as the following
+Most basically you use \emph{equation} to write a mathematical equation on a
+single new and centered line, such as the following
 \begin{equation}
-	x = y
+  x = y
 \end{equation}
-You can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to write math over more lines, it is better to use the \emph{align} or even better the \emph{alignat} commands. You can also use the * in the $\backslash$\code{begin}$\{$\code{align}$\}$ to not include linenumbers
+You can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to
+write math over more lines, it is better to use the \emph{align} or even better
+the \emph{alignat} commands. You can also use the * in the
+$\backslash$\code{begin}$\{$\code{align}$\}$ to not include line numbers
 \begin{align*}
-	(R' \circ R)^{-1}
-		&= (\set{(a,b) \in S \times U}{\exists t \in T: (a,t) \in R \wedge (t,b) \in R'})^{-1}
+  (R' \circ R)^{-1}
+    &= (\{(a,b) \in S \times U | \exists t \in T: (a,t) \in R \wedge (t,b) \in R'\})^{-1}
 \\
-		&= \set{(p,q) \in U \times S}{(q,p) \in R \circ R'}
+    &= \{(p,q) \in U \times S | (q,p) \in R \circ R' \}
 \\
-		&= \set{(p,q) \in U \times S}{\exists t \in T : (p,t) \in R'^{-1} \wedge (t,q) \in R^{-1}}
+    &= \{(p,q) \in U \times S | \exists t \in T : (p,t) \in R'^{-1} \wedge (t,q) \in R^{-1}\}
 \\
-		&= R'^{-1} \circ R^{-1}
+    &= R'^{-1} \circ R^{-1}
 \end{align*}
-In the following example with \emph{alignat}, we get the ability to align on more things, such that both the arrows on the left and the equals sign are aligned nicely. Here is a reference to line \ref{alignatL2}.
+In the following example with \emph{alignat}, we get the ability to have
+multiple alignments in the same column, such that both the arrows on the left
+and the equals sign are aligned nicely. Here is a reference to line
+\ref{alignatL2}.
 \begin{alignat}{2}
     && \cos x &= \cos x * \cos y \label{alignatL1}
 \\ \ArrowBetweenLines
@@ -62,92 +108,123 @@ In the following example with \emph{alignat}, we get the ability to align on mor
     && 0 &= \cos x \cdot (\cos y - 1) \label{alignatL3}
 \end{alignat}
 
-\subsection{Matrices and vectors}
-With \emph{pmatrix} matrices can also be made, such as in the following. For the row operations I have made the \emph{ero} macro to make life easier.
+\subsection{Math fonts and symbols}
+In mathmode you can also use different styles called alphabets. Bold
+$\mathbf{b}$ and italic text such as functions can be written with
+$\mathit{function}$. Furthermore the real numbers $\mathbb{R}$ has a shortcut
+$\backslash$R and the same goes for \C, \Q, \F and more. All these macros ensure
+to go into math mode, so you will not get any compile errors in plain writing.
+Finally with \emph{mathcal} you can get caligraphic writing.
+
+In general you would like to define macros for whenever you are going to reuse
+the same notation over and over again. For example if you have to write about
+the \NP-complete problem \SAT\ multiple times, you may want to define \SAT\ as a
+local macro, since it is not part of the preamble.
+
+\subsection{Linear Algebra}
+With \emph{pmatrix} matrices can also be made, such as in the following. For the
+row operations I have made the \emph{ero} macro to make life easier.
 \begin{equation*}
-    \begin{pmatrix}[cc|c]
-        2 & 1 & 1
+  \begin{pmatrix}[cc|c]
+    2 & 1 & 1
     \\
-        1 & 1 & 0
-    \end{pmatrix}
-    \ero{R_1 - R_2}{2R2}
-    \begin{pmatrix}[cc|c]
-        1 & 0 & 1
+    1 & 1 & 0
+  \end{pmatrix}
+  \ero{R_1 - R_2}{2R2}
+  \begin{pmatrix}[cc|c]
+    1 & 0 & 1
     \\
-        2 & 2 & 0
-    \end{pmatrix}
+    2 & 2 & 0
+  \end{pmatrix}
 \end{equation*}
 
-\subsection{Alphabets}
-In mathmode you can also use different styles called alphabets. Bold $\mathbf{b}$ and functions can be written with $\mathit{function}$. Furthermore the real numbers $\mathbb{R}$ has a shortcut $\backslash$ R and the same goes for $\C$, $\Q$, $\F$ and more. Finally with \emph{mathcal} you can get caligraphic writing, but if it is too pompous you can use \emph{mathpzc} for something looking like $\mathpzc{F, V, W}$.
+Other common (Linear) Algebra operators that I have made macros for are
+$\Det{A}$, the equivalence class $\eqclass{v}{\V}$, the matrix representation
+$\matrep{\V}{L}{\W}$, the $\sgn{\sigma}$ and the $\Span{\seq{v}{1}{n}}$ can be
+made easily with the macros coded. The vectors \allones\ and \allzeros\ also
+have a shortcut.
 
-Do note though, that using many different mathalphabets will at some point result in a compile error, since \LaTeX\ only can handle 16 mathalphabets and many are apparently already used up by many different packages. I have yet not tried to clean up, but hopefully you should not need that many different ways of writing the same letters.
+\subsection{Other math macros}
+Things like sequences and sets we use all the time too, which is why I've made
+macros. For a sequence you can write $\seq{a}{1}{n}{2}$ and for sets $ \set{x
+  \in \Sigma^*}{ |x| \geq 42 } $. Both of these shortcuts are overloaded, such
+that they can take fewer arguments than currently shown here.
 
-\subsection{Other stuff}
-Things like sequences and sets we use all the time too, which is why I've made macros. For a sequence you can write $\seq{a}{1}{n}{2}$ and for sets $ \set{x \in \Sigma^*}{ |x| \geq 42 } $. Both of these shortcuts are overloaded, such that they can take fewer arguments than currently shown here.
+% \newpage
+\section{Proofs}
+With logic and more you want to make a \emph{theorem}, \emph{lemma},
+\emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a
+\emph{proof}. These are all currently implemented in the localized preamble to
+associate the same command to both languages. The lemma below has a label, which
+is \ref{lem:Martin2_11} and can be used to reference it.
 
-Also the $\Det{A}$, the equivalence class $\eqclass{v}{\V}$, the matrixrepresentation $\matrep{\V}{L}{\W}$, the $\sgn{\sigma}$ and the $\Span{\seq{v}{1}{n}}$ can be made easily with the macros coded.
-
-\newpage
-\section{Logic and proofs}
-With logic and more you want to make a \emph{theorem}, \emph{lemma}, \emph{proposition}, \emph{corollary} or \emph{conjecture} followed possibly by a \emph{proof}. These are all currently implemented in the localized preamble to associate the same command to both languages. The lemma has a label, which is \ref{lem:example}.
-
-\begin{lemma}[Reference to \cite{steffan}]    \label{lem:example}
-    Here we have a lemma, which is currently set up to start with the sectionnumbering and then followed by a unique number. This can be changed in the language specific preamble file
+\begin{lemma}[Martin 2.11] \label{lem:Martin2_11}
+  $\forall x \in \Sigma^* \forall (p,q) \in Q :
+  \delta^* ((p,q),x) = (\delta_1^* (p,x) , \delta_2^* (q,x))$
 \end{lemma}
 \begin{proof}
-    In here we can write a proof, which is automatically going to be appended a tombstone. Here we could also add an equation.
-    \begin{equation*}
-        2+2 = 4
-    \end{equation*}
-    You can also place a fitch-style proof as described below, though there possibly needs to be a linebreak after it to place the tombstone correctly at the end.
+  We prove this by induction in the construction of $x$.
+
+  In the base case of $x$ being the empty string $\Lambda$
+  \begin{align*}
+    \delta^*((p,q), \Lambda) &= (p,q)
+    &\text{def. 2.12}
+    \\
+                             &= (\delta_1^* (p,\Lambda) , \delta_2^* (q,\Lambda))
+    &\text{def. 2.12}
+  \end{align*}
+
+  Now assume per induction that for $y \in \Sigma^*$ we have that
+  $\delta^*((p,q), y) = (\delta_1^*(p,y), \delta_2^*(q,y))$ and consider $x = y
+  \sigma$ for $\sigma \in \Sigma$.
+  \begin{align*}
+    \delta^*((p,q),y\sigma) &= \delta(\delta^*((p,q),y),\sigma)
+    &\text{def. 2.12}
+    \\
+                            &= \delta((\delta_1^*(p,y), \delta_2^*(q,y)),\sigma)
+    &\text{I.H.}
+    \\
+                            &= (\delta_1(\delta_1^*(p,y),\sigma), \delta_2(\delta_2^*(q,y),\sigma))
+    &\text{def. af } \delta
+    \\
+                            &= (\delta_1^*(p,y\sigma), \delta_2^*(q,y\sigma))
+    &\text{def. 2.12}
+  \end{align*}
 \end{proof}
 
-\subsection{Induction Example}
-\begin{lemma}[Martin 2.11]
-    $\forall x \in \Sigma^* , \forall (p,q) \in Q: \delta^* ((p,q),x) = (\delta_1^* (p,x) , \delta_2^* (q,x))$
-\end{lemma}
-\begin{proof}
-    \vspace{0.6em} \noindent
-    Induction over the length of $x$
+\section{Formal proofs}
 
-    \lbparagraph{Basis}
-    %lbparagraph is a paragraph made by, which immediatly makes a linebreak after wards too.
-        $\abs{x} = 0 \implies x = \Lambda$
-        \begin{align*}
-            \delta^*((p,q), \Lambda) &= (p,q)
-                            &\text{def. 2.12}
-        \\
-                         &= (\delta_1^* (p,\Lambda) , \delta_2^* (q,\Lambda))
-                             &\text{def. 2.12}
-        \end{align*}
+\subsection{proof trees}
+The \texttt{bussproof} package allows to create proof trees. Usually this is
+done with the command \emph{prooftree}. To not have an immediate line break
+after, then the preamble also defines the environment \emph{bprooftree} that can
+be used as shown in Figure~\ref{fig:bprooftree}.
 
-    \lbparagraph{Induction Hypothesis}
-        $
-            \forall y \in \Sigma^*, \abs{y} = n
-                \implies \delta^*((p,q), y) = (\delta_1^*(p,y), \delta_2^*(q,y))
-        $
-    
-    \lbparagraph{Induction Step}
-        $\abs{x} = n+1 \implies x = y\sigma, \sigma \in \Sigma$
-        \begin{align*}
-            \delta^*((p,q),y\sigma) &= \delta(\delta^*((p,q),y),\sigma)
-                                        &\text{def. 2.12}
-        \\
-                                     &= \delta((\delta_1^*(p,y), \delta_2^*(q,y)),\sigma)
-                                         &\text{I.H.}
-        \\
-                                     &= (\delta_1(\delta_1^*(p,y),\sigma), \delta_2(\delta_2^*(q,y),\sigma))
-                                         &\text{def. af } \delta
-        \\
-                                     &= (\delta_1^*(p,y\sigma), \delta_2^*(q,y\sigma))
-                                         &\text{def. 2.12}
-        \end{align*}
-\end{proof}
+\begin{figure}[ht!]
+  \centering
+  \begin{bprooftree}
+    \AxiomC{\phantom{M}}
+    \RightLabel{\scriptsize (MLeaf)}
+    \UnaryInfC{\code{leaf} $\sim =\sim$ \code{leaf}}
+  \end{bprooftree}
+  \hspace{10pt} % add some spacing between the two proof trees
+  \begin{bprooftree}
+    \AxiomC{$c_1 \sim =\sim c_1'$}
+    \AxiomC{$c_2 \sim =\sim c_2'$}
+    \RightLabel{\scriptsize (MNode)}
+    \BinaryInfC{\code{node} $c_1$ $x$ $c_2$ $\sim =\sim$ \code{node} $c_1'$ $x'$ $c_2'$}
+  \end{bprooftree}
+  \caption{Inductive relation for trees of the same shape}
+  \label{fig:bprooftree}
+\end{figure}
 
-\newpage
-\subsection{lplfitch}
-There exists various packages to make logic proofs, but after some time looking around I've chosen to focus on the \emph{lplfitch} package, since its output seems to be the generally preferred and used style. This package is very easy to work with, when first learned, but until then you need to learn quite a lot of new syntax. Most importantly notice, that a proof and subproof has two arguments, the assumption and the conclussions.
+\subsection{logic proofs}
+There exists various packages to make logic proofs, but after some time looking
+around I've chosen to focus on the \emph{lplfitch} package, since its output
+seems to be the generally preferred and used style. This package is very easy to
+work with, when first learned, but until then you need to learn quite a lot of
+new syntax. Most importantly notice, that a proof and subproof has two
+arguments, the assumption and the conclusions.
 \begin{center}
     \fitchprf{\pline[1.]{presumption}}{
         \pline[2.]{conclussion}
@@ -159,12 +236,18 @@ There exists various packages to make logic proofs, but after some time looking 
     }
 \end{center}
 
-All the commands can be found in the documentation \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{here}}, but most shortcuts are of the form: $"l" + type + "i/e"$. Argumentation is also done using these shortcuts, so every line is
+All the commands can be found in the documentation
+\href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{here}},
+but most shortcuts are of the form: $"l" + type + "i/e"$. Argumentation is also
+done using these shortcuts, so every line is
 \begin{equation*}
     \backslash pline[\text{linenumber}]\{\text{formula}\}[\text{justification}]
 \end{equation*}
 
-Notice, that in fitch-style there isn't normally written assumption or premise, but it is merely shown by the horizontal line. You can write it if you want. The proof to exercise $1.2.1$ c from TØ class is in the proof to lemma \ref{lem:121}.
+Notice, that in fitch-style there isn't normally written assumption or premise,
+but it is merely shown by the horizontal line. You can write it if you want. The
+proof to exercise $1.2.1$ c from TØ class is in the proof to lemma
+\ref{lem:121}.
 \begin{lemma} \label{lem:121}
     $(p \wedge q) \wedge r \vdash p \wedge (q \wedge r)$
 \end{lemma}
@@ -179,8 +262,9 @@ Notice, that in fitch-style there isn't normally written assumption or premise, 
     } \\ %Linebreak for the tombstone
 \end{proof}
 
-If you need a fresh variable, you don't create a subproof, but instead a boxed subproof. Parts of the solution to an exercise in one of the handins is then
-\begin{theorem} \label{theo:handin}
+If you need a fresh variable, you don't create a subproof, but instead a boxed
+subproof. Parts of the solution to an exercise in one of the handins is then
+\begin{theorem} \label{thm:handin}
     $\forall x (P(x) \rightarrow Q(x) \vdash (\forall x \neg Q(x)) \rightarrow (\forall x \neg P(x)))$
 \end{theorem}
 \begin{proof}
@@ -193,56 +277,38 @@ If you need a fresh variable, you don't create a subproof, but instead a boxed s
         } \\ %Linebreak for the tombstone
 \end{proof}
 
-\newpage
-\iffalse
-\subsection{logicproof}
-Alternatively you can use the \href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/logicproof/logicproof.pdf}{\emph{logicproof}} package, which uses a syntax more similar to other \LaTeX. The output also resembles the style in the Logic book used in the course dBerLog. \cite{berlog}
-You have to choose one of the two packages due to conflicts. Currently this one is turned off, but the proof from theorem \ref{theo:handin} should look something like this, but I couldn't get it to compile.
-
-\begin{lstlisting}[language = tex]
-\begin{logicproof}{2}    %Amount of subproofs
-  \forall x (P(x) \to Q(x))         & premise
-\\ \begin{subproof}
-    \forall x \lnot Q(x)        & assume
-      \begin{subproof}
-         \llap{x_0} \lnot Q(x_0)    & fresh
-      \\  P(x_0) \to Q(x_0)        & \forall x \, \mathrm{e} 1, 3
-      \\  \lnot P(x_0)            & Modus Tollens
-      \end{subproof}
-    \forall x \, \lnot P(x)        & \forall x \, \mathrm{i} 3--5
-    \end{subproof}
-  (\forall x \, \lnot Q(x)) \to (\forall x \, \lnot P(x))
-                    & \to \mathrm{i} 2--6
-\end{logicproof}
-\end{lstlisting}
-\fi
-
-\section{Figures}
-The following is a figure with an image in it, and its label is \ref{FigExample}. Figures can contain pretty much everything, so just experiment, it will most likely work.
-\begin{figure}[htbp] %htbp forces the figure into the text.
-    \centering
-    \includegraphics[width=10em]{img/picture.png}
-    \caption{A picture}
-    \label{FigExample}
+\section{Tables and figures}
+\begin{figure}[ht!] % h = Here, t = Top, b = Bottom, p = same Page, ! = DO AS I SAY
+  \centering
+  \includegraphics[width=10em]{img/picture.png}
+  \caption{A picture}
+  \label{FigExample}
 \end{figure}
 
-
-\begin{wrapfigure}[6]{r}{15em}
-    \centering
-    \begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, auto]
-    \node[state, initial] (0) {$q_0$};
-    \node[state] (h) [right=of 0] {$h_a$};
+\begin{wrapfigure}[7]{r}{15em}
+  \centering
+  \begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, auto]
+    \node[shape = circle, draw = black, label = left:$\rightarrow$] (0) {$q_0$};
+    \node[shape = circle, draw = black] (h) [right=of 0] {$h_a$};
     \path[->]
-        (0) edge [bend left] node {$\Delta / \Delta , R$} (h);
-    \end{tikzpicture}
-    \caption{Transition diagram of a small Turing machine}
-    \label{fig:TM2}
+    (0) edge [bend left] node {$\Delta / \Delta , R$} (h);
+  \end{tikzpicture}
+  \caption{Transition diagram of a small Turing machine}
+  \label{fig:TM2}
 \end{wrapfigure}
-If you want to have your figure beside your text you need to put it into a \emph{wrapfigure} instead of a normal \emph{figure}. Place the text at the line, on which you want the figure to start. The first variable are the amount of lines the box is high, the second is left or right, while the last is the width.
+The following is a figure with an image in it, and its label is
+\ref{FigExample}. Figures can contain pretty much everything, so just
+experiment, it will most likely work. If you want to have your figure beside
+your text you need to put it into a \emph{wrapfigure} instead of a normal
+\emph{figure}. Place the text at the line, on which you want the figure to
+start. The first variable are the amount of lines the box is high, the second is
+left or right, while the last is the width.
 
-\section{Tables}
-Tables are also put into a float similar to figures, which makes it possible to add captions and references to it similar to before, such as the table in \ref{tab:table}. The table itself is made with \emph{tabular}.
-\begin{table}[h!]
+\subsection{Tables}
+Tables are also put into a float similar to figures, which makes it possible to
+add captions and references to it similar to before, such as in
+Table~\ref{tab:table}. The table itself is made with \emph{tabular}.
+\begin{table}[ht!]
     \centering
     \begin{tabular}{ l r | c || >{\columncolor[gray]{0.5}}c >{\columncolor[RGB]{230, 242, 255}}c}
         \rowcolor{lstKey2} %color defined for code highlights
@@ -258,310 +324,174 @@ Tables are also put into a float similar to figures, which makes it possible to 
     \label{tab:table}
 \end{table}
 
-\newpage
-\section{Graphs}
-Here is a graph from our first Calculus handin, kindly sponsored by the wonderful Rasmus Skovdal. \cite{rasmus} This can also be inserted into a figure, with which there are also captions and reference options.
+\subsection{Graphs}
+Here is a graph from our first Calculus handin, kindly sponsored by the
+wonderful Rasmus Skovdal. This can also be inserted into a figure, with which
+there are also captions and reference options, such as in figure
+\ref{fig:calc_graph}.
 
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-    xmin=-3, xmax=3,
-    ymin=-1, ymax=6,
-    xlabel={$x$},ylabel={$y$},
-    axis lines=center,
-    axis on top=true,
-    ]
-    %Graf x^2
-    \addplot [name path=f, domain=-3:3,black, thick] {x^2};
-    %Øverste kant for fill
-    \path[name path=axis] (axis cs:-3,6) -- (axis cs:3,6);
-    %Indstillinger for fill
-    \addplot [
-        thick,
-        color=blue,
-        fill=blue, 
-        fill opacity=0.05
-    ]
-    %Start af fill
-    fill between[
-        of=f and axis,
-    ];
-    
-    %Tegner lodrette streger
-    \addplot+[ycomb,dotted,thick,no marks] table[x=x,y expr=6] {
-    x
-    -1
-    1
-    };
-    
-    %Tilføjer tekst
-    \node [] at (axis cs:  -1, 5) {$x=-1$};
-    \node [] at (axis cs:  1, 5) {$x=1$};
-    \node at (axis cs:  0, 1) {$y\geq x^2$};    
-\end{axis}
-\end{tikzpicture}
-\end{center}
+\begin{figure}[ht!]
+  \centering
 
-In figure \ref{fig:sub4} you can find timing of a Simplex Algorithm
-\begin{figure}[h!]
+  \begin{tikzpicture}
+    \begin{axis}[
+        xmin=-3, xmax=3,
+        ymin=-1, ymax=6,
+        xlabel={$x$},ylabel={$y$},
+        axis lines=center,
+        axis on top=true,
+      ]
+      % Graf x^2
+      \addplot [name path=f, domain=-3:3,black, thick] {x^2};
+      % Upper border for the fill
+      \path[name path=axis] (axis cs:-3,6) -- (axis cs:3,6);
+      % Settings for the fill
+      \addplot [thick, color=blue, fill=blue, fill opacity=0.05]
+      % Start of fill
+      fill between[of=f and axis];
+
+      % Vertical lines
+      \addplot+[ycomb,dotted,thick,no marks] table[x=x,y expr=6] {
+        x
+        -1
+        1
+      };
+
+      % Text
+      \node [] at (axis cs:  -1, 5) {$x=-1$};
+      \node [] at (axis cs:  1, 5) {$x=1$};
+      \node at (axis cs:  0, 1) {$y\geq x^2$};
+    \end{axis}
+  \end{tikzpicture}
+
+  \caption{A pretty graph by Rasmus Skovdal}
+  \label{fig:calc_graph}
+\end{figure}
+
+In Figure~\ref{fig:simplex} you can find timing of a Simplex Algorithm, where
+sub Figure~\ref{fig:simplex_10} contains the data for $n = 10$. Since the code
+for each figure also contains all the data, we have chosen to move the code into
+the sub folder \emph{figures}. From experience I will heavily endorse everyone
+else to do the same.
+\begin{figure}[ht!]
+  \centering
+  \begin{subfigure}{.48\linewidth}
     \centering
-    \begin{subfigure}{.48\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[width=\linewidth,height=1\linewidth, ylabel=t (s), xlabel=m
-            , scaled ticks=false, tick label style={/pgf/number format/fixed,/pgf/number format/precision=3}]
-                \addplot[color=blue,mark=square] coordinates{
-                    ( 1 ,  0.00020015239715576172 )
-                    ( 10 ,  0.0020503997802734375 )
-                    ( 20 ,  0.004653143882751465 )
-                    ( 30 ,  0.008209705352783203 )
-                    ( 40 ,  0.008258891105651856 )
-                    ( 50 ,  0.011513733863830566 )
-                    ( 60 ,  0.012608504295349121 )
-                };
-                \addplot[color=red,mark=square] coordinates{
-                    ( 1 ,  0.00015006065368652343 )
-                    ( 10 ,  0.0017030954360961914 )
-                    ( 20 ,  0.0030036211013793946 )
-                    ( 30 ,  0.0035523414611816407 )
-                    ( 40 ,  0.004254531860351562 )
-                    ( 50 ,  0.006453275680541992 )
-                    ( 60 ,  0.007454490661621094 )
-                };
-                \addplot[color=green,mark=square] coordinates{
-                    ( 1 ,  0.00024864673614501955 )
-                    ( 10 ,  0.0014016151428222657 )
-                    ( 20 ,  0.0024504899978637696 )
-                    ( 30 ,  0.0030023336410522463 )
-                    ( 40 ,  0.003405189514160156 )
-                    ( 50 ,  0.005102849006652832 )
-                    ( 60 ,  0.005604338645935058 )
-                };
-                \addplot[color=cyan,mark=square] coordinates{
-                    ( 1 ,  0.0004002571105957031 )
-                    ( 10 ,  0.004252958297729492 )
-                    ( 20 ,  0.004402613639831543 )
-                    ( 30 ,  0.0039030075073242187 )
-                    ( 40 ,  0.00355381965637207 )
-                    ( 50 ,  0.004754805564880371 )
-                    ( 60 ,  0.004402732849121094 )
-                };
-            \end{axis}
-        \end{tikzpicture}
-        \caption{$n = 10$}
-    \end{subfigure}
-    \begin{subfigure}{.48\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \begin{axis}[width=\linewidth,height=1\linewidth, ylabel=t (s), xlabel=m
-            , scaled ticks=false, tick label style={/pgf/number format/fixed,/pgf/number format/precision=3}]
-                \addplot[color=blue,mark=square] coordinates{
-                    ( 1 ,  0.00010006427764892578 )
-                    ( 10 ,  0.007461071014404297 )
-                    ( 20 ,  0.03707499504089355 )
-                    ( 30 ,  0.10027358531951905 )
-                    ( 40 ,  0.1522063970565796 )
-                    ( 50 ,  0.20556776523590087 )
-                    ( 60 ,  0.23017339706420897 )
-                };
-                \addplot[color=red,mark=square] coordinates{
-                    ( 1 ,  0.00025036334991455076 )
-                    ( 10 ,  0.00425267219543457 )
-                    ( 20 ,  0.02081460952758789 )
-                    ( 30 ,  0.04728093147277832 )
-                    ( 40 ,  0.06434342861175538 )
-                    ( 50 ,  0.08035707473754883 )
-                    ( 60 ,  0.07525081634521484 )
-                };
-                \addplot[color=green,mark=square] coordinates{
-                    ( 1 ,  0.00019922256469726563 )
-                    ( 10 ,  0.005406856536865234 )
-                    ( 20 ,  0.023966169357299803 )
-                    ( 30 ,  0.04928388595581055 )
-                    ( 40 ,  0.07215075492858887 )
-                    ( 50 ,  0.07655987739562989 )
-                    ( 60 ,  0.08101780414581299 )
-                };
-                \addplot[color=cyan,mark=square] coordinates{
-                    ( 1 ,  0.0006515026092529297 )
-                    ( 10 ,  0.00490415096282959 )
-                    ( 20 ,  0.012258577346801757 )
-                    ( 30 ,  0.01906561851501465 )
-                    ( 40 ,  0.019263958930969237 )
-                    ( 50 ,  0.02036278247833252 )
-                    ( 60 ,  0.01591067314147949 )
-                };
-            \end{axis}
-        \end{tikzpicture}
-        \caption{$n = 30$}
-    \end{subfigure}
-    
-    \caption{Performance with Bland's rule (blue), largest coefficient rule (red), largest increase rule (green), and SciPy (cyan).}
-    \label{fig:sub4}
+    \input{figures/simplex_10.tex}
+    \caption{$n = 10$}
+    \label{fig:simplex_10}
+  \end{subfigure}
+  \begin{subfigure}{.48\linewidth}
+    \centering
+    \input{figures/simplex_30.tex}
+    \caption{$n = 30$}
+    \label{fig:simplex_30}
+  \end{subfigure}
+
+  \caption{Performance with Bland's rule (blue), largest coefficient rule (red),
+    largest increase rule (green), and SciPy (cyan).}
+  \label{fig:simplex}
+\end{figure}
+
+\subsection{Graphs and automata}
+In Figure~\ref{fig:game} you can find a small game gadget used by Hansen and
+Sølvsten in \cite{hansen2020}. This figure was written by hand and the code is
+separated into \emph{polynomia.tex} in the \emph{figures} folder. I highly
+encourage you to also make your figures manually rather than using any tool that
+autogenerates it (IPE being the only exception). This makes it much easier
+to make modifications later and your document ends up more easier to cope with
+in general.
+
+\begin{figure}[ht!]
+  \centering
+  \input{figures/polynomia}
+  \caption{A game between multiple players on a graph}
+  \label{fig:game}
+\end{figure}
+
+While the above already gives you enough tools in your toolkit to create an
+automata, the preamble also includes the \emph{automata} package to make it much
+easier. An example is shown in Figure~\ref{fig:FA}
+\begin{figure}[ht!]
+  \centering
+  \begin{tikzpicture}[>=stealth, semithick,                                  % More pronounced edges
+                      shorten >= 1, node distance = 2cm, on grid, auto]       % Node placement settings
+    \node[state, initial]   (A)              {$A$};
+    \node[state]            (B) [right=of A] {$B$};
+    \node[state, accepting] (C) [right=of B] {$C$};
+
+    \path[->]
+        (A) edge node {0} (B)
+        (A) edge [loop above]   node {1} (C)
+        (B) edge [loop above]   node {0} (B)
+        (B) edge [bend right]   node {1} (C)
+        (C) edge [bend left=45] node {1} (A)
+        (C) edge [bend right]   node {0} (B)
+    ;
+  \end{tikzpicture}
+  \caption{A finite automoata, that accepts strings ending with "01"}
+  \label{fig:FA}
 \end{figure}
 
 \section{Code}
-The following is sourcecode for some non-aweinspiring Java method. By using a caption you also give it a number, but alternatively it can be given a \emph{title} instead of a \emph{caption}. Using \emph{title} does break the ability to make and reference a \emph{label}, but that is your intent anyways, if you use \emph{title}. The following code has the label \ref{lst:Example}
+The following is sourcecode for some non-aweinspiring Java method. By using a
+caption you also give it a number, but alternatively it can be given a
+\emph{title} instead of a \emph{caption}. Using \emph{title} does break the
+ability to make and reference a \emph{label}, but that is your intent anyways,
+if you used \emph{title} in the first place. The following code has the label
+\ref{lst:Example}
 
 \begin{lstlisting} [language=java,
                     label={lst:Example},
                     caption={I'm a caption}]
 //This is a comment, nordic letters are supported (æ, ø, å)
 public static String example(int n) {
-	return "You wrote: "+n;
+  return "You wrote: "+n;
 }
 \end{lstlisting}
 
-If the language has to be something else than is the standard specified, then it has to be declared as an argument. In the following pseudocode there are also used escape characters *@ and @* to insert \LaTeX\ math.
+If the language has to be something else than is the standard specified, then it
+has to be declared as an argument. In the following pseudocode there also is
+math with the \$ symbols and you can also escape to all of \LaTeX\ with
+\code{*@} and \code{@*}.
 
 \begin{lstlisting}[firstnumber=1,
                    caption={The algorithm \emph{linear exponentiation}},
                    label={lst:algorithm}]
 *@ \textbf{Algorithm: Linear Exponentiation} @*(x,p)
- Input     : *@ $p \geq 0$ @*
- Output    : *@ $r = x^p$ @*
- Method    : *@ $r \leftarrow 1$ @*
-             *@ $q \leftarrow p$ @*
-              {I} while *@ $q > 0$ @* do
-                    *@ $r \leftarrow r * x$ @*
-                    *@ $q \leftarrow q - 1$ @*
+ Input     : $p \geq 0$
+ Output    : $r = x^p$
+ Method    : $r \leftarrow 1$
+             $q \leftarrow p$
+              {I} while $q > 0$ do
+                    $r \leftarrow r * x$
+                    $q \leftarrow q - 1$
 \end{lstlisting}
 
-\section{Trees}
-With qtree we have a quick and easy way to draw trees. Notice, that you need to have a space between an element and a closing bracket.
-\begin{figure}[htbp]
-    \centering
-    \Tree [.rod [.{rod for et subtræ}
-                blad
-                blad ]
-            blad ]
-    \caption{A tree}
-    \label{fig:tree1}
-\end{figure}
-
-If the trees need to be a bit more complex, then you need to use tikz, where it is already in the preamble has defined red-black trees.
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[baseline={(current bounding box.center)},-,>=stealth',level/.style={sibling distance = 1.1cm, level distance = 0.9cm}]
-            \node [arn_r] {y}
-                child{ node [arn_b] {x} 
-                    child{ node {$\alpha$} }
-                    child{ node {$\beta$} }                            
-                }
-                child[style={edge from parent/.style={red,very thick,draw}}]
-                    { node {$\gamma$} }
-            ;
-    \end{tikzpicture}
-    \caption{A nicer tree}
-    \label{fig:tree2}
-\end{figure}
-
-\section{Automata}
-By using Tikz creating automota by hand is easy, and I highly encourage you do it manually, to make modifications later much easier and your document much nicer in general. In the following the only complication has been the longer edge from (C) to (A) over 1, where in the code commented out it is explicitly defined by guiding points, but it could also be done by changing the angle, which is by default 30 degrees.
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[>=stealth', semithick,                                  % More pronounced edges
-                        shorten >= 1, node distance = 2cm, on grid, auto]       % Node placement settings
-    \node[state, initial] (A) {$A$};
-    \node[state] (B) [right=of A] {$B$};
-    \node[state, accepting] (C) [right=of B] {$C$};
-    \path[->]
-        (A) edge node {0} (B)
-            edge [loop above] node {1} ()
-        (B)    edge [loop above] node {0} ()
-            edge [bend right] node {1} (C)
-        (C)    edge [bend left=45] node {1} (A)
-            edge [bend right] node {0} (B);
-    %\draw[->] (C) .. controls ($(C)+(0,-1cm)$) and ($(A)+(0,-1cm)$).. (A)      % Custom edge
-    %                node at ($(B)+(0,-1.1cm)$) {$1$};
-    \end{tikzpicture}
-    \caption{A finite automoata, that accepts strings ending with "01"}
-    \label{fig:FA}
-\end{figure}
-
-\section{E/R Diagrams} \label{sec:ER}
-By using \emph{er} and \emph{shapes} packages a E/R diagram can be drawn. These are made in the exact same way as the automota.
-
-\begin{figure}[htbp!]
-    \centering
-    \begin{tikzpicture}[>=stealth', semithick,                                                  % More pronounced edges
-                        shorten >= 0.5, node distance = 2cm and 3cm, on grid, auto,             % Node placement settings
-                        isa/.style = {regular polygon, regular polygon sides=3, draw=black}]    % Defining isa nodes
-        \node[entity] (ent1) {Entities};
-        \node[attribute] (attr1) [above =of ent1] {\underline{attribute}};
-        \node[relationship, double distance=0.1em] (wrel) [right =of ent1] {weak rel};
-        \node[entity, double distance=0.1em] (went) [right =of wrel] {Weak entities};
-        \node[attribute] (attr2) [above =of went] {attribute};
-        \node[isa] (isa) [below =of ent1] {isa};
-        \node[entity] (ent2) [below right =of isa] {Entities};
-        \node[relationship] (rel1) [right =of ent2] {relationship};
-        \node[entity] (ent3) [right =of rel1] {Entities};
-        %edge:many
-        \path[-]
-            (ent1) edge (attr1)
-            (went) edge (wrel)
-            (went) edge (attr2)
-            (isa) edge (ent1)
-            (isa) edge (ent2)
-            (ent3) edge node [above, pos = 0.35] {$\geq 4$} (rel1);
-        %edge:one
-        \path[->]
-            (wrel) edge (ent1);
-        %edge:exactly-one
-        \path[-)]
-            (rel1) edge (ent2);
-    \end{tikzpicture}
-    \label{fig:ER}
-\end{figure}
-
 \section{Referencing and Citing} \label{sec:ref}
-If you need to reference equations, figures, sections or anything with a label you want to use the \emph{ref} operation. A \emph{ref} will always point to a \emph{label} defined and saved in the earlier compilation. For example this section has the number \ref{sec:ref}.
+If you need to reference equations, figures, sections or anything with a label
+you want to use the \emph{ref} operation. A \emph{ref} will always point to a
+\emph{label} defined and saved in the prior compilation. For example this
+section has the number \ref{sec:ref}.
 
-If you wan to reference the bibliography, then you want to use the \emph{cite} operation instead. Here is a reference to \cite{berlog}, which is written in the \emph{bibliography} further down. This is redefined to litteratur with the danish preamble, preamble\_dk.tex. If you want more references simultaneously you just seperate them with commas: \cite{berlog, steffan}
+If you wan to reference the bibliography, then you want to use the \emph{cite}
+operation instead. Here is a reference to \cite{hansen2020}, which is written in
+the \emph{bibliography} further down. This is redefined to litteratur with the
+danish preamble, preamble\_dk.tex. If you want more references simultaneously
+you just seperate them with commas.
 
-\section{Quotes}
-With the \emph{csquotes} package it is possible to make nice quotes, such as Steffan's remark \textcquote[s. 12]{steffan}{We are computer scientists, not vampires}. By using \emph{blockquote} you get automatically a quote, which is on its own line, if it is 4+ lines long.
+% ---------------------------------------------------------------------------- %
+% References
+% ---------------------------------------------------------------------------- %
+\printbibliography
 
-\blockcquote[s. 1]{berlog}{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.}
-
-Notice, that both quotes used a \emph{c} as a prefix to \emph{quote}. This gives the possibility to reference to the bibliography. If you don't need that you can safely remove it.
-
-\section{Columns}
-\begin{multicols}{2}
-
-\noindent Here is some text split into two columns, which can be used for various things. I have not used this very often, so I'm not sure if it works well with various stuff prior shown, such as figures, code or equations. If you want to use code, you will have to at least not include a header and remove the centering option as set up in the preamble.
-
-\vfill \columnbreak
-
-Here is some more text in the other column. Over here we could have the index, while on the other side we have the title and also the abstract?
-
-\end{multicols}
-
-\begin{thebibliography}{9}
-\bibitem{rasmus}
-    Skovdal, Rasmus: \emph{Calculus 1}, 2015
-\bibitem{steffan}
-    Jørgensen, Steffan: \emph{101 quotes}, 2015
-\bibitem{berlog}
-    Huth, Michael og Ryan, Mark: \emph{Logic in Computer Science}, second edition, 2004
-
-\bibitem{referencer.bib}
- You can either write the bibliography in this document or have an extra references.bib file with all the information in the following form:
- 
-@book{FilVri97,
-Author = {Filar, Jerzy and Vrieze, Koos},
-Publisher = {Springer},
-Title = {Competitive Markov Decision Processes},
-Year = 1997
-} 
- 
-\end{thebibliography}
-\bibliographystyle{abbrv}
-\bibliography{referencer}
-
-\newpage
-\appendix
+% ---------------------------------------------------------------------------- %
+% Appendix
+% ---------------------------------------------------------------------------- %
+\newpage \appendix
 \section{An Appendix}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 \end{document}

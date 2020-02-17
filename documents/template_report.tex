@@ -1,34 +1,80 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%
-% Load Preample         %
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% ---------------------------------------------------------------------------- %
+% Load base preamble
+% ---------------------------------------------------------------------------- %
 \documentclass[a4, english, twoside]{article}
 
-%Import from the same folder
+% Import from the same folder
 %\input{preamble_en.tex}
 
-%Import from absolute path
+% Import from absolute path
 %\usepackage{import}
-%\import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_dk.tex}
+%\import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_en.tex}
 
-%Import from a relative path
+% Import from a relative path
 \usepackage{import}
 \subimport{../preamble/}{preamble_en.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-% Document starts here! %
-%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% ---------------------------------------------------------------------------- %
+% Local macros
+% ---------------------------------------------------------------------------- %
+
+
+
+% ---------------------------------------------------------------------------- %
+% Title
+% ---------------------------------------------------------------------------- %
+\newcommand{\titlecontent}{Report or dissertation}
+\title{\titlecontent}
+
+% ---------------------------------------------------------------------------- %
+% Page layout
+% ---------------------------------------------------------------------------- %
+\usepackage[a4paper]{geometry}
+\usepackage{lastpage, fancyhdr}
+\pagestyle{fancy}
+
+% Top: Odd pages (Main for onesided)
+\fancyhead[RO]{\thepage}
+\fancyhead[LO]{\titlecontent}
+
+% Top: even pages
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LE]{\thepage}
+
+% Bottom: Nothing
+\fancyfoot[LCR]{}
+
+% ---------------------------------------------------------------------------- %
+% Bibliography
+% ---------------------------------------------------------------------------- %
+\usepackage[
+  backend=biber,
+  style=alphabetic,
+  sortlocale=en_US,
+  useprefix=false,
+  url=false,
+  doi=true,
+  eprint=false,
+  maxbibnames=99,
+]{biblatex}
+\addbibresource{references.bib}
+
+% ---------------------------------------------------------------------------- %
+% Authors
+% ---------------------------------------------------------------------------- %
+\author{Steffan Sølvsten}
+\author{Lorem Ipsum}
+\affil{Aarhus University \\ \mailto{{soelvsten,ipsum}@cs.au.dk}}
+
+% ---------------------------------------------------------------------------- %
+% Main content
+% ---------------------------------------------------------------------------- %
 \begin{document}
-
-% Define title and more on frontpage
-    \settitle{Title}{Subtitle}
-    \addauth{Steffan Sølvsten}{201505832@post.au.dk}{au534068}
 \maketitle
 
 \begin{abstract}
-\noindent
-
+  Lorem ipsum...
 \end{abstract}
 
 \tableofcontents
@@ -36,17 +82,17 @@
 \newpage
 \section{Introduction} \label{sec:intro}
 
+\section{Conclusion} \label{sec:conclusion}
 
+% ---------------------------------------------------------------------------- %
+% References
+% ---------------------------------------------------------------------------- %
+\printbibliography
 
-\begin{thebibliography}{9}
-\bibitem{bibitem}
-    Last, First: \emph{Title}, publication, edition, year
-\end{thebibliography}
-\bibliographystyle{abbrv}
-\bibliography{referencer}
-
-\newpage
-\appendix
-\section{Appendix}
+% ---------------------------------------------------------------------------- %
+% Appendix
+% ---------------------------------------------------------------------------- %
+\newpage \appendix
+\section{Appendix} \label{app:A}
 
 \end{document}

@@ -1,0 +1,45 @@
+\begin{tikzpicture}[shorten >= 1, node distance = 2cm, on grid, minimum size = 0.8cm]
+  % Threats
+  \node[shape=circle, draw=black, label=above:$6$, label=left:$\rightarrow$] (threat1) {};
+  \node[draw=none] (threat1_t) [below=1.3cm of threat1] {$(0,0,0,0,0,\frac{1}{2 n^2},0)$};
+  \node[shape=circle, draw=black, label=above:$7$] (threat2) [right=3cm of threat1] {};
+  \node[draw=none] (threat2_t) [below=1.3cm of threat2] {$(0,0,0,0,0,0,\frac{1}{2n^2})$};
+
+  % Chance node
+  \node[shape=diamond, draw=black] (chance_node) [right=2cm of threat2] {};
+
+  % Subgames
+  \node[draw=none] (g1_1) [above right=1.2cm and 3cm of chance_node] {$\Gmul(x_1,x_1,\frac{1 + a_{1,1}^k}{2})$};
+  \node[draw=none] (gi_j) [above right=0cm and 3cm of chance_node] {$\Gmul(x_i,x_j,\frac{1 + a_{i,j}^k}{2})$};
+  \node[draw=none] (gn_n) [below right=1.2cm and 3cm of chance_node] {$\Gmul(x_n,x_n,\frac{1 + a_{n,n}^k}{2})$};
+  
+  % HACK: Nodes for dashed arrows
+  \node[draw=none] (gi) [below right=0.6cm and 2cm of chance_node] {};
+  \node[draw=none] (gj) [above right=0.6cm and 2cm of chance_node] {};
+  % Edges
+  \path[->]
+    (threat1) edge (threat2)
+    (threat1) edge (threat1_t)
+    (threat2) edge (threat2_t)
+    (threat2) edge (chance_node)
+    (chance_node) edge [bend left=20] node [left] {$\frac{1}{n^2}$} (g1_1)
+    (chance_node) edge (gi_j)
+    (chance_node) edge [bend right=25] node [left] {$\frac{1}{n^2}$} (gn_n)
+  ;
+  \path[->]
+    (chance_node) edge [bend right=10] (gi)
+    (chance_node) edge [bend left=10] (gj)[loosely dashed]
+  ;
+  % Dots
+  \path[-]
+%      (g1_1) edge [bend right=10] (gi_j)
+%      (gi_j) edge [bend right=10] (gn_n) [loosely dotted, thick]
+    (g1_1) edge (gi_j)
+    (gi_j) edge (gn_n) [loosely dotted, thick]
+  ;
+\end{tikzpicture}
+  
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../examples.tex"
+%%% End:

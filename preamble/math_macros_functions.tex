@@ -1,0 +1,191 @@
+% ---------------------------------------------------------------------------- %
+% Simple macros
+% ---------------------------------------------------------------------------- %
+\newcommand{\Id}{\text{Id}}                                                      % t\Id = Identity function
+
+\newcommand{\Det}[1]{\text{Det}\left( #1 \right)}                                % \Det{arg}             Det(arg)
+\newcommand{\Span}[1]{\text{Span}\left( #1 \right)}                              % \Span{arg}            Span(arg)
+\newcommand{\sgn}[1]{\text{sgn} \left( #1 \right)}                               % \sgn{arg}             sgn(arg)
+\newcommand{\adj}[1]{\text{adj} \left( #1 \right)}                               % \adj{arg}             adj(arg)
+\newcommand{\ord}[1]{\text{ord} \left( #1 \right)}                               % \ord{arg}             ord(arg)
+
+\newcommand{\tuple}[1]{\left\langle #1 \right\rangle}                            % \tuple{arg}           <arg>
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}                                % \abs{arg}             absolute/modulo of value
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}                               % \norm{arg}            norm of a value
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}                               % \ceil{arg}            ceiling of a value
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}                            % \floor{arg}           floor of a value
+\newcommand{\inprod}[2]{\tuple{#1, #2}}                                          % \inprod{v}{w}         inner product
+\newcommand{\powgroup}[1]{\tuple{#1}}                                            % \powgroup{arg}        image of f={g^n | n in Z}
+
+% ---------------------------------------------------------------------------- %
+% Advanced macros:
+% ---------------------------------------------------------------------------- %
+\usepackage{xparse}                                                              % Scanning arguments
+\usepackage{xifthen}                                                             % Conditionals
+\usepackage{xstring}                                                             % String functions
+\usepackage{calc}                                                                % Calculations
+
+\newcounter{i}
+
+\DeclareDocumentCommand \set { m g g }{                                          % \set{X}{C}{|}
+     \left\lbrace                                                                % {X | C}
+         #1 \IfValueT {#2} { \ \IfValueTF{#3}{#3}{|}\  #2 }
+     \right\rbrace
+}
+
+\DeclareDocumentCommand \seq { g g g g } {                                       % \seq{x}{i}{j}{s}
+    \setcounter{i}{0}                                                            % x_i, x_i+s, ... x_j
+    \IfValueT {#2} { \addtocounter{i}{#2} }
+    \IfValueTF {#1}
+        {#1}
+        {x}
+    _{ \arabic{i} },
+    \IfValueTF {#4} 
+        {\addtocounter{i}{#4}}
+        {\addtocounter{i}{1}}
+    \IfValueTF {#1} 
+        {#1}
+        {x} 
+    _{ \arabic{i} },
+    \dots
+    \IfValueTF {#3}
+        { , #1_{#3} }
+        {}
+}
+
+\DeclareDocumentCommand \eqclass { g g }{                                        % \eqclass{v}{V}    Equivalent Class
+    \left[                                                                       % This can also be used for coordinate vectors
+        \IfValueTF{#1}
+            {#1}
+            {\dot}
+    \right]
+    \IfValueTF{#2}
+            {_{#2}}
+            {}
+}
+
+\DeclareDocumentCommand \ero { g g } {                                           % \ero {x, y}
+    \begin{array}{c}                                                             %    x
+        \IfValueTF{#1}                                                           %    ~
+            {_{#1}}                                                              %    y
+            {\phantom{\sim}}
+    \\
+        \sim
+    \\
+        \IfValueTF{#2}
+            {^{#2}}
+            {\phantom{\sim}}
+    \end{array}
+}
+
+\DeclareDocumentCommand \matrep { g g g } {                                      % \matrep{W}{L}{V}    Matrixrepresentation
+    {_{                                                                          % W[L]V
+        \IfValueTF {#1}                                                          %   No arguments for W or V results in standard basis
+            {#1}                                                                 %   No arguments for L results in the coordinate transformation
+            {\epsilon}
+    }}
+    \left[
+        \IfValueTF {#2}
+            {#2}
+            {\square}
+    \right] {_{
+        \IfValueTF {#3}
+            {#3}
+            {\epsilon}
+    }}
+}
+
+\newcommand{\IndexedFunc}[3]{{#1}_{#2} \left( #3 \right)}
+
+\DeclareDocumentCommand \Geo { g g }{                                            % \Geo{v}{V}    Geogrebic Multiplicity
+    \IndexedFunc
+        {\text{Geo}}
+        {\IfValueTF{#1}
+                {#1}
+                {L}}
+        {\IfValueTF{#2}
+            {#2}
+            {\lambda}}
+}
+
+\DeclareDocumentCommand \Alg { g g }{                                            % \Alg            Algebraic Multiplicity
+    \IndexedFunc
+        {\text{Alg}}
+        {\IfValueTF{#1}
+                {#1}
+                {L}}
+        {\IfValueTF{#2}
+            {#2}
+            {\lambda}}
+}
+
+\DeclareDocumentCommand \series { g g g g }{                                     % \series{a}{b}{c}{d}    \{ a_b \} _{b = c} ^d
+    \set{\IfValueTF{#1}                                                          %    An infinite series with elements a, indexed by b
+      {#1}                                                                       %    starting from c ending at d
+      {a}
+     _{\IfValueTF{#2}
+      {#2}
+      {n}}      
+      }
+      _{\IfValueTF{#2}
+        {#2}
+        {n}
+       =
+       \IfValueTF{#3}
+        {#3}
+        {1}
+      }
+      ^{\IfValueTF{#4}
+        {#4}
+        {\infty}
+      }
+}
+
+\DeclareDocumentCommand \pseries { g g g g }{                                    % \pseries{a}{b}{c}{d}   \{ x^k \} _{k = c} ^d
+    \set{\IfValueTF{#1}                                                          %    An infinite series of points x, indexed by k
+      {#1}                                                                       %    starting from c ending at d
+      {x}
+     ^{\IfValueTF{#2}
+      {#2}
+      {k}}      
+      }
+      _{\IfValueTF{#2}
+        {#2}
+        {k}
+       =
+       \IfValueTF{#3}
+        {#3}
+        {1}
+      }
+      ^{\IfValueTF{#4}
+        {#4}
+        {\infty}
+      }
+}
+
+\DeclareDocumentCommand \infseq { g g g g }{                                     % \infseq{a}{b}{c}{d}   \sum_{ b = c }^d a_b
+  \sum                                                                           %    An infinite sequence with elements a, indexed by b
+    _{                                                                           %    starting from c ending at d
+        \IfValueTF{#2}
+          {#2}
+          {n}
+         =
+         \IfValueTF{#3}
+          {#3}
+          {1}
+    }
+      ^{\IfValueTF{#4}
+        {#4}
+        {\infty}
+      }
+    \IfValueTF{#1}
+      {#1}
+      {a}
+   _{\IfValueTF{#2}
+      {#2}
+      {n}
+  }     
+}
+
+\renewcommand{\|}{\scalebox{1.3}{|}\ }                                           % Larger vertical bar for divisors
+\renewcommand{\div}[1]{\text{div}\left( #1 \right)}                              % div(arg)

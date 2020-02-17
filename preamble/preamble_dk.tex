@@ -1,51 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Settings for document (danish) %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble_base_p1.tex}
+\input{lang_dk.tex}
 
-% Input common definition
-\input{preamble_base.tex}
+\usepackage[danish]{babel}
+\renewcommand{\danishhyphenmins}{22}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Encoding and hyphenation   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Basics: font, codec etc.
-\usepackage[danish]{babel}                        % babel is for hyphenation and other goodies
-\renewcommand{\danishhyphenmins}{22}              % even better danish hyphenation!
-
-% .bib danish redefinition for author in title
 \renewcommand\Authand{ og }
 \renewcommand\Authands{, og }
 \renewcommand\Affilfont{\small}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%         lstlisting           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% lstlisting language redefinitions
-\renewcommand{\lstlistingname}{Kode}                                            % for one block of code alone
-\renewcommand{\lstlistlistingname}{Liste af \lstlistingname r}                  % for more pieces of code in one
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%      Logic and proofs        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Theorem environments
-\newtheorem{theorem}{Sætning}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Korollar}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{conjecture}[theorem]{Formodning}
-\newtheorem{observation}[theorem]{Observation}
-\newtheorem{remark}[theorem]{Remark}
-\renewcommand*{\proofname}{Bevis}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%      Example environment     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtheorem{example}[theorem]{Eksempel}
-\newtheorem{problem}[theorem]{Problem}
+\input{preamble_base_p2.tex}

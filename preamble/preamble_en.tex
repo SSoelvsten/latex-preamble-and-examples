@@ -1,45 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Settings for document (english) %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble_base_p1.tex}
+\input{lang_en.tex}
 
-% Input common definition
-\input{preamble_base.tex}
+\usepackage[english]{babel}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   Encoding and hyphenation   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Basics: font, codec etc.
-\usepackage[english]{babel}                       % babel is for hyphenation and other goodies
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%         lstlisting           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\lstlistingname}{Code}              % for one block of code alone
-\renewcommand{\lstlistlistingname}{List of code}  % for more pieces of code in one
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%      Logic and proofs        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Theorem environments
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{observation}[theorem]{Observation}
-\newtheorem{remark}[theorem]{Remark}
-\renewcommand*{\proofname}{Proof}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%      Example environment     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newtheorem{example}[theorem]{Example}
-\newtheorem{problem}[theorem]{Problem}
+\input{preamble_base_p2.tex}

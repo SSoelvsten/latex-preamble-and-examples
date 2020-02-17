@@ -1,0 +1,220 @@
+% ---------------------------------------------------------------------------- %
+% Paper size and encoding
+% ---------------------------------------------------------------------------- %
+
+\usepackage[utf8]{inputenc}                                                      % encoding: utf-8 (nordic letters)
+\usepackage[T1]{fontenc}                                                         % use 8-bit encoded fonts
+
+% Uncomment to add more whitespace between paragraphs rather than indent
+%\usepackage[parfill]{parskip}
+
+\usepackage{csquotes}
+
+% ---------------------------------------------------------------------------- %
+% Tables and figures
+% ---------------------------------------------------------------------------- % 
+\usepackage{tabularx,booktabs,authblk}                                           % various basic stuff for tables and more
+\usepackage{caption, subcaption}                                                 % captions and sub figures
+
+\usepackage{wrapfig}                                                             % figures wrapped by text
+
+\usepackage{rotating}                                                            % rotate content (i.e. figures sideways)
+
+% ---------------------------------------------------------------------------- %
+% Hypermedia
+% ---------------------------------------------------------------------------- %
+
+\usepackage{url}                                                                 % \url{link}
+\usepackage[hidelinks]{hyperref}                                                 % \href{link}{replacing text}
+
+\newcommand*{\http}[1]{\href{http://#1}{#1}}                                     % macro for http links: \http{www.matfystutor.dk}
+\newcommand*{\mailto}[1]{\href{mailto:#1}{\nolinkurl{#1}}}                       % macro for mails: \mailto{email@email.com}
+
+% ---------------------------------------------------------------------------- %
+% Mathematics
+% ---------------------------------------------------------------------------- %
+% various basic stuff
+\usepackage{mathtools, amsmath, amssymb}
+\usepackage{stmaryrd}                                                            % even more symbols
+
+\input{math_macros_symb.tex}
+\input{math_macros_functions.tex}
+
+% adds vertical lines to matrices
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
+% ---------------------------------------------------------------------------- %
+% Logic and proofs
+% ---------------------------------------------------------------------------- %
+% Proofs
+\usepackage{amsthm}                                                              % Theorem package
+\theoremstyle{definition}                                                        % Style: plain, definition, remark
+
+% Uncomment if you want to have the number first
+%\swapnumbers
+
+% Logic packages
+\usepackage{lplfitch}                                                            % fitch style proofs
+\usepackage{bussproofs}                                                          % proof trees
+\newenvironment{bprooftree}                                                      % boxed proof tree
+  {\leavevmode\hbox\bgroup}
+  {\DisplayProof\egroup}
+
+
+% ---------------------------------------------------------------------------- %
+% Color and presets
+% ---------------------------------------------------------------------------- %
+
+\usepackage[table,xcdraw]{xcolor}                                                % xcolor package with support for tables
+\usepackage{colortbl}                                                            % color presets working together with xcolor
+
+
+% ---------------------------------------------------------------------------- %
+% Tikz
+% ---------------------------------------------------------------------------- %
+\usepackage{tikz}                                                                % import basepackage
+
+% Graphics
+\usetikzlibrary{calc}                                                            % Coordinate calcuations
+\usetikzlibrary{positioning}                                                     % Relative positioning
+\usetikzlibrary{shapes}                                                          % Basic shapes to draw with
+
+% Graphs
+\usetikzlibrary{automata}
+
+% Plots
+\usepackage{graphicx}                                                            % import basepackage for graphs
+\usepackage{pgfplots}                                                            % import pgfplots
+\usepgfplotslibrary{fillbetween}                                                 % add fillBetween command
+\pgfplotsset{compat=1.15}
+
+
+% ---------------------------------------------------------------------------- %
+% Code: inline
+% ---------------------------------------------------------------------------- %
+\newcommand{\code}[1]{{\sf #1}}                                                  % \code{X} writes X in a code-appropriate font
+
+
+% ---------------------------------------------------------------------------- %
+% Code: lstlisting
+% ---------------------------------------------------------------------------- %
+\usepackage{listings}
+
+% General settings
+\lstset{
+  mathescape=true,                                                               % escape to LaTeX math with $
+  escapeinside={*@}{@*},                                                         % if you want to fully escape to LaTeX
+  literate={æ}{{\ae}}1{ø}{{\oe}}1{å}{{\aa}}1                                     % allow æ, ø and å in code
+           {Æ}{{\AE}}1{Ø}{{\O}}1{Å}{{\AA}}1,                                     %     (this change was taken from the preamble of the MatFysTutor LaTeX Guide)
+}
+
+% Formatting settings
+\lstset{
+  % Formatting inside
+  stepnumber=1,                                                                  % step between to line-numbers. 1 = each line is numbered
+  numbers=left,                                                                  % numbering: none, left, right
+  numbersep=5pt,                                                                 % distance between linenumbers and code
+  xleftmargin=\parindent,                                                        % indent linenumbers to not be outside of margin
+  xrightmargin=\parindent,                                                       % make the indent symmetrix
+  columns=[c]fixed,                                                              % makes it monospaced
+  % Formatting of border and caption
+  captionpos=b                                                                   % caption at the bottom
+}
+\DeclareCaptionFormat{listing}{%
+  \makebox[2.1cm][l]{\qquad#1#2}%
+  \parbox[t]{\dimexpr \captionwidth-2.1cm}{#3}%
+}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=off, labelsep=colon}
+
+
+% Whitespace settings
+\lstset{
+  showspaces=false,                                                              % show spaces everywhere - adding particular underscores
+  showstringspaces=false,                                                        % underline spaces within strings only.
+  showtabs=false,                                                                % show tabs within strings adding particular underscores.
+  breaklines=false,                                                              % do not break lines
+  breakatwhitespace=false,                                                       % do not break lines within whitespace
+  tabsize=4                                                                      % tab width
+}
+
+% Colour settings
+\definecolor{lstComment}{rgb}{0.45,0.45,0.45}      % code: comments (Grey)
+\definecolor{lstKey}{rgb}{0.13,0.21,1}             % code: primary keywords (Blue)
+\definecolor{lstKey2}{rgb}{1,0.666667,0.13726}     % code: secondary keywords (Day[9] Orange)
+\definecolor{lstString}{rgb}{0.1,0.65,0.1}         % code: strings (Green)
+\definecolor{lstBase}{rgb}{0.0,0.0,0.0}            % code: base (Black)
+
+\lstset{
+  numberstyle=\color{lstComment},                     % change style of numbering - currently grey.
+  basicstyle=\ttfamily \color{lstBase},  % set basic color
+  commentstyle=\color{lstComment},                    % set color of comments
+  keywordstyle=[1]\color{lstKey},                     % set color of primary keywords
+  keywordstyle=[2]\color{lstKey2},                    % set color of secondary keywords
+  stringstyle=\color{lstString},                      % set color of strings
+}
+
+% ---------------------------------------------------------------------------- %
+% Code: lstlisting languages
+% ---------------------------------------------------------------------------- %
+\lstdefinelanguage{pseudocode}{
+  keywords=[1]{
+    break,
+    by,
+    do,
+    downto,
+    else,
+    error,
+    for,
+    if,
+    let,
+    repeat,
+    return,
+    then,
+    to,
+    until,
+    while,    
+  },
+  keywords=[2]{
+    and,
+    or,
+    NIL,
+  }
+  sensitive=false,                                 % keywords are not case-sensitive
+  morecomment=[l]{//},                             % l is for line comment
+  morecomment=[s]{/*}{*/},                         % s is for start and end delimiter
+  morestring=[b]"                                  % strings are enclosed in double quotes
+}
+
+% Standard language
+\lstset{
+  language=pseudocode,
+}
+
+% ---------------------------------------------------------------------------- %
+% Variables for internal customization (multiple languages)
+% ---------------------------------------------------------------------------- %
+\usepackage{pgfkeys}
+
+\newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+  \pgfkeys{
+    /variables/#1.is family,
+    /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+  }%
+}
+
+\declare{}
+
+% import standard variables
+\input{lang_en.tex}
+
+
+% FROM HERE LOAD preamble_base_p2.tex with any custom settings in between!
+
