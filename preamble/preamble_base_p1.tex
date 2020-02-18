@@ -11,10 +11,11 @@
 \usepackage{csquotes}
 
 % ---------------------------------------------------------------------------- %
-% Tables and figures
+% Floats: Tables and figures
 % ---------------------------------------------------------------------------- % 
-\usepackage{tabularx,booktabs,authblk}                                           % various basic stuff for tables and more
+\usepackage{float, tabularx, booktabs, authblk}                                  % various basic stuff for tables and more
 \usepackage{caption, subcaption}                                                 % captions and sub figures
+
 
 \usepackage{wrapfig}                                                             % figures wrapped by text
 
@@ -111,6 +112,48 @@
 % ---------------------------------------------------------------------------- %
 \usepackage{listings}
 
+% Centered (float-like) listings (code from: https://tex.stackexchange.com/a/245750)
+\ExplSyntaxOn
+\tl_new:N \l_listings_boxed_options_tl
+\keys_define:nn { listings/boxed }
+ {
+  caption .tl_set:N = \l_listings_boxed_caption_tl,
+  shortcaption .tl_set:N = \l_listings_boxed_shortcaption_tl,
+  label .tl_set:N = \l_listings_boxed_label_tl,
+  unknown .code:n =
+          \tl_put_right:NV \l_listings_boxed_options_tl \l_keys_key_tl
+          \tl_put_right:Nn \l_listings_boxed_options_tl { = #1 , },
+ }
+\box_new:N \l_listings_boxed_box
+
+\lstnewenvironment{blstlisting}[1][]
+ {
+  \keys_set:nn { listings/boxed } { #1 }
+  \exp_args:NV \lstset \l_listings_boxed_options_tl
+  \hbox_set:Nw \l_listings_boxed_box
+ }
+ {
+  \hbox_set_end:
+  \cs_set_eq:cc {c@figure} {c@lstlisting}
+  \tl_set_eq:NN \figurename \lstlistingname
+  \tl_if_empty:NF \l_listings_boxed_caption_tl
+   {pp
+    \tl_if_empty:NTF \l_listings_boxed_shortcaption_tl
+     {
+      \captionof{figure}{\l_listings_boxed_caption_tl}
+     }
+     {
+      \captionof{figure}[\l_listings_boxed_shortcaption_tl]{\l_listings_boxed_caption_tl}
+     }
+    \tl_if_empty:NF \l_listings_boxed_label_tl { \label{\l_listings_boxed_label_tl} }
+   }
+  \leavevmode\box_use:N \l_listings_boxed_box
+ }
+\ExplSyntaxOff
+
+% Float listings
+\newfloat{lstfloat}{htbp}{lop}
+
 % General settings
 \lstset{
   mathescape=true,                                                               % escape to LaTeX math with $
@@ -200,6 +243,13 @@
 \lstset{
   language=pseudocode,
 }
+
+
+% ---------------------------------------------------------------------------- % 
+% Author tools: TODO
+% ---------------------------------------------------------------------------- %
+\usepackage[obeyFinal]{todonotes}
+
 
 % ---------------------------------------------------------------------------- %
 % Variables for internal customization (multiple languages)

@@ -486,18 +486,29 @@ has to be declared as an argument. In the following pseudocode there also is
 math with the \$ symbols and you can also escape to all of \LaTeX\ with
 \code{*@} and \code{@*}.
 
-\begin{lstlisting}[firstnumber=1,
-                   caption={The algorithm \emph{linear exponentiation}},
-                   label={lst:algorithm}]
-*@ \textbf{Algorithm: Linear Exponentiation} @*(x,p)
- Input     : $p \geq 0$
- Output    : $r = x^p$
- Method    : $r \leftarrow 1$
-             $q \leftarrow p$
+\begin{lstfloat}
+  \centering
+  
+  \begin{blstlisting}[firstnumber=1]
+  Algorithm : *@\textbf{Linear Exponentiation}@*(x,p)
+  Input     : $p \geq 0$
+  Output    : $r = x^p$
+  Method    : $r \leftarrow 1$
+              $q \leftarrow p$
               {I} while $q > 0$ do
-                    $r \leftarrow r * x$
-                    $q \leftarrow q - 1$
-\end{lstlisting}
+                  $r \leftarrow r * x$
+                  $q \leftarrow q - 1$
+  \end{blstlisting}
+
+  \caption{The algorithm \emph{linear exponentiation}}
+  \label{lst:float}
+\end{lstfloat}
+
+The preamble contains the ability to place code into floats similar to
+figures and tables, which can be seen above. For this you want to use the custom
+\emph{blstlisting} environment rather than the default \emph{lstlisting} one
+inside a \emph{lstfloat}. The only immediate problem is, that the float counter
+is separate from the listing, which is why both are assigned \ref{lst:float}.
 
 \section{Referencing and Citing} \label{sec:ref}
 If you need to reference equations, figures, sections or anything with a label
@@ -507,9 +518,25 @@ section has the number \ref{sec:ref}.
 
 If you wan to reference the bibliography, then you want to use the \emph{cite}
 operation instead. Here is a reference to \cite{hansen2020}, which is written in
-the \emph{bibliography} further down. This is redefined to litteratur with the
-danish preamble, preamble\_dk.tex. If you want more references simultaneously
-you just seperate them with commas.
+the \emph{bibliography} file \emph{references.bib}. This is redefined to
+litteratur with the danish preamble, preamble\_dk.tex. If you want more
+references simultaneously you just add another entry in the references file.
+
+\section{TODO notes}
+\todo{This is a small correction}
+When working on bigger projects or when collaborating it can be useful to be
+able to add todo notes for coordination, such as the one on the right. All TODO
+notes are hidden, when the documentclass at the very top is also given the
+\emph{final} argument.
+
+\todo[inline, author=Sølvsten, caption={An alternative shorter text for the list}]{
+  This is a bigger todo, why it is in its own paragraph. It is possible to write
+  math inside all of these, such as $\sum_i^n i = \tfrac{n(n+1)}{n}$. With these
+  you can sketch out all major points you want to write up as part of a section
+  or exercise.}
+
+It is possible to create a ``list of todos'' as below
+\listoftodos[List of TODO Notes]
 
 % ---------------------------------------------------------------------------- %
 % References
