@@ -440,6 +440,30 @@ easier. An example is shown in Figure~\ref{fig:FA}
   \label{fig:FA}
 \end{figure}
 
+
+\section{Lists and enumeration}
+You can make a list by use of \emph{itemize} and enumerated lists with
+\emph{enumerate}. These can also be nested within each other easily.
+\begin{itemize}
+\item First item
+  \begin{itemize}
+  \item First subitem
+  \item Second subitem
+  \end{itemize}
+\item Second item
+  \begin{enumerate}
+  \item First enumerated subitem
+  \item Second enumerated subitem
+  \end{enumerate}
+\item Third item
+\end{itemize}
+Finally, the choice of bullet points can be customized, such as the following
+with parenthesis
+\begin{enumerate}[label=(\alph*)]
+\item First option
+\item Second option
+\end{enumerate}
+
 \section{Code}
 The following is sourcecode for some non-aweinspiring Java method. By using a
 caption you also give it a number, but alternatively it can be given a
