@@ -3,20 +3,19 @@
 % ---------------------------------------------------------------------------- %
 % Linear Algebra
 % ---------------------------------------------------------------------------- %
-\newcommand{\allones}{\ensuremath{\mathbf{1}}}
-\newcommand{\allzeros}{\ensuremath{\mathbf{0}}}
-
-\newcommand{\abs}[1]{\ensuremath{\mathopen\lvert #1 \mathclose\rvert}}
-\newcommand{\norm}[1]{\ensuremath{\mathopen\lVert #1 \mathclose\rVert}}
-\newcommand{\Abs}[1]{\ensuremath{\left| #1 \right|}}
-\newcommand{\Norm}[1]{\ensuremath{\left\| #1 \right\|}}
+\newcommand{\allones}{\ensuremath{\mathbf{1}}}                                  % \allones  = The all ones vector
+\newcommand{\allzeros}{\ensuremath{\mathbf{0}}}                                 % \allzeros = The all zeros vector
 
 % ---------------------------------------------------------------------------- %
-% Caligraphic
+% Calligraphic symbols ('cal' prefix)
 % ---------------------------------------------------------------------------- %
+\newcommand{\calF}{\ensuremath{\mathcal{F}}}
 \newcommand{\calG}{\ensuremath{\mathcal{G}}}
 \newcommand{\calH}{\ensuremath{\mathcal{H}}}
+\newcommand{\calO}{\ensuremath{\mathcal{O}}}
 \newcommand{\calS}{\ensuremath{\mathcal{S}}}
+\newcommand{\calV}{\ensuremath{\mathcal{V}}}
+\newcommand{\calW}{\ensuremath{\mathcal{W}}}
 
 % ---------------------------------------------------------------------------- %
 % Algebra
@@ -30,15 +29,37 @@
 \newcommand{\Q}{\ensuremath{\mathbb{Q}}}                                         % \Q = Rational numbers
 \newcommand{\F}{\ensuremath{\mathbb{F}}}                                         % \F = Field
 \newcommand{\K}{\ensuremath{\mathbb{K}}}                                         % \K = Field \R and \C
-\newcommand{\V}{\ensuremath{\mathcal{V}}}                                        % \V
-\newcommand{\W}{\ensuremath{\mathcal{W}}}                                        % \W
-\renewcommand{\S}{\ensuremath{\mathbb{S}}}                                       % \S = Set of permutations
+\renewcommand{\S}{\ensuremath{\mathbb{S}}}                                       % \S = Group of permutations
 
 % ---------------------------------------------------------------------------- %
-% Complexity Theory
+% Complexity Theory ('c' prefix)
 % ---------------------------------------------------------------------------- %
-\newcommand{\P}{\ensuremath{\mathrm{P}}}
-\newcommand{\NP}{\ensuremath{\mathrm{NP}}}
-\newcommand{\coNP}{\ensuremath{\mathrm{coNP}}}
-\newcommand{\PSPACE}{\ensuremath{\mathrm{PSPACE}}}
-\newcommand{\EXPSPACE}{\ensuremath{\mathrm{EXPSPACE}}}
+% Complexity classes
+\newcommand{\cDSPACE}{\text{DSPACE}}                                             % \cDSPACE   = DSPACE
+\newcommand{\cDTIME}{\text{DTIME}}                                               % \cDTIME    = DTIME
+\newcommand{\cNSPACE}{\text{NSPACE}}                                             % \cNSPACE   = NSPACE
+\newcommand{\cNTIME}{\text{NTIME}}                                               % \cNTIME    = NTIME
+
+\newcommand{\cCLASS}[1]{\ensuremath{\mathrm{#1}}}
+
+\newcommand{\cL}{\cCLASS{L}}                                                     % \cL        = Deterministic Logarithmic Space
+\newcommand{\cNL}{\cCLASS{NL}}                                                   % \cNL       = Nondeterministic Logarithmic Space
+\newcommand{\cP}{\cCLASS{P}}                                                     % \cP        = Deterministic Polynomial Time
+\newcommand{\cNP}{\cCLASS{NP}}                                                   % \cNP       = Nondeterministic Polynomial Time
+\newcommand{\ccoNP}{\cCLASS{coNP}}                                               % \ccoNP     = Conondeterministic Polynomial Time
+\newcommand{\cPSPACE}{\cCLASS{PSPACE}}                                           % \cPSPACE   = Deterministic Polynomial Space
+\newcommand{\cEXP}{\cCLASS{EXP}}                                                 % \cEXP      = Deterministic Polynomial Time
+\newcommand{\cNEXP}{\cCLASS{NEXP}}                                               % \cNEXP     = Nondeterministic Polynomial Time
+\newcommand{\cEXPSPACE}{\cCLASS{EXPSPACE}}                                       % \cEXPSPACE = Deterministic Polynomial Space
+
+\newcommand{\cBPP}{\cCLASS{BPP}}                                                 % \cBPP      = Polynomial time randomness with 2-sided error
+\newcommand{\cFPT}{\cCLASS{FPT}}                                                 % \cFPT      = Fixed parameter tractable
+
+% Complete problems
+\newcommand{\cSTCON}{\textsc{STCON}}                                             % \cSTCON    = ST Connectivity
+\newcommand{\cSAT}{\textsc{SAT}}                                                 % \cSAT      = Satisfiability
+\newcommand{\cOVP}{\textsc{OVP}}                                                 % \cOVP      = Orthogonal Vectors
+
+% Hypothesis
+\newcommand{\cETH}{\textsc{eth}}                                                 % \cETH      = Exponential Time Hypothesis
+\newcommand{\cSETH}{\textsc{Seth}}                                               % \cSETH     = Strong ETH

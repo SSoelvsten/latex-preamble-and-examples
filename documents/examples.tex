@@ -24,10 +24,11 @@
 % having to use, and while I endorse you send a pull request with more, here you
 % can add the ones you only need for this one document.
 
+\newcommand{\PARTITION}{\textsc{PARTITION}}
+
+% You can also define local macros here, that are used later in other files read
+% using \input.
 \newcommand{\Gmul}{\ensuremath{\calG_{\mathrm{mul}}}}
-
-\newcommand{\SAT}{\textsc{SAT}}
-
 
 % ---------------------------------------------------------------------------- %
 % Page layout
@@ -111,15 +112,20 @@ and the equals sign are aligned nicely. Here is a reference to line
 \subsection{Math fonts and symbols}
 In mathmode you can also use different styles called alphabets. Bold
 $\mathbf{b}$ and italic text such as functions can be written with
-$\mathit{function}$. Furthermore the real numbers $\mathbb{R}$ has a shortcut
-$\backslash$R and the same goes for \C, \Q, \F and more. All these macros ensure
-to go into math mode, so you will not get any compile errors in plain writing.
-Finally with \emph{mathcal} you can get caligraphic writing.
+$\mathit{function}$. Finally with \emph{mathcal} you can get calligraphic
+writing, such as $\mathcal{G}$ and with \emph{mathbb} you get math symbols for
+fields, like $\mathbb{F}$, and other things such as $\mathbb{0}$.
+
+Furthermore there are quite a few symbols are you normally have to write, such
+as the real numbers $\mathbb{R}$. Hence, the preamble defines multiple shortcuts
+in \emph{math\_macros\_symb} for \C, \Q, \F\ and many more. All these macros
+ensure to go into math mode, so you will not get any compile errors in plain
+writing. The file is easy to read and is well documented.
 
 In general you would like to define macros for whenever you are going to reuse
 the same notation over and over again. For example if you have to write about
-the \NP-complete problem \SAT\ multiple times, you may want to define \SAT\ as a
-local macro, since it is not part of the preamble.
+the \cNP-complete problem \PARTITION\ multiple times, you may want to define
+\PARTITION\ as a local macro, since it is not part of the preamble.
 
 \subsection{Linear Algebra}
 With \emph{pmatrix} matrices can also be made, such as in the following. For the
@@ -139,10 +145,10 @@ row operations I have made the \emph{ero} macro to make life easier.
 \end{equation*}
 
 Other common (Linear) Algebra operators that I have made macros for are
-$\Det{A}$, the equivalence class $\eqclass{v}{\V}$, the matrix representation
-$\matrep{\V}{L}{\W}$, the $\sgn{\sigma}$ and the $\Span{\seq{v}{1}{n}}$ can be
-made easily with the macros coded. The vectors \allones\ and \allzeros\ also
-have a shortcut.
+$\Det{A}$, the equivalence class $\eqclass{v}{\calV}$, the matrix representation
+$\matrep{\calV}{L}{\calW}$, the $\sgn{\sigma}$ and the $\Span{\seq{v}{1}{n}}$
+can be made easily with the macros coded. The vectors \allones\ and \allzeros\
+also have a shortcut.
 
 \subsection{Other math macros}
 Things like sequences and sets we use all the time too, which is why I've made
