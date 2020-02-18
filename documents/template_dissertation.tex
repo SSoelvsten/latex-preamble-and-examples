@@ -1,7 +1,7 @@
 % ---------------------------------------------------------------------------- %
 % Load base preamble
 % ---------------------------------------------------------------------------- %
-\documentclass[a4, english, twoside]{article}
+\documentclass[a4, english, twoside]{book}
 
 % Import from the same folder
 %\input{preamble_en.tex}
@@ -14,6 +14,7 @@
 \usepackage{import}
 \subimport{../preamble/}{preamble_en.tex}
 
+\usepackage{lipsum}
 
 % ---------------------------------------------------------------------------- %
 % Local macros
@@ -24,7 +25,7 @@
 % ---------------------------------------------------------------------------- %
 % Title
 % ---------------------------------------------------------------------------- %
-\newcommand{\titlecontent}{Name of report}
+\newcommand{\titlecontent}{Name of dissertation}
 \title{\titlecontent}
 
 % ---------------------------------------------------------------------------- %
@@ -71,19 +72,49 @@
 % Main content
 % ---------------------------------------------------------------------------- %
 \begin{document}
+\frontmatter \pagestyle{empty}
+
 \maketitle
 
 \begin{abstract}
-  Lorem ipsum...
+  \lipsum[2] \lipsum[3]
 \end{abstract}
 
-\tableofcontents
+% Only show parts, chapters and sections, but no deeper
+\setcounter{tocdepth}{1} \tableofcontents
 
 \newpage
-\section{Introduction} \label{chap:intro}
+\chapter{Introduction} \label{chap:intro}
+\lipsum
 
+\mainmatter \pagestyle{fancy}
+\part{Part I Name} % \part can be omitted
+  % I will heavily endorse you to have every chapter in its own file!
+  \chapter{Chapter 1}
+  \lipsum
 
-\section{Conclusion} \label{chap:conclusion}
+  \section{Section A}
+  \lipsum
+
+  \section{Section B}
+  \lipsum
+
+  \chapter{Chapter 2}
+  \lipsum
+
+\part{Part II Name}
+  \chapter{Chapter 3}
+  \lipsum
+
+  \chapter{Chapter 4}
+  \lipsum
+
+\part{Part III Name}
+  \chapter{Chapter 5}
+  \lipsum
+
+\chapter{Conclusion} \label{chap:conclusion}
+\lipsum{8394}
 
 % ---------------------------------------------------------------------------- %
 % References
@@ -94,6 +125,7 @@
 % Appendix
 % ---------------------------------------------------------------------------- %
 \newpage \appendix
-\section{Appendix} \label{app:A}
+\chapter{Appendix I} \label{app:A}
+\lipsum
 
 \end{document}
