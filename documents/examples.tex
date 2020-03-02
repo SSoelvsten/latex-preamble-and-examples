@@ -440,6 +440,26 @@ easier. An example is shown in Figure~\ref{fig:FA}
   \label{fig:FA}
 \end{figure}
 
+\subsection{Derivation trees}
+Simple trees can be drawn using the \emph{qtree} package. It mainly only is good
+enough for derivation trees
+
+\begin{figure}[ht!]
+  \Tree
+  [.S
+    [.S
+      {(}
+      [.S
+        [.SS
+          [ a b ].SS % Notice, that you can have the non-terminating text
+                    % before and after the subtree
+          [.{S + S} a a ] ] ] % To have whitespace in a node, wrap it in { and }
+      {)} ] % Notice, that all closing brackets have a whitespace. This is needed!
+    {*} ]
+
+  \caption{A derivation of $(abc + a)*$ on the grammar $S \mapsto SS | S + S | S* | (S) | a | b | 0$}
+\end{figure}
+
 
 \section{Lists and enumeration}
 You can make a list by use of \emph{itemize} and enumerated lists with
