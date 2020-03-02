@@ -295,8 +295,26 @@ subproof. Parts of the solution to an exercise in one of the handins is then
 \section{Tables and figures}
 \begin{figure}[ht!] % h = Here, t = Top, b = Bottom, p = same Page, ! = DO AS I SAY
   \centering
-  \includegraphics[width=10em]{img/picture.png}
-  \caption{A picture}
+
+  \begin{subfigure}{0.59\linewidth}
+    \centering
+    
+    \includegraphics[width=\linewidth]{img/picture_1.jpg}
+    
+    \caption{An image}
+    \label{fig example: sub figure 1}
+  \end{subfigure}
+  \begin{subfigure}{0.39\linewidth}
+    \centering
+    
+    \includegraphics[width=\linewidth]{img/picture_2.jpg}
+    
+    \caption{Another image}
+    \label{fig example: sub figure 2}
+  \end{subfigure}
+
+
+  \caption{Some pictures in subfigures}
   \label{FigExample}
 \end{figure}
 
@@ -311,7 +329,7 @@ subproof. Parts of the solution to an exercise in one of the handins is then
   \caption{Transition diagram of a small Turing machine}
   \label{fig:TM2}
 \end{wrapfigure}
-The following is a figure with an image in it, and its label is
+The following is a figure with subfigures with an image in it, and its label is
 \ref{FigExample}. Figures can contain pretty much everything, so just
 experiment, it will most likely work. If you want to have your figure beside
 your text you need to put it into a \emph{wrapfigure} instead of a normal
