@@ -39,16 +39,24 @@
 % Bibliography
 % ---------------------------------------------------------------------------- %
 \usepackage[
-backend=biber,
-style=alphabetic,
-sortlocale=en_US,
-useprefix=false,
-url=false,
-doi=true,
-eprint=false,
-maxbibnames=99,
+  backend=biber,
+  style=alphabetic,
+  sortlocale=EN_GB,
+  useprefix=false,
+  url=false,
+  doi=true,
+  eprint=false,
+  maxbibnames=99,
 ]{biblatex}
 \addbibresource{references.bib}
+
+\renewbibmacro*{begentry}{\midsentence}
+
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\toggletrue{blx@useprefix}}
+\makeatother
+
 
 % ---------------------------------------------------------------------------- %
 % Title
@@ -402,7 +410,7 @@ else to do the same.
 
 \subsection{Graphs and automata}
 In Figure~\ref{fig:game} you can find a small game gadget used by Hansen and
-Sølvsten in \cite{hansen2020}. This figure was written by hand and the code is
+Sølvsten in \cite{ICALP:Hansen2020}. This figure was written by hand and the code is
 separated into \emph{polynomia.tex} in the \emph{figures} folder. I highly
 encourage you to also make your figures manually rather than using any tool that
 autogenerates it (IPE being the only exception). This makes it much easier
@@ -537,10 +545,15 @@ you want to use the \emph{ref} operation. A \emph{ref} will always point to a
 section has the number \ref{sec:ref}.
 
 If you wan to reference the bibliography, then you want to use the \emph{cite}
-operation instead. Here is a reference to \cite{hansen2020}, which is written in
-the \emph{bibliography} file \emph{references.bib}. This is redefined to
-litteratur with the danish preamble, preamble\_dk.tex. If you want more
+operation instead. Here is a reference to \cite{ICALP:Hansen2020}, which is
+written in the \emph{bibliography} file \emph{references.bib}. This is redefined
+to litteratur with the danish preamble, preamble\_dk.tex. If you want more
 references simultaneously you just add another entry in the references file.
+
+The file contains three references, but the \emph{biber} tool resolves what
+references you actually use and only displays the ones that you cite. Here is a
+citation of another paper by my supervisor Jaco van de
+Pol~\cite{STTT:bloemen2019}
 
 \section{TODO notes}
 \todo{This is a small correction}
