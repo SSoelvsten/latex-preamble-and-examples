@@ -348,7 +348,7 @@ Table~\ref{tab:table}. The table itself is made with \emph{tabular}.
 \begin{table}[ht!]
     \centering
     \begin{tabular}{ l r | c || >{\columncolor[gray]{0.5}}c >{\columncolor[RGB]{230, 242, 255}}c}
-        \rowcolor{lstKey2} %color defined for code highlights
+        \rowcolor{cOrange1} % use color defined in preamble
         l-column           & r-column & c-column                  & gray column & light blue column
     \\ \hline \hline % horizontal lines
         a                  & b        & c                         & d           & e
@@ -559,6 +559,35 @@ figures and tables, which can be seen above. For this you want to use the custom
 \emph{blstlisting} environment rather than the default \emph{lstlisting} one
 inside a \emph{lstfloat}. The only immediate problem is, that the float counter
 is separate from the listing, which is why both are assigned \ref{lst:float}.
+
+Finally, here is a Coq proof
+
+\begin{lstfloat}[ht!]
+  \centering
+
+  \begin{blstlisting}[language=coq]
+  Fixpoint nexec {S Q : Type}
+                 (qs : list Q) (d : S -> Q -> list Q) (s : list S) :=
+    match s with
+    | []       => qs
+    | s' :: sx => nexec (qs >>= (d s')) d sx
+    end.
+
+  Lemma nexec_distr :
+    forall {S Q} (qs1 qs2 : list Q)
+                 (d : S -> Q -> list Q) (s : list S),
+      (nexec qs1 d s) ++ (nexec qs2 d s) = (nexec (qs1 ++ qs2) d s).
+  Proof.
+    intros S Q qs1 qs2 d s.
+    generalize dependent qs2; generalize dependent qs1.
+    induction s as [| s sx].
+    - reflexivity.
+    - intros qs1 qs2; simpl. rewrite list_bind_distr. apply IHsx.
+  Qed.
+  \end{blstlisting}
+
+  \caption{Definition of NFA execution using the list monad}
+\end{lstfloat}
 
 \section{Referencing and Citing} \label{sec:ref}
 If you need to reference equations, figures, sections or anything with a label

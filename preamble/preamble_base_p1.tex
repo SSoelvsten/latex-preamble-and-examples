@@ -16,6 +16,15 @@
 \usepackage[table,xcdraw]{xcolor}                                                % xcolor package with support for tables
 \usepackage{colortbl}                                                            % color presets working together with xcolor
 
+\definecolor{cGray}{rgb}{0.45,0.45,0.45}
+\definecolor{cRed}{rgb}{0.545,0.137,0}
+\definecolor{cBlue1}{rgb}{0.13,0.21,1}
+\definecolor{cBlue2}{rgb}{0,0.408,0.545}
+\definecolor{cCyan}{rgb}{0,0.545,0.545}
+\definecolor{cOrange1}{rgb}{1,0.666667,0.13726} % Day[9]tv orange
+\definecolor{cOrange2}{rgb}{1.0,0.502,0}
+\definecolor{cGreen}{rgb}{0.1,0.65,0.1}
+\definecolor{cBlack}{rgb}{0.0,0.0,0.0}
 
 % ---------------------------------------------------------------------------- %
 % Floats: Tables and figures
@@ -184,52 +193,20 @@
 }
 
 % Colour settings
-\definecolor{lstComment}{rgb}{0.45,0.45,0.45}      % code: comments (Grey)
-\definecolor{lstKey}{rgb}{0.13,0.21,1}             % code: primary keywords (Blue)
-\definecolor{lstKey2}{rgb}{1,0.666667,0.13726}     % code: secondary keywords (Day[9] Orange)
-\definecolor{lstString}{rgb}{0.1,0.65,0.1}         % code: strings (Green)
-\definecolor{lstBase}{rgb}{0.0,0.0,0.0}            % code: base (Black)
-
 \lstset{
-  numberstyle=\color{lstComment},                     % change style of numbering - currently grey.
-  basicstyle=\ttfamily \color{lstBase},  % set basic color
-  commentstyle=\color{lstComment},                    % set color of comments
-  keywordstyle=[1]\color{lstKey},                     % set color of primary keywords
-  keywordstyle=[2]\color{lstKey2},                    % set color of secondary keywords
-  stringstyle=\color{lstString},                      % set color of strings
+  numberstyle=\color{cGray},
+  basicstyle=\small\upshape\ttfamily,
+  commentstyle=\color{cGray},
+  keywordstyle=[1]\color{cBlue1},
+  stringstyle=\color{cGreen},
 }
 
 % ---------------------------------------------------------------------------- %
 % Code: lstlisting languages
 % ---------------------------------------------------------------------------- %
-\lstdefinelanguage{pseudocode}{
-  keywords=[1]{
-    break,
-    by,
-    do,
-    downto,
-    else,
-    error,
-    for,
-    if,
-    let,
-    repeat,
-    return,
-    then,
-    to,
-    until,
-    while,    
-  },
-  keywords=[2]{
-    and,
-    or,
-    NIL,
-  }
-  sensitive=false,                                 % keywords are not case-sensitive
-  morecomment=[l]{//},                             % l is for line comment
-  morecomment=[s]{/*}{*/},                         % s is for start and end delimiter
-  morestring=[b]"                                  % strings are enclosed in double quotes
-}
+\input{lstlistings/pseudo.tex}
+\input{lstlistings/sml.tex}
+\input{lstlistings/coq.tex}
 
 % Standard language
 \lstset{
