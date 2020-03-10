@@ -480,13 +480,16 @@ enough for derivation trees
     [.S
       {(}
       [.S
-        [.SS
-          [ a b ].SS % Notice, that you can have the non-terminating text
-                    % before and after the subtree
-          [.{S + S} a a ] ] ] % To have whitespace in a node, wrap it in { and }
-      {)} ] % Notice, that all closing brackets have a whitespace. This is needed!
+        [.S
+          [ a ].S % Notice, that you can have the non-terminating text
+          [ b ].S ] % before and after the subtree
+        [.S
+          [.S a ]
+          {+}
+          [.S b ] ] ] % Notice, that all closing brackets have a whitespace. This is needed!
+      {)} ]
     {*} ]
-
+    % To have whitespace in a node, wrap it in { and }
   \caption{A derivation of $(abc + a)*$ on the grammar $S \mapsto SS | S + S | S* | (S) | a | b | 0$}
 \end{figure}
 
