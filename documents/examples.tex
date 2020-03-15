@@ -97,8 +97,8 @@ single new and centered line, such as the following
 \end{equation}
 You can write math in the text by writing \$ x\_0 \$ = $x_0$. If you want to
 write math over more lines, it is better to use the \emph{align} or even better
-the \emph{alignat} commands. You can also use the * in the
-$\backslash$\code{begin}$\{$\code{align}$\}$ to not include line numbers
+the \emph{alignat} commands. You can also use the * at the end of the
+environment name to not include line numbers
 \begin{align*}
   (R' \circ R)^{-1}
     &= (\{(a,b) \in S \times U | \exists t \in T: (a,t) \in R \wedge (t,b) \in R'\})^{-1}
@@ -226,14 +226,14 @@ be used as shown in Figure~\ref{fig:bprooftree}.
   \begin{bprooftree}
     \AxiomC{\phantom{M}}
     \RightLabel{\scriptsize (MLeaf)}
-    \UnaryInfC{\code{leaf} $\sim =\sim$ \code{leaf}}
+    \UnaryInfC{\lstinline{leaf} $\sim =\sim$ \lstinline{leaf}}
   \end{bprooftree}
   \hspace{10pt} % add some spacing between the two proof trees
   \begin{bprooftree}
     \AxiomC{$c_1 \sim =\sim c_1'$}
     \AxiomC{$c_2 \sim =\sim c_2'$}
     \RightLabel{\scriptsize (MNode)}
-    \BinaryInfC{\code{node} $c_1$ $x$ $c_2$ $\sim =\sim$ \code{node} $c_1'$ $x'$ $c_2'$}
+    \BinaryInfC{\lstinline{node} $c_1$ $x$ $c_2$ $\sim =\sim$ \lstinline{node} $c_1'$ $x'$ $c_2'$}
   \end{bprooftree}
   \caption{Inductive relation for trees of the same shape}
   \label{fig:bprooftree}
@@ -539,7 +539,7 @@ public static String example(int n) {
 If the language has to be something else than is the standard specified, then it
 has to be declared as an argument. In the following pseudocode there also is
 math with the \$ symbols and you can also escape to all of \LaTeX\ with
-\code{*@} and \code{@*}.
+\lstinline{*@} and \lstinline{@*}.
 
 \begin{lstfloat}
   \centering
