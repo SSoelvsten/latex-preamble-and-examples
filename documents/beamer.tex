@@ -23,6 +23,9 @@
 % having to use, and while I endorse you send a pull request with more, here you
 % can add the ones you only need for this one document.
 
+% This one is used in the files imported using \input.
+\newcommand{\Gmul}{\ensuremath{\calG_{\mathrm{mul}}}}
+
 % ---------------------------------------------------------------------------- %
 % Bibliography
 % ---------------------------------------------------------------------------- %
@@ -174,12 +177,15 @@ maxbibnames=99,
   \end{itemize}
 
   \pause
-  I also at times get a weird \lstinline{TeX capacity exceeded} error when using
-  \lstinline{enumerate} instead of \lstinline{itemize}. So, it is better to just
-  stick to that one.
 
-  Finally, if you need to compile handouts without animations, just add
-  \lstinline{handout} in the \lstinline{documentclass} above
+  It of course also works for enumeration
+  \begin{enumerate}
+  \item<+-> To not make the \LaTeX\ too heavy on commands the items support a
+    shorthand for the onslide notation on the next slide
+    onslide command further explained on the next slide
+  \item<+-> Finally, if you need to compile handouts without animations, just add
+    \lstinline{handout} in the \lstinline{documentclass} above
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}
