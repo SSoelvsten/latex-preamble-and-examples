@@ -61,6 +61,15 @@
 ]{biblatex}
 \addbibresource{references.bib}
 
+% Change the Bibliography to correctly handle Dutch names.
+\renewbibmacro*{begentry}{\midsentence}
+
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\toggletrue{blx@useprefix}}
+\makeatother
+
+
 % ---------------------------------------------------------------------------- %
 % Authors
 % ---------------------------------------------------------------------------- %
