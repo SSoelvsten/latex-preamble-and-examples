@@ -1,0 +1,339 @@
+\documentclass[english, aspectratio=169]{beamer}
+% english is for the language used in standard texts (figures, tables etc)
+% aspectratio of 16:9 or set it for more old school to 4:3 (without the ':')
+
+% ---------------------------------------------------------------------------- %
+% Load base preamble
+% ---------------------------------------------------------------------------- %
+
+% Import from absolute path
+% \usepackage{import}
+% \import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{beamer_en.tex}
+
+% Import from a relative path
+\usepackage{import}
+\subimport{../preamble/}{beamer_en.tex}
+
+% ---------------------------------------------------------------------------- %
+% Local macros
+% ---------------------------------------------------------------------------- %
+
+% It is quite common that you are going to write the same thing multiple times.
+% As part of the preamble I have predefined some macros for what I keep on
+% having to use, and while I endorse you send a pull request with more, here you
+% can add the ones you only need for this one document.
+
+% ---------------------------------------------------------------------------- %
+% Bibliography
+% ---------------------------------------------------------------------------- %
+\usepackage[
+backend=biber,
+style=alphabetic,
+sortlocale=EN_GB,
+useprefix=false,
+url=false,
+doi=true,
+eprint=false,
+maxbibnames=99,
+]{biblatex}
+\addbibresource{references.bib}
+
+
+% ----------------------------------------------------------------------------------------
+% TITLEPAGE
+% ----------------------------------------------------------------------------------------
+\title[Alternate title]{
+  {\small Reverse engineerable \LaTeX examples:} \\ {Beamer presentations}
+}
+
+\author{Steffan S\o lvsten}
+\institute[AU] {
+  Aarhus University
+}
+
+
+% ---------------------------------------------------------------------------- %
+% Content
+% ---------------------------------------------------------------------------- %
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+\section{Basic slides}
+\begin{frame}
+  This is a very simple slide, which contains some math symbols such as
+  $\sigma$, and also a math equation such as
+  \begin{equation*}
+    \sum_{i=1}^n i = \frac{n(n+1)}{2}
+  \end{equation*}
+  Here is a theorem with a proof
+
+  \begin{theorem}[Euler]
+    If $n$ and $a$ are coprime positive integers, then $a^{\phi(n)} \equiv 1
+    \mod n$
+  \end{theorem}
+  \begin{proof}
+    Left to the reader.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  It is quite common to have your slide divided into two or more parts. This is
+  done using columns.
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      Here is some text in the left column
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      Here is some text in the right column
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{Code}
+\begin{frame}[fragile]
+  You can have code snippets on your slides just the same way you do in the
+  documents. You only have to mark the frame \emph{fragile}, such that overflows
+  do not immediately break the compilation.
+
+  \begin{lstlisting}[language=coq, caption={Exercise on proving strong induction
+      in \cite{SFDiscrete}}]
+  Theorem strong_induction :
+    forall P : nat -> Prop,
+    (forall n : nat, (forall m : nat, m < n -> P m) -> P n) ->
+    forall n : nat, P n.
+  Proof.
+    intros P IH_strong n.
+    assert (H : forall k, k <= n -> P k).
+    { ... }
+    now apply H.
+  Qed.
+  \end{lstlisting}
+\end{frame}
+
+\section{Figures, Tables, and Graphics}
+\begin{frame}
+  \frametitle{Tables}
+  Tables are just as simple as you are used to.
+
+  \begin{table}
+    \centering
+    \begin{tabular}{c|c}
+      A cell & Another one
+      \\ \hline
+      $\gamma$ & $\beta$
+    \end{tabular}
+    
+    \caption{A table}
+    \label{tab:label}
+  \end{table}  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Graphics}
+  Figures are also exactly as easy. That means, you can actually have the whole
+  figure in another file, that you can include in both an article and in a
+  presentation!
+
+  \begin{figure}
+    \centering
+    \input{figures/polynomia.tex}
+
+    \caption{The label for the figure.}
+    \label{fig:label}
+  \end{figure}
+\end{frame}
+
+
+\section{Animations}
+\subsection{Simple use of pause and onslide}
+\begin{frame}
+  \frametitle{pause command}
+  To animate slides it is luckily not necessary to copy paste all of the code
+  and change one thing after the other! Otherwise Bærbak would definitely have
+  been very sad.
+  
+  The simplest animations you need is slowly revealing the slide, such as the
+  bullet points below. This is done using the \lstinline{\\pause}
+  command.
+
+  \begin{itemize}
+  \item An item, that is shown at the very beginning.
+
+    \pause
+    
+  \item An item, that is first shown on the ``next slide''
+  \end{itemize}
+
+  \pause
+  I also at times get a weird \lstinline{TeX capacity exceeded} error when using
+  \lstinline{enumerate} instead of \lstinline{itemize}. So, it is better to just
+  stick to that one.
+
+  Finally, if you need to compile handouts without animations, just add
+  \lstinline{handout} in the \lstinline{documentclass} above
+\end{frame}
+
+\begin{frame}
+  \frametitle{onslide command}
+
+  To do more complicated animations you want to trigger parts of the slide at
+  different times. You do this using the \lstinline{\\onslide<a-b>} where $a$,
+  and $b$ are optional slide numbers.
+
+  \onslide<2->{This paragraph is shown on the second step and forwards}
+
+  \onslide<2-3>{This paragraph is shown on the second and third steps of the slide}
+
+  \onslide<1-2>{This paragraph is shown on the first two steps of the slides}
+
+  \onslide<4>{This paragraph is shown on the fourth (last) step of the slides}
+\end{frame}
+
+\subsection{Tikz animations}
+\begin{frame}
+  \frametitle{Animated Tikz}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      Here is a simple example using the \lstinline{\\onslide} command to
+      trigger different parts of the slide at different times.
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{tikzpicture}[thick]
+        \node[state, label=left:$\rightarrow$] (q0) {$q_0$};
+        \node[state, above left=of q0] (q1) {$q_1$};
+        \node[state, below left=1cm and 0.2cm of q0] (q2) {$q_2$};
+        \node[state, below right=1cm and 0.2cm of q0] (q3) {$q_3$};
+        \node[state, accepting, above right=of q0] (q4) {$q_4$};
+
+        % path 1
+        \draw[->]
+        (q0) edge[bend left] node[below left] {$a$} (q1)
+        (q1) edge[bend left] node[above right] {$a$} (q0)
+        (q0) edge node[below right] {$b$} (q4)
+        ;
+
+        % path 1
+        \draw[->]
+        (q0) edge[bend right] node[left] {$a$} (q2)
+        (q2) edge[bend right] node[below] {$a$} (q3)
+        (q3) edge[bend right] node[right] {$b$} (q0)
+        ;
+
+        \onslide<2->{
+          \draw[->, cyan]
+          (q0) edge[bend left] (q1)
+          (q1) edge[bend left] (q0)
+          (q0) edge (q4)
+          ;
+          \node[state, accepting, above right=of q0, cyan] (q4) {$q_4$};
+        }
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Animated Tikz}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      Here is a much more complicated example together with an animation in
+      sync below.
+
+      \begin{align*}
+        \{ q_0 \} &\onslide<2-5>{\rightarrow \{ q_1, q_2 \}}
+        \\ &\onslide<3-5>{\rightarrow \{ q_0, q_3 \}}
+        \\ &\onslide<4-5>{\rightarrow \{ q_0, q_4 \}}
+      \end{align*}
+
+      \onslide<4-5>{Are any of the final states accepting?}
+      \onslide<5-5>{Yes, $q_4$ is!}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{tikzpicture}[thick]
+        \node[state, label=left:$\rightarrow$] (q0) {$q_0$};
+        \node[state, above left=of q0] (q1) {$q_1$};
+        \node[state, below left=1cm and 0.2cm of q0] (q2) {$q_2$};
+        \node[state, below right=1cm and 0.2cm of q0] (q3) {$q_3$};
+        \node[state, accepting, above right=of q0] (q4) {$q_4$};
+
+        % path 1
+        \draw[->]
+          (q0) edge[bend left] node[below left] {$a$} (q1)
+          (q1) edge[bend left] node[above right] {$a$} (q0)
+          (q0) edge node[below right] {$b$} (q4)
+        ;
+
+        % path 1
+        \draw[->]
+          (q0) edge[bend right] node[left] {$a$} (q2)
+          (q2) edge[bend right] node[below] {$a$} (q3)
+          (q3) edge[bend right] node[right] {$b$} (q0)
+        ;
+
+        % animation
+        \onslide<1-1>{
+          \node[state, label=left:$\rightarrow$, cyan] {$q_0$};
+        }
+  
+        \onslide<2-2>{
+          \draw[->, cyan]
+            (q0) edge[bend left] node[below left] {$a$} (q1)
+            (q0) edge[bend right] node[left] {$a$} (q2)
+          ;
+          \node[state, above left=of q0, cyan] {$q_1$};
+          \node[state, below left=1cm and 0.2cm of q0, cyan] {$q_2$};
+        }
+      
+        \onslide<3-3>{
+          \draw[->, cyan]
+            (q1) edge[bend left] node[above right] {$a$} (q0)
+            (q2) edge[bend right] node[below] {$a$} (q3)
+          ;
+          \node[state, label=left:$\rightarrow$, cyan] {$q_0$};
+          \node[state, below right=1cm and 0.2cm of q0, cyan] {$q_3$};
+        }
+      
+        \onslide<4-4>{
+          \draw[->, cyan]
+            (q0) edge node[below right] {$b$} (q4)
+            (q3) edge[bend right] node[right] {$b$} (q0)
+          ;
+          \onslide<4-5>
+          \node[state, cyan] {$q_0$};
+          \node[state, accepting, above right=of q0, cyan] {$q_4$};
+        }
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\subsection{Animating code}
+\begin{frame}[fragile]
+  By escaping from lstlisting out to \LaTeX\ using the
+  \texttt{*@}\dots\texttt{@*} macro you can also slowly reveal code. This could
+  be useful for showing a \emph{Coq} proof as below
+  \begin{lstlisting}[language=coq]
+  Theorem plus_n_O : forall n:nat, n = n + 0.
+  Proof.*@\pause@* 
+    induction n as [| n' IHn'].*@\pause@*
+    - (* n = 0 *)
+      reflexivity.*@\pause@*
+    - (* n = S n' *)
+      simpl. rewrite <- IHn'. reflexivity.*@\pause@*
+  Qed.
+  \end{lstlisting}
+\end{frame}
+
+\printbibliography
+\end{document}
