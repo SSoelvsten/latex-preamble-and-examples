@@ -14,6 +14,11 @@
 \usepackage{import}
 \subimport{../preamble/}{beamer_en.tex}
 
+% Comment out if you do not want a section page at each section. If you only
+% want a section page on some you can add \sectionpage right after you have
+% defined the section.
+\AtBeginSection{\frame{\sectionpage}}
+
 % ---------------------------------------------------------------------------- %
 % Local macros
 % ---------------------------------------------------------------------------- %
