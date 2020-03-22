@@ -1,0 +1,75 @@
+\documentclass[english, aspectratio=169]{beamer}
+% english is for the language used in standard texts (figures, tables etc)
+% aspectratio of 16:9 or set it for more old school to 4:3 (without the ':')
+
+% ---------------------------------------------------------------------------- %
+% Load base preamble
+% ---------------------------------------------------------------------------- %
+
+% Import from absolute path
+% \usepackage{import}
+% \import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{beamer_en.tex}
+
+% Import from a relative path
+\usepackage{import}
+\subimport{../preamble/}{beamer_en.tex}
+
+% Comment out if you do not want a section page at each section. If you only
+% want a section page on some you can add \sectionpage right after you have
+% defined the section.
+\AtBeginSection{\frame{\sectionpage}}
+
+% ---------------------------------------------------------------------------- %
+% Local macros
+% ---------------------------------------------------------------------------- %
+
+
+% ---------------------------------------------------------------------------- %
+% Bibliography
+% ---------------------------------------------------------------------------- %
+\usepackage[
+  backend=biber,
+  style=alphabetic,
+  sortlocale=EN_GB,
+  useprefix=false,
+  url=false,
+  doi=false,
+  eprint=false,
+  maxbibnames=99,
+]{biblatex}
+\addbibresource{references.bib}
+
+
+% ----------------------------------------------------------------------------------------
+% TITLEPAGE
+% ----------------------------------------------------------------------------------------
+\title[Alternate title]{
+  Title
+}
+
+\author{Steffan S\o lvsten}
+\institute[AU] {
+  Aarhus University
+}
+
+
+% ---------------------------------------------------------------------------- %
+% Content
+% ---------------------------------------------------------------------------- %
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+\section{Section 1}
+\begin{frame}
+  
+\end{frame}
+
+\printbibliography
+\end{document}
