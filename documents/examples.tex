@@ -240,63 +240,47 @@ be used as shown in Figure~\ref{fig:bprooftree}.
 \end{figure}
 
 \subsection{logic proofs}
-There exists various packages to make logic proofs, but after some time looking
-around I've chosen to focus on the \emph{lplfitch} package, since its output
-seems to be the generally preferred and used style. This package is very easy to
-work with, when first learned, but until then you need to learn quite a lot of
-new syntax. Most importantly notice, that a proof and subproof has two
-arguments, the assumption and the conclusions.
-\begin{center}
-    \fitchprf{\pline[1.]{presumption}}{
-        \pline[2.]{conclussion}
-    \\  \subproof{\pline[3.]{assumption}}{
-            \pline[4.]{conclussion}[argument]
-        \\  \pline[5.]{conclussion}
-        }
-        \pline[6.]{conclussion}
-    }
-\end{center}
+There exists various packages to make logic proofs, and due to coursework at
+Aarhus University this preamble includes the \emph{logicproof} package. A basic
+proof is in this
+\begin{logicproof}{1} % The number reflects the nesting depth of subproofs
+  math environment & rule \\
+  \begin{subproof}
+    p              & assumption \\
+    q              & $\dots$ % Notice no \\ on the the last line of a subproof
+  \end{subproof}
+  q                & rule $i_2$ % notice this is not a math environment
+\end{logicproof}
+A full example of a proof for $(p \lor q) \lor r \vdash p \lor (q \lor r)$ would
+then be
+\begin{logicproof}{2}(p\lor q)
+  \lor r                  & premise \\
+  \begin{subproof}
+    (p\lor q)             & assumption\\
+    \begin{subproof}p     & assumption\\
+      p\lor (q\lor r)     & $\lor\mathrm{i}_1$, 3
+    \end{subproof}
+    \begin{subproof}
+      q                   & assumption\\
+      q\lor r             & $\lor\mathrm{i}_1$, 5\\
+      p\lor (q\lor r)     & $\lor\mathrm{i}_2$, 6
+    \end{subproof}
+    p\lor (q\lor r)       & $\lor$e, 2, 3--4, 5--7
+  \end{subproof}
+  \begin{subproof}
+    r                     & assumption\\
+    q\lor r               & $\lor\mathrm{i}_2$, 9\\
+    p\lor (q\lor r)       & $\lor\mathrm{i}_2$, 10
+  \end{subproof}
+  p\lor (q\lor r)         & $\lor$e, 1, 2--8, 9--11
+\end{logicproof}
 
-All the commands can be found in the documentation
-\href{http://mirrors.dotsrc.org/ctan/macros/latex/contrib/lplfitch/lplfitch.pdf}{\emph{here}},
-but most shortcuts are of the form: $"l" + type + "i/e"$. Argumentation is also
-done using these shortcuts, so every line is
-\begin{equation*}
-    \backslash pline[\text{linenumber}]\{\text{formula}\}[\text{justification}]
-\end{equation*}
-
-Notice, that in fitch-style there isn't normally written assumption or premise,
-but it is merely shown by the horizontal line. You can write it if you want. The
-proof to exercise $1.2.1$ c from TØ class is in the proof to lemma
-\ref{lem:121}.
-\begin{lemma} \label{lem:121}
-    $(p \wedge q) \wedge r \vdash p \wedge (q \wedge r)$
-\end{lemma}
-\begin{proof}
-    \fitchprf{\pline[1.]{(p \land q) \land r}[\textbf{Premise}]}{
-        \pline[2.]{r}[\lande{1}]
-    \\  \pline[3.]{p \land q}[\lande{1}]
-    \\  \pline[4.]{p}[\lande{3}]
-    \\  \pline[5.]{q}[\lande{3}]
-    \\  \pline[6.]{q \land r}[\landi{2, 5}]
-    \\  \pline[7.]{p \land (q \land r)}[\landi{4, 6}]
-    } \\ %Linebreak for the tombstone
-\end{proof}
-
-If you need a fresh variable, you don't create a subproof, but instead a boxed
-subproof. Parts of the solution to an exercise in one of the handins is then
-\begin{theorem} \label{thm:handin}
-    $\forall x (P(x) \rightarrow Q(x) \vdash (\forall x \neg Q(x)) \rightarrow (\forall x \neg P(x)))$
-\end{theorem}
-\begin{proof}
-    \fitchprf{
-        \pline[1.]{...}}{
-            \boxedsubproof[2.]{x_0}{\lnot Q(x_0)}{
-                \pline[3.]{...}
-            }
-            \pline[4.]{...}
-        } \\ %Linebreak for the tombstone
-\end{proof}
+\subsubsection{lplfitch}
+At first this preamble was using the \emph{lplfitch} package, since its output
+seems to be the generally preferred and used style compared to the box proves
+above. The syntax for this package is much less intuitive to use and has a much
+steeper learning curve. See the older versions of this document for how it looks
+and how it is works.
 
 \section{Tables and figures}
 \begin{figure}[ht!] % h = Here, t = Top, b = Bottom, p = same Page, ! = DO AS I SAY
