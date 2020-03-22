@@ -14,7 +14,7 @@ between the general and the localisation specific settings. This is only of
 value, should you write your .tex document in various languages.
 - `base_p1`, `base_p2`: Packages and most settings (the second part is to be
   executed after localisation)
-- dk/en: Settings specifically for localisation to danish (dk) or english (en).
+- `dk`/`en`: Settings specifically for localisation to danish (dk) or english (en).
   The underlying preamble
 
 When importing the preamble you have to only import the localised .tex file,
@@ -32,14 +32,14 @@ On Windows
 ```tex
 \documentclass[a4, english]{article}
 \usepackage{import}
-\import{C:/GitHub/LaTeX_Preamble_and_Examples/preamble/}{preamble_en.tex}
+\import{C:/GitHub/LaTeX-Preamble_and_Examples/preamble/}{preamble_en.tex}
 ```
 
 On Unix
 ```tex
 \documentclass[a4, english]{article}
 \usepackage{import}
-\import{/home/username/Documents/LaTeX_Preamble_and_Examples/preamble/}{preamble_en.tex}
+\import{/home/username/Documents/LaTeX-Preamble_and_Examples/preamble/}{preamble_en.tex}
 ```
 
 ## Relative path
@@ -50,31 +50,19 @@ On Unix
 ```
 
 # Documents
-In the `documents` folder you can find multiple documents: _template_X.tex_,
-and _example.tex._
-## template_report.tex, template_dissertation.tex and template_blank.tex
-To quickly get started, this repository contains three templates:
+In the `documents` folder you can find multiple documents: _template*.tex_,
+and _example*.tex._
 
-- *template_blank.tex*: The most bare bones template, which is set up for
-  writing handins as part of the coursework.
-  
-- *template_report.tex*: For writing larger reports as the culmination of a
-  course. This one closely resembles a generic template to write an article.
-  
-- *template_dissertation.tex*: For when you (knock on wood), need to write a
-  very long dissertation in multiple parts and many chapters.
+This repository contains multiple templates to quickly get started on your next
+hand-in, report, thesis, or slideshow.
 
-![Alt text](/img/template.png?raw=true "The template file")
+![Alt text](/img/template.png?raw=true "The template files")
 
-With *template_blank.tex* you simultaneously have a completely blank document
-with nothing more than just the title.
+Furthermore the documents folder contains example documents with explanations
+and examples of using the various packages in the preamble. They are all made
+with the intent to be reverse engineerable.
 
-## examples.tex
-A slowly growing document with explanations and examples of using the various
-packages in the preamble. They are all made with the intent to be reverse
-engineerable.
-
-![Alt text](/img/example.png?raw=true "The template file")
+![Alt text](/img/example.png?raw=true "The example files")
 
 # Python Template Generator
 > This one has yet not been updated for the major rewrite. I never personally
