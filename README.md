@@ -1,3 +1,7 @@
+# LaTeX - Preamble and Examples
+[![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE.md)
+![test](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/workflows/test/badge.svg?branch=master)
+
 This small repository contains a LaTeX Preamble with settings for Computer
 Science handins together with a document with examples of use of all the
 different packages in the preamble together with a template to get a new
@@ -8,7 +12,7 @@ document started quicker.
 > can find the old version at commit `782d91460e2ba6f9c1c6a1c83b255decc7fb6dcc`
 > or on the branch `version/v1`.
 
-# Preamble
+## Preamble
 The preamble is made in two parts, with the intent to divide the settings
 between the general and the localisation specific settings. This is only of
 value, should you write your .tex document in various languages.
@@ -21,13 +25,13 @@ When importing the preamble you have to only import the localised .tex file,
 since there's already a call to the base settings within both. How you import it
 depends on where you have the preamble files located compared to your document.
 
-## Same folder
+### Same folder
 ```tex
 \documentclass[a4, english]{article}
 \input{preamble_en.tex}
 ```
 
-## Absolute path
+### Absolute path
 On Windows
 ```tex
 \documentclass[a4, english]{article}
@@ -42,14 +46,14 @@ On Unix
 \import{/home/username/Documents/LaTeX-Preamble_and_Examples/preamble/}{preamble_en.tex}
 ```
 
-## Relative path
+### Relative path
 ```tex
 \documentclass[a4, english]{article}
 \usepackage{import}
 \subimport{../preamble/}{preamble_en.tex}
 ```
 
-# Documents
+## Documents
 In the `documents` folder you can find multiple documents: _template*.tex_,
 and _example*.tex._
 
@@ -64,7 +68,7 @@ with the intent to be reverse engineerable.
 
 ![Alt text](/img/example.png?raw=true "The example files")
 
-# Python Template Generator
+## Python Template Generator
 > This one has yet not been updated for the major rewrite. I never personally
 > used it, so I have not much inclination to maintain it.
 

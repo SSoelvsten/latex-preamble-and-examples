@@ -1,0 +1,68 @@
+name: test
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:      
+  build_examples_article:
+    name: Test | Example (Article)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/latex-action@master
+        with:
+          root_file: examples_article.tex
+          working_directory: documents/
+
+  build_examples_beamer:
+    name: Test | Example (Beamer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/latex-action@master
+        with:
+          root_file: examples_beamer.tex
+          working_directory: documents/
+          
+  build_template_beamer:
+    name: Test | Template (Beamer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/latex-action@master
+        with:
+          root_file: template_beamer.tex
+          working_directory: documents/
+        
+  build_template_blank:
+    name: Test | Template (Blank)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/latex-action@master
+        with:
+          root_file: template_blank.tex
+          working_directory: documents/
+
+  build_template_dissertation:
+    name: Test | Template (Dissertation)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/latex-action@master
+        with:
+          root_file: template_dissertation.tex
+          working_directory: documents/
+
+  build_template_report:
+    name: Test | Template (Report)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/latex-action@master
+        with:
+          root_file: template_report.tex
+          working_directory: documents/
