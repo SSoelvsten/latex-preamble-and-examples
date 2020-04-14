@@ -30,6 +30,10 @@ document started quicker.
 > [`version/v1`](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/version/v1)
 > branch.
 
+> NIGHTLY BUILDS: Available on the
+> [`develop`](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/develop)
+> branch.
+
 ## Example and Template Documents
 In the `documents` folder you can find multiple documents of the form
 `template_*.tex` and `example_*.tex.`. The compiled version of all files are
