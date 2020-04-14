@@ -100,7 +100,7 @@ git submodules update
 In the
 [Releases](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/releases)
 section you can find _.zip_ files that you can directly drag and drop into your
-project and have everything set up. This way you can directly skip _Step 2_.
+project with the whole preamble.
 
 ### Step 2: Linking your document with the preamble
 The preamble is made in two parts, with the intent to divide the settings
