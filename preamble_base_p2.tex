@@ -1,0 +1,36 @@
+% LOAD THIS AFTER preamble_base_p1.tex !
+
+% ---------------------------------------------------------------------------- %
+% lstlisting
+% ---------------------------------------------------------------------------- %
+\renewcommand{\lstlistingname}{\getvalue{lst_name}}
+\floatname{lstfloat}{\getvalue{lst_name}}
+
+\renewcommand{\lstlistlistingname}{\getvalue{lsts_name}}
+
+
+% ---------------------------------------------------------------------------- %
+% Logic and proofs
+% ---------------------------------------------------------------------------- %
+\newtheorem{theorem}{\getvalue{thm_name}}[section]
+\newtheorem{lemma}[theorem]{\getvalue{lem_name}}
+\newtheorem{proposition}[theorem]{\getvalue{prop_name}}
+\newtheorem{corollary}[theorem]{\getvalue{cor_name}}
+\newtheorem{definition}[theorem]{\getvalue{def_name}}
+\newtheorem{conjecture}[theorem]{\getvalue{conj_name}}
+\newtheorem{remark}[theorem]{\getvalue{rem_name}}
+\newtheorem{hypothesis}[theorem]{\getvalue{hyp_name}}
+
+\newtheorem{observation}[theorem]{\getvalue{obs_name}}
+
+\newtheorem{example}[theorem]{\getvalue{example_name}}
+\newtheorem{problem}[theorem]{Problem}
+
+\renewcommand*{\proofname}{Proof}
+
+
+% ---------------------------------------------------------------------------- %
+% Lists
+% ---------------------------------------------------------------------------- % 
+\usepackage{enumitem}
+

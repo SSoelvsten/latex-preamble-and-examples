@@ -1,0 +1,254 @@
+% ---------------------------------------------------------------------------- %
+% Paper size and encoding
+% ---------------------------------------------------------------------------- %
+
+\usepackage[utf8]{inputenc}                                                      % encoding: utf-8 (nordic letters)
+\usepackage[T1]{fontenc}                                                         % use 8-bit encoded fonts
+
+% Uncomment to add more whitespace between paragraphs rather than indent
+%\usepackage[parfill]{parskip}
+
+\usepackage{csquotes}
+
+% ---------------------------------------------------------------------------- %
+% Colour
+% ---------------------------------------------------------------------------- %
+\usepackage{xcolor}
+\usepackage{colortbl}                                                            % color presets working together with xcolor
+
+\definecolor{cGray}{rgb}{0.45,0.45,0.45}
+\definecolor{cRed}{rgb}{0.545,0.137,0}
+\definecolor{cBlue1}{rgb}{0.13,0.21,1}
+\definecolor{cBlue2}{rgb}{0,0.408,0.545}
+\definecolor{cCyan}{rgb}{0,0.545,0.545}
+\definecolor{cOrange1}{rgb}{1,0.666667,0.13726} % Day[9]tv orange
+\definecolor{cOrange2}{rgb}{1.0,0.502,0}
+\definecolor{cGreen}{rgb}{0.1,0.65,0.1}
+\definecolor{cBlack}{rgb}{0.0,0.0,0.0}
+
+% ---------------------------------------------------------------------------- %
+% Floats: Tables and figures
+% ---------------------------------------------------------------------------- % 
+\usepackage{float, tabularx, booktabs, authblk}                                  % various basic stuff for tables and more
+\usepackage{caption, subcaption}                                                 % captions and sub figures
+
+
+\usepackage{wrapfig}                                                             % figures wrapped by text
+
+\usepackage{rotating}                                                            % rotate content (i.e. figures sideways)
+
+% ---------------------------------------------------------------------------- %
+% Mathematics
+% ---------------------------------------------------------------------------- %
+% various basic stuff
+\usepackage{mathtools, amsmath, amssymb}
+\usepackage{stmaryrd}                                                            % even more symbols
+
+\input{math_macros_symb.tex}
+\input{math_macros_functions.tex}
+
+% adds vertical lines to matrices
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+
+% ---------------------------------------------------------------------------- %
+% Logic and proofs
+% ---------------------------------------------------------------------------- %
+% Proofs
+\usepackage{amsthm}                                                              % Theorem package
+\theoremstyle{definition}                                                        % Style: plain, definition, remark
+
+% Uncomment if you want to have the number first
+%\swapnumbers
+
+% Logic packages
+%\usepackage{lplfitch}                                                            % fitch style proofs
+\usepackage{logicproof}                                                         % fitch style proofs
+
+\usepackage{bussproofs}                                                          % proof trees
+\newenvironment{bprooftree}                                                      % boxed proof tree
+  {\leavevmode\hbox\bgroup}
+  {\DisplayProof\egroup}
+
+
+% ---------------------------------------------------------------------------- %
+% Tikz
+% ---------------------------------------------------------------------------- %
+\usepackage{tikz}                                                                % import basepackage
+
+% Graphics
+\usetikzlibrary{calc}                                                            % Coordinate calcuations
+\usetikzlibrary{positioning}                                                     % Relative positioning
+\usetikzlibrary{shapes}                                                          % Basic shapes to draw with
+\usetikzlibrary{arrows}                                                          % Arrow customization
+\usetikzlibrary{patterns}                                                        % Patterns in drawings
+
+% Graphs
+\usetikzlibrary{automata}
+
+% Plots
+\usepackage{graphicx}                                                            % import basepackage for graphs
+\usepackage{pgfplots}                                                            % import pgfplots
+\usepgfplotslibrary{fillbetween}                                                 % add fillBetween command
+\pgfplotsset{compat=1.15}
+
+% qtree
+\usepackage[noload]{qtree}
+
+
+% ---------------------------------------------------------------------------- %
+% Code: lstlisting
+% ---------------------------------------------------------------------------- %
+\usepackage{listings}
+
+% Centered (float-like) listings (code from: https://tex.stackexchange.com/a/245750)
+\ExplSyntaxOn
+\tl_new:N \l_listings_boxed_options_tl
+\keys_define:nn { listings/boxed }
+ {
+  caption .tl_set:N = \l_listings_boxed_caption_tl,
+  shortcaption .tl_set:N = \l_listings_boxed_shortcaption_tl,
+  label .tl_set:N = \l_listings_boxed_label_tl,
+  unknown .code:n =
+          \tl_put_right:NV \l_listings_boxed_options_tl \l_keys_key_tl
+          \tl_put_right:Nn \l_listings_boxed_options_tl { = #1 , },
+ }
+\box_new:N \l_listings_boxed_box
+
+\lstnewenvironment{blstlisting}[1][]
+ {
+  \keys_set:nn { listings/boxed } { #1 }
+  \exp_args:NV \lstset \l_listings_boxed_options_tl
+  \hbox_set:Nw \l_listings_boxed_box
+ }
+ {
+  \hbox_set_end:
+  \cs_set_eq:cc {c@figure} {c@lstlisting}
+  \tl_set_eq:NN \figurename \lstlistingname
+  \tl_if_empty:NF \l_listings_boxed_caption_tl
+   {pp
+    \tl_if_empty:NTF \l_listings_boxed_shortcaption_tl
+     {
+      \captionof{figure}{\l_listings_boxed_caption_tl}
+     }
+     {
+      \captionof{figure}[\l_listings_boxed_shortcaption_tl]{\l_listings_boxed_caption_tl}
+     }
+    \tl_if_empty:NF \l_listings_boxed_label_tl { \label{\l_listings_boxed_label_tl} }
+   }
+  \leavevmode\box_use:N \l_listings_boxed_box
+ }
+\ExplSyntaxOff
+
+% Float listings
+\newfloat{lstfloat}{htbp}{lop}
+
+% General settings
+\lstset{
+  mathescape=true,                                                               % escape to LaTeX math with $
+  escapeinside={*@}{@*},                                                         % if you want to fully escape to LaTeX
+  literate={æ}{{\ae}}1{ø}{{\oe}}1{å}{{\aa}}1                                     % allow æ, ø and å in code
+           {Æ}{{\AE}}1{Ø}{{\O}}1{Å}{{\AA}}1,                                     %     (this change was taken from the preamble of the MatFysTutor LaTeX Guide)
+}
+
+% Formatting settings
+\lstset{
+  % Formatting inside
+  stepnumber=1,                                                                  % step between to line-numbers. 1 = each line is numbered
+  numbers=left,                                                                  % numbering: none, left, right
+  numbersep=5pt,                                                                 % distance between linenumbers and code
+  xleftmargin=\parindent,                                                        % indent linenumbers to not be outside of margin
+  xrightmargin=\parindent,                                                       % make the indent symmetrix
+  columns=[c]fixed,                                                              % makes it monospaced
+  % Formatting of border and caption
+  captionpos=b                                                                   % caption at the bottom
+}
+\DeclareCaptionFormat{listing}{%
+  \makebox[2.1cm][l]{\qquad#1#2}%
+  \parbox[t]{\dimexpr \captionwidth-2.1cm}{#3}%
+}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=off, labelsep=colon}
+
+
+% Whitespace settings
+\lstset{
+  showspaces=false,                                                              % show spaces everywhere - adding particular underscores
+  showstringspaces=false,                                                        % underline spaces within strings only.
+  showtabs=false,                                                                % show tabs within strings adding particular underscores.
+  breaklines=false,                                                              % do not break lines
+  breakatwhitespace=false,                                                       % do not break lines within whitespace
+  tabsize=4                                                                      % tab width
+}
+
+% Colour settings
+\lstset{
+  numberstyle=\color{cGray},
+  basicstyle=\small\upshape\ttfamily,
+  commentstyle=\color{cGray},
+  keywordstyle=[1]\color{cBlue1},
+  stringstyle=\color{cGreen},
+}
+
+% ---------------------------------------------------------------------------- %
+% Code: lstlisting languages
+% ---------------------------------------------------------------------------- %
+\input{lstlistings/none.tex}
+\input{lstlistings/pseudo.tex}
+\input{lstlistings/sml.tex}
+\input{lstlistings/coq.tex}
+
+% Default language
+\lstset{
+  language=pseudocode,
+}
+
+
+% ---------------------------------------------------------------------------- %
+% Author tools: TODO
+% ---------------------------------------------------------------------------- %
+\usepackage[obeyFinal]{todonotes}
+
+% Citation TODO
+\DeclareDocumentCommand \todocite { g }{
+  [
+    {\bf \color{cOrange2} \IfValueTF{#1}{#1}{??}}
+  ]
+}
+
+% ---------------------------------------------------------------------------- %
+% Hypermedia
+% ---------------------------------------------------------------------------- %
+
+\usepackage{url}                                                                 % \url{link}
+\usepackage[bookmarks=true, bookmarksopen=true, implicit=false]{hyperref}        % \href{link}{replacing text}
+
+\newcommand*{\http}[1]{\href{http://#1}{#1}}                                     % macro for http links: \http{www.matfystutor.dk}
+\newcommand*{\mailto}[1]{\href{mailto:#1}{\nolinkurl{#1}}}                       % macro for mails: \mailto{email@email.com}
+
+
+% ---------------------------------------------------------------------------- %
+% Variables for internal customization (multiple languages)
+% ---------------------------------------------------------------------------- %
+\usepackage{pgfkeys}
+
+\newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
+\newcommand{\getvalue}[1]{\pgfkeysvalueof{/variables/#1}}
+\newcommand{\declare}[1]{%
+  \pgfkeys{
+    /variables/#1.is family,
+    /variables/#1.unknown/.style = {\pgfkeyscurrentpath/\pgfkeyscurrentname/.initial = ##1}
+  }%
+}
+
+\declare{}
+
+% import standard variables
+\input{lang_en.tex}
+
+% FROM HERE LOAD preamble_base_p2.tex with any custom settings in between!
+
