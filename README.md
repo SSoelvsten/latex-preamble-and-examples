@@ -1,8 +1,7 @@
 # LaTeX - Preamble and Examples
 [![version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/master)
-![test](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/workflows/test/badge.svg?branch=master)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/graphs/commit-activity)
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE.md)
+[![test](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/workflows/test/badge.svg?branch=master)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/actions?query=workflow%3Atest+branch%3Amaster)
 
 This small repository contains a LaTeX Preamble with settings for Computer
 Science handins together with a document with examples of use of all the
@@ -13,6 +12,7 @@ document started quicker.
 **Table of Contents**
 
 - [LaTeX - Preamble and Examples](#latex---preamble-and-examples)
+    - [Branches](#branches)
     - [Example and Template Documents](#example-and-template-documents)
         - [Templates](#templates)
         - [Examples](#examples)
@@ -21,18 +21,22 @@ document started quicker.
             - [Local Machine](#local-machine)
             - [Git Project](#git-project)
             - [Overleaf / ShareLaTeX](#overleaf--sharelatex)
-        - [Step 2: Linking your document with the preamble](#step-2-linking-your-document-with-the-preamble)
+        - [Step 2: Link your document to the preamble](#step-2-link-your-document-to-the-preamble)
 
 <!-- markdown-toc end -->
 
-> DISCLAIMER: To compile your old documents prior to the rewrite in early 2020
-> you most likely need to use the old version. This one can be found on the
-> [`version/v1`](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/version/v1)
-> branch.
+## Branches
+The project is distributed across three "_official_" branches.
 
-> NIGHTLY BUILDS: Available on the
-> [`develop`](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/develop)
-> branch.
+| Branch          | Purpose                                                                                  |
+|-----------------|------------------------------------------------------------------------------------------|
+| `master`        | Latest stable version of the preamble together with the documents                        |
+| `preamble-only` | Latest stable version of the preamble (_i.e. without the documents_)                     |
+| `develop`       | _Nightly builds_. Expect force pushes! You may need to `git reset --hard origin/develop` |
+
+To compile your old documents prior to the rewrite in early 2020 you most likely
+need to use the old version. This one can be found on the unmaintained
+`master/v1` branch.
 
 ## Example and Template Documents
 In the `documents` folder you can find multiple documents of the form
@@ -106,7 +110,7 @@ In the
 section you can find _.zip_ files that you can directly drag and drop into your
 project with the whole preamble.
 
-### Step 2: Linking your document with the preamble
+### Step 2: Link your document to the preamble
 The preamble is made in two parts, with the intent to divide the settings
 between the general and the localisation specific settings. This is only of
 value, should you write your .tex document in various languages.
