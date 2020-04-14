@@ -67,18 +67,3 @@ and examples of using the various packages in the preamble. They are all made
 with the intent to be reverse engineerable.
 
 ![Alt text](/img/example.png?raw=true "The example files")
-
-## Python Template Generator
-> This one has yet not been updated for the major rewrite. I never personally
-> used it, so I have not much inclination to maintain it.
-
-In the folder Python you can find a Python Template Generator, created by
-Kristian 'Yurippe' Gausel. *prepare.py* is the file that creates *latexgen.py*
-and packs the template and the *preamble_en*, *preamble_dk* and *preamble_base*
-into *latexgen.py* to create a standalone script to generate a template from
-
-This is especially useful for ShareLatTeX since you can add a --zip argument to
-zip the template into a ShareLaTeX compatible format for easy upload.
-
-The *latexgen.py* file can be found under
-[Releases](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/releases)
