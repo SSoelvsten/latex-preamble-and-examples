@@ -239,6 +239,57 @@ be used as shown in Figure~\ref{fig:bprooftree}.
   \label{fig:bprooftree}
 \end{figure}
 
+To fit more complicated typing rules, such as the \emph{T-ODot} typing rule of
+\textcite{POPL:zhang2017}, onto a single page or on a beamer slide one may may
+need to use the \lstinline{array} environment inside the text math. An example
+can be seen in Figure~\ref{fig:t-odot}.
+
+\begin{figure}[ht!]
+  \centering
+
+  \begin{bprooftree}
+    \AxiomC{$\begin{array}{c}
+               \Gamma \vdash e_1 : \mathit{num}_{\mathbbm{d}_1}
+               \\ \\
+               \Gamma \vdash e_2 : \mathit{num}_{\mathbbm{d}_2}
+             \end{array}$}
+           \AxiomC{$\Phi \implies \left(
+               \begin{array}{c}
+                 e_1 \odot e_2
+                 \ArrowBetweenLines
+                 e_1 + \mathbbm{d}_1 \odot e_2 + \mathbbm{d}_2
+               \end{array} \right)$}
+           \BinaryInfC{$\Gamma \vdash e_1 \odot e_2 : \mathit{bool}_0$}
+  \end{bprooftree}
+  \caption{The \emph{T-ODot} typing rule for comparisons.}
+  \label{fig:t-odot}
+\end{figure}
+
+One is of course not restricted to writing mere proof rules, but can also write
+bigger proof trees, such as the small examples in
+Figure~\ref{fig:t-uminus__proof}.
+
+\begin{figure}[ht!]
+  \centering
+
+  \begin{bprooftree}
+    % 5)
+    \AxiomC{}
+    \RightLabel{\scriptsize (T-Num)}
+    % 4) Requires one, found in (5)
+    \UnaryInfC{$\Gamma \vdash 0 : \mathit{num}_0$}
+    % 3)
+    \AxiomC{$\Gamma \vdash e : \mathit{num}_{\mathbbm{d}}$}
+    % 2) Requires two, found in (3) and (4)
+    \RightLabel{\scriptsize (T-OPlus)}
+    \BinaryInfC{$\Gamma \vdash 0 - e : \mathit{num}_{0-\mathbbm{d}}$}
+    % 1) Bottom-most only requiring one, found in (2)
+    \UnaryInfC{$\Gamma \vdash -e : \mathit{num}_{-\mathbbm{d}}$}
+  \end{bprooftree}
+  \caption{Proof of \lstinline{T-UMinus}}
+  \label{fig:t-uminus__proof}
+\end{figure}
+
 \subsection{logic proofs}
 There exists various packages to make logic proofs, and due to coursework at
 Aarhus University this preamble includes the \emph{logicproof} package. A basic
