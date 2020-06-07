@@ -25,14 +25,19 @@ jobs:
       - name: Zip preamble folder
         run: zip -qq -r ./overleaf.zip ./preamble ./template_*.tex
 
+      # https://github.community/t/how-can-i-set-an-expression-as-an-environment-variable-at-workflow-level/16516/6
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: v${{ steps.date.outputs.date }}
+          release_name: Release ${{ steps.date.outputs.date }}
           draft: false
           prerelease: false
 
