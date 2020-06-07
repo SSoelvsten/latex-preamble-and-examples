@@ -36,7 +36,7 @@ The project is distributed across three "_official_" branches.
 
 To compile your old documents prior to the rewrite in early 2020 you most likely
 need to use the old version. This one can be found on the unmaintained
-`master/v1` branch.
+`master-v1` branch.
 
 ## Example and Template Documents
 In the `documents` folder you can find multiple documents of the form
