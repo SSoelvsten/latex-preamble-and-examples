@@ -19,10 +19,11 @@ jobs:
       - name: Create templates
         run: python3 build_release.py
 
+      - name: Install zip
+        run: sudo apt install zip
+
       - name: Zip preamble folder
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r ./overleaf.zip ./preamble ./template_*.tex
+        run: zip -qq -r ./overleaf.zip ./preamble ./template_*.tex
 
       - name: Create Release
         id: create_release
