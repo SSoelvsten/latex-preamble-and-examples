@@ -1,3 +1,7 @@
+# =========================
+# Operating System Files
+# =========================
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -17,21 +21,15 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
+# OSX files
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Thumbnails
+# OSX thumbnails
 ._*
 
-# Files that might appear in the root of a volume
+# OSX files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -39,26 +37,33 @@ $RECYCLE.BIN/
 .Trashes
 .VolumeIcon.icns
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# =========================
+# LaTeX
+# =========================
+*.bbl
+*.blg
+*.bak
 *.aux
 *.out
 *.toc
 *.log
 *.gz
 *.dvi
+*.bcf
+*.nav
+*.run.xml
+*.snm
+*.vrb
+*.fdb_latexmk
+*.fls
 
-# Files created by latex
-*.bbl
-*.blg
-*.bak
-
+# =========================
+# Python script
+# =========================
 python/latexgen\.py
 
+# =========================
+# Emacs
+# =========================
 *.el
-
 *.tex~
