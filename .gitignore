@@ -21,16 +21,19 @@
 *.toc
 *.xml
 
-
-# =======================
-# Python script
-# =======================
-python/latexgen\.py
-
-
 # =======================
 # Emacs
 # =======================
 
 *.el
 *.tex~
+
+# =======================
+# Build output
+# =======================
+template_blank.tex
+template_beamer.tex
+template_dissertation.tex
+template_report.tex
+
+overleaf.zip
