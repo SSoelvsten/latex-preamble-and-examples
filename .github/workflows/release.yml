@@ -2,11 +2,13 @@ name: release
 
 on:
   push:
-    branches: master
+    branches: [ master ]
 
 jobs:
-  deploy:
+  overleaf:
+    name: Release .zip file
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
@@ -33,7 +35,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload preamble folder
+      - name: Upload overleaf.zip
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
@@ -43,3 +45,21 @@ jobs:
           asset_path: ./overleaf.zip
           asset_name: overleaf.zip
           asset_content_type: application/zip
+
+  preamble_only:
+    name: Update preamble-only branch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          persist-credentials: false
+
+      - name: Deploy to preamble-only
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: preamble-only
+          FOLDER: preamble
