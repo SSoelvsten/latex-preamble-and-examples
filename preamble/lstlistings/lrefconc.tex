@@ -1,0 +1,21 @@
+\lstdefinelanguage{lrefconc}{
+  keywords=[1]{
+    cas, else, end, false, fork, if, in, inj, let, match, rec, ref, then, true, with
+  },
+  keywords=[2]{
+    bind, counter, flatmap, filter, foldl, foldr, map, reduce, ret
+  },
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  literate=
+    {_1}{{$_1$}}1
+    {_2}{{$_2$}}1
+    {<-}{{$\leftarrow\;$}}1
+    {=>}{{$\Rightarrow\;$}}1
+    {==}{{\textsc{==}\;}}1
+    {->}{{$\rightarrow\;$}}1
+    {<->}{{$\leftrightarrow\;$}}1
+    {\\pi}{{$\pi$}}1
+    {\\lambda}{{$\lambda$}}1
+}
