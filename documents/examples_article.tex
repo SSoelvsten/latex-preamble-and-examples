@@ -508,7 +508,7 @@ easier. An example is shown in Figure~\ref{fig:FA}
 \end{figure}
 
 \subsection{Derivation trees}
-Simple trees can be drawn using the \emph{qtree} package. It mainly only is good
+Simple trees can be drawn using the \emph{qtree} package. It is really only good
 enough for derivation trees
 
 \begin{figure}[ht!]
@@ -528,6 +528,37 @@ enough for derivation trees
     {*} ]
     % To have whitespace in a node, wrap it in { and }
   \caption{A derivation of $(abc + a)*$ on the grammar $S \mapsto SS | S + S | S* | (S) | a | b | 0$}
+\end{figure}
+
+
+\subsection{Multi-line math and grammars}
+In some cases, one may want to include a grammar for a language within a figure,
+such as the context-sensitive language in the figure below. This is merely done,
+by placing an \emph{equation} or \emph{align} within a figure.
+
+\begin{figure}[ht!]
+  \centering
+
+  \begin{align*}
+    S &\quad \rightarrow\quad T D_2  \ |\ \Lambda
+    \\
+    T &\quad \rightarrow\quad ABTAB \ |\ D_1
+    \\
+    bDa &\quad \rightarrow\quad ba
+    \\
+    BA &\quad \rightarrow\quad AB
+    \\
+    BD_i &\quad \rightarrow\quad bD_i
+    \\
+    Bb &\quad \rightarrow\quad Bb
+    \\
+    Ab &\quad \rightarrow\quad aB
+    \\
+    Aa &\quad \rightarrow\quad aa
+  \end{align*}
+  
+  \caption{A context-sensitive grammar for the language $\set{a^nb^na^nb^n}{n \geq 0}$}
+  \label{fig:csl}
 \end{figure}
 
 
