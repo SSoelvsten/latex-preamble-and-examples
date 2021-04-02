@@ -2,7 +2,7 @@ name: release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   overleaf:
@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
           persist-credentials: false
 
       - name: Create templates
@@ -57,10 +57,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
           persist-credentials: false
 
       - name: Deploy to preamble-only
