@@ -1,11 +1,11 @@
-# Warning! [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/master)
+# Warning! [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/main)
 **This is an old stale branch for the LaTeX preamble. Please only use this if
 you try to compile your old projects. Any problems with this preamble will not
 be fixed! Please use the
-[master](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/master)
+[main](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/main)
 branch for your new projects.**
 
-# LaTeX - Preamble and Examples [![version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/version/v1)
+# LaTeX - Preamble and Examples [![version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/version/main-v1)
 This small repository contains a LaTeX Preamble with settings for Computer
 Science handins together with a document with examples of use of all the
 different packages in the preamble together with a template to get a new
