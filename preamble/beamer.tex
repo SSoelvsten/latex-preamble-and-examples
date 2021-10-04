@@ -1,10 +1,22 @@
 % ------------------------------------------------------------------------------
 %	BEAMER SETTINGS
 % -----------------------------------------------------------------------------
-\usetheme[compress]{Dresden}
+\usetheme{metropolis}
 
-% Remove the nasty the navigation symbols at the bottom of all slides
-\setbeamertemplate{navigation symbols}{\insertframenumber/\inserttotalframenumber}
+\metroset{
+  titleformat=regular,
+  % Section Pages
+  sectionpage=simple,
+  subsectionpage=none,
+  % Header and Footer
+  progressbar=foot,
+  numbering=counter,
+  % Colour
+  block=transparent,
+  background=light,
+}
+
+\usecolortheme{dove}
 
 % Make the itemise ticks visible
 \setbeamertemplate{items}[square]
