@@ -14,11 +14,6 @@
 \usepackage{import}
 \subimport{../preamble/}{beamer.tex}
 
-% Comment out if you do not want a section page at each section. If you only
-% want a section page on some you can add \sectionpage right after you have
-% defined the section.
-\AtBeginSection{\frame{\sectionpage}}
-
 % ---------------------------------------------------------------------------- %
 % Local macros
 % ---------------------------------------------------------------------------- %
@@ -43,15 +38,15 @@
 % ----------------------------------------------------------------------------------------
 % TITLEPAGE
 % ----------------------------------------------------------------------------------------
-\title[Alternate title]{
+\title{
   Title
 }
 
-\author{Steffan S\o lvsten}
-\institute[AU] {
-  Aarhus University
+\institute{
+  \textbf{Presenting author},
+  other author,
+  \\ Aarhus University
 }
-
 
 % ---------------------------------------------------------------------------- %
 % Content
@@ -62,14 +57,11 @@
   \titlepage
 \end{frame}
 
-\begin{frame}
-  \tableofcontents
-\end{frame}
+\blankframe
 
 \section{Section 1}
 \begin{frame}
-  
+  blank frame...
 \end{frame}
 
-\printbibliography
 \end{document}
