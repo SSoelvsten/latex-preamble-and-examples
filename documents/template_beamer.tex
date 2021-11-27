@@ -19,21 +19,6 @@
 % ---------------------------------------------------------------------------- %
 
 
-% ---------------------------------------------------------------------------- %
-% Bibliography
-% ---------------------------------------------------------------------------- %
-\usepackage[
-  backend=biber,
-  style=alphabetic,
-  sortlocale=EN_GB,
-  useprefix=false,
-  url=false,
-  doi=false,
-  eprint=false,
-  maxbibnames=99,
-]{biblatex}
-\addbibresource{references.bib}
-
 
 % ----------------------------------------------------------------------------------------
 % TITLEPAGE
@@ -41,9 +26,9 @@
 \title{Title}
 \subtitle{Subtitle}
 
-\author[Name]{\textbf{Presenting author} and other authors}
+\author{\textbf{Presenting author} and other authors}
 
-\institute[uni]{Aarhus University}
+\institute{Aarhus University}
 
 \date{\today}
 
@@ -55,9 +40,22 @@
 \titleframe
 \blankframe
 
-\section{Section 1}
 \begin{frame}
-  a frame...
+  a frame with some content...
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]{}
+
+  {\Large \textbf{Presenting author}}
+  {\hrule width0.5\linewidth}
+
+  \vspace{5pt}
+  
+  \begin{itemize}
+  \item[\faIcon{envelope}] \mailto{author@provider.com}
+  \item[\faIcon{linkedin}] \href{https://www.linkedin.com/presenting-author}{presenting-author}
+  \item[\faIcon{twitter}] \href{https://www.twitter.com/presenting-author}{@presenting-author}
+  \end{itemize}
 \end{frame}
 
 \end{document}
