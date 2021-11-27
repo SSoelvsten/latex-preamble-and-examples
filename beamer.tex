@@ -21,7 +21,17 @@
 % Make the itemise ticks visible
 \setbeamertemplate{items}[square]
 
+% ------------------------------------------------------------------------------
+%	Improt LaTeX settings
+% -----------------------------------------------------------------------------
 \input{preamble_base_p1.tex}
+
+% Remove 'Figure: ' and 'Table: ' on slides. This does not impact subfigures.
+\captionsetup[figure]{labelformat=empty}
+\captionsetup[table]{labelformat=empty}
+
+% Add Fontawesome icons
+\usepackage{fontawesome5}
 
 % ------------------------------------------------------------------------------
 %	Frame macros
