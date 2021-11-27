@@ -14,11 +14,6 @@
 \usepackage{import}
 \subimport{../preamble/}{beamer.tex}
 
-% Comment out if you do not want a section page at each section. If you only
-% want a section page on some you can add \sectionpage right after you have
-% defined the section.
-\AtBeginSection{\frame{\sectionpage}}
-
 % ---------------------------------------------------------------------------- %
 % Local macros
 % ---------------------------------------------------------------------------- %
@@ -31,31 +26,15 @@
 % This one is used in the files imported using \input.
 \newcommand{\Gmul}{\ensuremath{\calG_{\mathrm{mul}}}}
 
-% ---------------------------------------------------------------------------- %
-% Bibliography
-% ---------------------------------------------------------------------------- %
-\usepackage[
-  backend=biber,
-  style=alphabetic,
-  sortlocale=EN_GB,
-  useprefix=false,
-  url=false,
-  doi=true,
-  eprint=false,
-  maxbibnames=99,
-]{biblatex}
-\addbibresource{references.bib}
-
-
 % ----------------------------------------------------------------------------------------
 % TITLEPAGE
 % ----------------------------------------------------------------------------------------
 \title{Reverse engineerable \LaTeX examples:}
 \subtitle{Beamer presentations}
 
-\author[Name]{\textbf{Steffan Christ S\o lvsten}}
+\author{\textbf{Steffan Christ S\o lvsten}}
 
-\institute[uni]{Aarhus University}
+\institute{Aarhus University}
 
 \date{\today}
 
@@ -65,10 +44,6 @@
 \begin{document}
 
 \titleframe
-
-\begin{frame}
-  \tableofcontents
-\end{frame}
 
 \section{Basic slides}
 \begin{frame}
@@ -109,7 +84,7 @@
   do not immediately break the compilation.
 
   \begin{lstlisting}[language=coq, caption={Exercise on proving strong induction
-      in \cite{SFDiscrete}}]
+      in \emph{Software Foundations - Volume 1}}]
   Theorem strong_induction :
     forall P : nat -> Prop,
     (forall n : nat, (forall m : nat, m < n -> P m) -> P n) ->
@@ -352,5 +327,17 @@
   \end{lstlisting}
 \end{frame}
 
-\printbibliography
+\begin{frame}[plain,noframenumbering]{}
+
+  {\Large \textbf{Steffan Christ Sølvsten}}
+  {\hrule width0.5\linewidth}
+
+  \vspace{5pt}
+  
+  \begin{itemize}
+  \item[\faIcon{envelope}] \mailto{soelvsten@cs.au.dk}
+  \item[\faIcon{twitter}] \href{https://www.twitter.com/ssoelvsten}{@ssoelvsten}
+  \end{itemize}
+\end{frame}
+
 \end{document}
