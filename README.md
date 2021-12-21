@@ -125,13 +125,13 @@ depends on where you have the preamble files located compared to your document.
 
 **Case: Same folder**
 ```tex
-\documentclass[a4, english]{article}
+\documentclass[english]{article}
 \input{preamble_en.tex}
 ```
 
 **Case: Relative path**
 ```tex
-\documentclass[a4, english]{article}
+\documentclass[english]{article}
 \usepackage{import}
 \subimport{../preamble/}{preamble_en.tex}
 ```
@@ -139,14 +139,14 @@ depends on where you have the preamble files located compared to your document.
 **Case: Absolute path**
 > **On Windows**
 ```tex
-\documentclass[a4, english]{article}
+\documentclass[english]{article}
 \usepackage{import}
 \import{C:/GitHub/LaTeX-Preamble_and_Examples/preamble/}{preamble_en.tex}
 ```
 
 > **On Unix**
 ```tex
-\documentclass[a4, english]{article}
+\documentclass[english]{article}
 \usepackage{import}
 \import{/home/username/Documents/LaTeX-Preamble_and_Examples/preamble/}{preamble_en.tex}
 ```
