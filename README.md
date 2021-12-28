@@ -1,5 +1,5 @@
 # LaTeX - Preamble and Examples
-[![version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/main)
+[![version](https://img.shields.io/badge/version-2-blue.svg)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/tree/main)
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE.md)
 [![test](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/workflows/test/badge.svg?branch=main)](https://github.com/SSoelvsten/LaTeX-Preamble_and_Examples/actions?query=workflow%3Atest+branch%3Amain)
 
