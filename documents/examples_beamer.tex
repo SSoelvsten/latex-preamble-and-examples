@@ -110,10 +110,10 @@
       \\ \hline
       $\gamma$ & $\beta$
     \end{tabular}
-    
+
     \caption{A table}
     \label{tab:label}
-  \end{table}  
+  \end{table}
 \end{frame}
 
 
@@ -149,7 +149,7 @@
   To animate slides it is luckily not necessary to copy paste all of the code
   and change one thing after the other! Otherwise Bærbak would definitely have
   been very sad.
-  
+
   The simplest animations you need is slowly revealing the slide, such as the
   bullet points below. This is done using the \lstinline{\\pause}
   command.
@@ -158,7 +158,7 @@
   \item An item, that is shown at the very beginning.
 
     \pause
-    
+
   \item An item, that is first shown on the ``next slide''
   \end{itemize}
 
@@ -277,7 +277,7 @@
         \onslide<1-1>{
           \node[state, label=left:$\rightarrow$, cyan] {$q_0$};
         }
-  
+
         \onslide<2-2>{
           \draw[->, cyan]
             (q0) edge[bend left] node[below left] {$a$} (q1)
@@ -286,7 +286,7 @@
           \node[state, above left=of q0, cyan] {$q_1$};
           \node[state, below left=1cm and 0.2cm of q0, cyan] {$q_2$};
         }
-      
+
         \onslide<3-3>{
           \draw[->, cyan]
             (q1) edge[bend left] node[above right] {$a$} (q0)
@@ -295,7 +295,7 @@
           \node[state, label=left:$\rightarrow$, cyan] {$q_0$};
           \node[state, below right=1cm and 0.2cm of q0, cyan] {$q_3$};
         }
-      
+
         \onslide<4-4>{
           \draw[->, cyan]
             (q0) edge node[below right] {$b$} (q4)
@@ -307,7 +307,7 @@
         }
       \end{tikzpicture}
     \end{column}
-  \end{columns}  
+  \end{columns}
 \end{frame}
 
 \subsection{Animating code}
@@ -317,7 +317,7 @@
   be useful for showing a \emph{Coq} proof as below
   \begin{lstlisting}[language=coq]
   Theorem plus_n_O : forall n:nat, n = n + 0.
-  Proof.*@\pause@* 
+  Proof.*@\pause@*
     induction n as [| n' IHn'].*@\pause@*
     - (* n = 0 *)
       reflexivity.*@\pause@*
@@ -333,7 +333,7 @@
   {\hrule width0.5\linewidth}
 
   \vspace{5pt}
-  
+
   \begin{itemize}
   \item[\faIcon{envelope}] \mailto{soelvsten@cs.au.dk}
   \item[\faIcon{twitter}] \href{https://www.twitter.com/ssoelvsten}{@ssoelvsten}
